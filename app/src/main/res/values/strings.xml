@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">elo</string>
+    <string name="constructor">constructor</string>
+    <string name="name">название</string>
+    <string name="desc">описание</string>
+    <string name="tags">задать теги</string>
+    <string name="employees">доступные сотрудники</string>
+    <string name="tasks">указать задачи</string>
+    <string name="back">назад</string>
+    <string name="tag">добавить тег</string>
+    <string name="task">добавить задание</string>
+</resources>
