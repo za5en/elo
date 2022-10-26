@@ -8,4 +8,6 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="bottom_bar">#F3EDF7</color>
+    <color name="buttons">#F3F1F8</color>
 </resources>
