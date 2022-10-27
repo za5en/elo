@@ -4,6 +4,7 @@ import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 
 import java.util.ArrayList;
 
@@ -22,6 +23,15 @@ public class tags extends ListActivity {
                 android.R.layout.simple_list_item_1,
                 tagsList);
         setListAdapter(adapter);
+
+        Button back = findViewById(R.id.backButton);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     public void addItems(View v) {

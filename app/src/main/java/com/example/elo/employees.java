@@ -1,13 +1,27 @@
 package com.example.elo;
 
-import java.io.Serializable;
+import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckedTextView;
+import android.widget.ListView;
 
-public class employees implements Serializable {
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class employees extends AppCompatActivity {
 
     private String userName;
     private String userType;
-
     private boolean active;
+    public static final String tag = "employees";
+    private ListView employeeListView;
+
+    public employees() {};
 
     public employees(String userName, String userType)  {
         this.userName = userName;
@@ -21,6 +35,55 @@ public class employees implements Serializable {
         this.active = active;
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.employees);
+        Button back = findViewById(R.id.backButton);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        this.employeeListView = findViewById(R.id.listView);
+
+        this.employeeListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+
+        this.initListViewData();
+
+        this.employeeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.i(tag, "onItemClick: " +position);
+                CheckedTextView v = (CheckedTextView) view;
+                boolean currentCheck = v.isChecked();
+                employees user = (employees) employeeListView.getItemAtPosition(position);
+                user.setActive(!currentCheck);
+            }
+        });
+
+    }
+
+    private void initListViewData()  {
+        employees m = new employees("Mikhail","front junior", false);
+        employees r = new employees("RUSTAM","back senior", false);
+        employees s = new employees("Sumvel","back middle", false);
+
+        employees[] users = new employees[]{m, r, s};
+        ArrayAdapter<employees> arrayAdapter
+                = new ArrayAdapter<employees>(this, android.R.layout.simple_list_item_multiple_choice, users);
+
+        this.employeeListView.setAdapter(arrayAdapter);
+
+        for(int i = 0; i < users.length; i++)  {
+            this.employeeListView.setItemChecked(i, users[i].isActive());
+        }
+    }
+    
     public String getUserType() {
         return userType;
     }
@@ -37,11 +100,11 @@ public class employees implements Serializable {
         this.userName = userName;
     }
 
-    public boolean isActive() {
-        return active;
-    }
+    public boolean isActive() { return active; }
 
-    public void setActive(boolean active) {
-        this.active = active;
-    }
+    public void setActive(boolean active) { this.active = active; }
+
+    @NonNull
+    @Override
+    public String toString() { return this.userName +" ("+ this.userType+")"; }
 }
