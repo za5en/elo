@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:background="@color/bottom_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/searchButton"
+            android:layout_width="60dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="5dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/search"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/homeButton"
+            app:srcCompat="@drawable/search" />
+
+        <ImageButton
+            android:id="@+id/homeButton"
+            android:layout_width="60dp"
+            android:layout_height="56dp"
+            android:layout_marginBottom="5dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/home"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/home" />
+
+        <ImageButton
+            android:background="@android:color/transparent"
+            android:id="@+id/notificationsButton"
+            android:layout_width="60dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="5dp"
+            android:contentDescription="@string/notifications"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/homeButton"
+            app:srcCompat="@drawable/notifications" />
+
+        <ImageButton
+            android:id="@+id/profileButton"
+            android:layout_width="60dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="5dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/profile"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/notificationsButton"
+            app:srcCompat="@drawable/profile" />
+
+        <ImageButton
+
+            android:id="@+id/settingsButton"
+            android:layout_width="60dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="5dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/settings"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/searchButton"
+            app:srcCompat="@drawable/settings" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/constructor"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/nameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/name"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/nameType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="10dp"
+        android:hint="@string/type_name"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:maxLines="1"
+        android:minHeight="48dp"
+        android:textColor="@color/black"
+        android:textColorHint="#616161"
+        android:textColorLink="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameText">
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/descText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/desc"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameType" />
+
+    <EditText
+        android:id="@+id/descType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="10dp"
+        android:hint="@string/type_desc"
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine"
+        android:maxLines="5"
+        android:minHeight="48dp"
+        android:scrollbars="vertical"
+        android:textColor="@color/black"
+        android:textColorHint="#455A64"
+        android:textColorLink="@color/teal_700"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descText">
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/buttonTags"
+        android:layout_width="336dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="44dp"
+        android:backgroundTint="@color/buttons"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/tags"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descType" />
+
+    <Button
+        android:id="@+id/buttonEmpl"
+        android:layout_width="335dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/buttons"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/employees"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonTags" />
+
+    <Button
+        android:id="@+id/buttonTasks"
+        android:layout_width="335dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/buttons"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/tasks"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonEmpl" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

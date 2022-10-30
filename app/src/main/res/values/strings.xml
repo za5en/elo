@@ -16,4 +16,19 @@
     <string name="home">главная</string>
     <string name="notifications">уведомления</string>
     <string name="profile">профиль</string>
+    <string name="tag_name">введите тег</string>
+    <string name="task_name">название задания</string>
+    <string name="task_info">содержание задания</string>
+    <string name="reset">сброс</string>
+    <string name="tag_item">тэг</string>
+    <string name="elo_name">eloName</string>
+    <string name="elo_desc">описание</string>
+    <string name="elo_desc_text">eloDescText</string>
+    <string name="divider">divider</string>
+    <string name="take_part">вступить</string>
+    <string name="create_elo">создать эло</string>
+    <string name="avatar">аватар</string>
+    <string name="in_progress">В прогрессе</string>
+    <string name="username">Имя Фамилия</string>
+    <string name="percents">65%</string>
 </resources>

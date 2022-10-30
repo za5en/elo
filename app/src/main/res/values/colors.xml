@@ -10,4 +10,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="bottom_bar">#F3EDF7</color>
     <color name="buttons">#F3F1F8</color>
+    <color name="dark">#031A43</color>
+    <color name="middle">#0472EC</color>
+    <color name="light">#5DB4FD</color>
 </resources>

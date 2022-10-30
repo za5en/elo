@@ -12,9 +12,12 @@
         <activity android:name=".tags" />
         <activity android:name=".tasks"/>
         <activity android:name=".employees"/>
+        <activity android:name=".constructor"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".profile"/>
+        <activity android:name=".EloInfo"/>
         <activity android:name=".MainActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustPan">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
