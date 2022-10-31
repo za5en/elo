@@ -12,8 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.elo.adapter.eloAdapter;
 import com.example.elo.adapter.eloProfileAdapter;
+import com.example.elo.adapter.tagAdapter;
+import com.example.elo.adapter.typeAdapter;
 import com.example.elo.model.EloProfile;
 import com.example.elo.model.Elos;
+import com.example.elo.model.tagCategory;
+import com.example.elo.model.userTypes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +26,10 @@ public class profile extends AppCompatActivity {
 
     final Context context = this;
     ImageButton create, home;
-    RecyclerView eloProfileRecycler;
-    static eloProfileAdapter eloProfileAdapter;
-    static List<EloProfile> eloList = new ArrayList<>();
+    RecyclerView eloRecycler, typeRecycler;
+    typeAdapter typeAdapter;
+    static eloAdapter eloAdapter;
+    static List<Elos> eloList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,11 +38,32 @@ public class profile extends AppCompatActivity {
         create = findViewById(R.id.create_elo);
         home = findViewById(R.id.homeButton);
 
+        List<userTypes> typesList = new ArrayList<>();
+        typesList.add(new userTypes(1, "Наставник"));
+        typesList.add(new userTypes(2, "Senior"));
+        typesList.add(new userTypes(3, "C#"));
+        typesList.add(new userTypes(4, "java"));
+        typesList.add(new userTypes(5, "sql"));
+
+        setTypesRecycler(typesList);
+
         eloList.clear();
-        eloList.add(new EloProfile(1, "Java для начинающих"));
-        eloList.add(new EloProfile(2, "Элемент обучения 2"));
-        eloList.add(new EloProfile(3, "Элемент обучения 3"));
-        eloList.add(new EloProfile(4, "Элемент обучения 4"));
+        eloList.add(new Elos(1, "Java для начинающих",
+                "Курс Java\nдля Junior-разработчиков",
+                "Курс Java для Junior-разработчиков\nОтлично подойдет для развития навыков работы с backend'ом на Java, в первую очередь для работы с сервером",
+                "Java для начинающих", 1));
+        eloList.add(new Elos(2, "Элемент обучения 2",
+                "Элемент обучения\nЭлемент обучения\n",
+                "Элемент обучения\nЭлемент обучения\nЭлемент обучения\n",
+                "Элемент обучения 2", 1));
+        eloList.add(new Elos(3, "Элемент обучения 3",
+                "Элемент обучения\nЭлемент обучения\n",
+                "Элемент обучения\nЭлемент обучения\nЭлемент обучения\nЭлемент обучения",
+                "Элемент обучения 3", 2));
+        eloList.add(new Elos(4, "Элемент обучения 4",
+                "Элемент обучения\nЭлемент обучения\n",
+                "Элемент обучения\n\nЭлемент обучения\nЭлемент обучения\nЭлемент обучения\n",
+                "Элемент обучения 4", 3));
 
         setEloRecycler(eloList);
 
@@ -57,11 +83,19 @@ public class profile extends AppCompatActivity {
         });
     }
 
-    private void setEloRecycler(List<EloProfile> eloList) {
+    private void setEloRecycler(List<Elos> eloList) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-        eloProfileRecycler = findViewById(R.id.eloProfileRecycler);
-        eloProfileRecycler.setLayoutManager(layoutManager);
-        eloProfileAdapter = new eloProfileAdapter(this, eloList);
-        eloProfileRecycler.setAdapter(eloProfileAdapter);
+        eloRecycler = findViewById(R.id.eloProfileRecycler);
+        eloRecycler.setLayoutManager(layoutManager);
+        eloAdapter = new eloAdapter(this, eloList);
+        eloRecycler.setAdapter(eloAdapter);
+    }
+
+    private void setTypesRecycler(List<userTypes> typesList) {
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
+        typeRecycler = findViewById(R.id.user_tags);
+        typeRecycler.setLayoutManager(layoutManager);
+        typeAdapter = new typeAdapter(this, typesList);
+        typeRecycler.setAdapter(typeAdapter);
     }
 }

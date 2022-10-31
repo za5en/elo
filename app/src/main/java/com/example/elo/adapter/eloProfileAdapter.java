@@ -43,11 +43,11 @@ public class eloProfileAdapter extends RecyclerView.Adapter<eloProfileAdapter.El
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, EloInfo.class);
-//
-//                intent.putExtra("previewName", eloList.get(position).getPreviewName());
-//                intent.putExtra("eloPreviewDesc", eloList.get(position).getPreviewDesc());
-//                intent.putExtra("eloId", eloList.get(position).getId());
-//
+
+                intent.putExtra("previewName", eloList.get(position).getPreviewName());
+                intent.putExtra("previewDesc", eloList.get(position).getPreviewDesc());
+                intent.putExtra("id", eloList.get(position).getId());
+
                 context.startActivity(intent);
             }
         });

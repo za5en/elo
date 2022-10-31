@@ -113,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setCategoryRecycler(List<tagCategory> categoryList) {
-
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
         tagRecycler = findViewById(R.id.tagRecycler);
         tagRecycler.setLayoutManager(layoutManager);
