@@ -1,11 +1,14 @@
 package com.example.elo.model;
 
+import java.util.List;
+
 public class Elos {
 
     int id, category;
     String name, description, previewDesc, previewName;
+    List<tagCategory> cats;
 
-    public Elos(int id, String name, String description, String previewDesc, String previewName, int category) {
+    public Elos(int id, String name, String description, String previewDesc, String previewName, int category, List<tagCategory> cats) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -14,6 +17,7 @@ public class Elos {
         //this.elosPreBg = elosPreBg;
         this.previewName = previewName;
         this.category = category;
+        this.cats = cats;
     }
 
     public int getCategory() {
@@ -62,5 +66,13 @@ public class Elos {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<tagCategory> getCats() {
+        return cats;
+    }
+
+    public void setCats(List<tagCategory> cats) {
+        this.cats = cats;
     }
 }

@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.elo.MainActivity;
 import com.example.elo.R;
 import com.example.elo.model.eloItems;
 
@@ -35,6 +36,12 @@ public class eloItemAdapter extends RecyclerView.Adapter<eloItemAdapter.Category
     @Override
     public void onBindViewHolder(@NonNull eloItemAdapter.CategoryViewHolder holder, int position) {
         holder.tagName.setText(tags.get(position).getName());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
     }
 
     @Override

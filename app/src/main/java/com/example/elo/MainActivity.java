@@ -1,5 +1,7 @@
 package com.example.elo;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,12 +17,18 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.elo.adapter.eloAdapter;
+import com.example.elo.adapter.eloItemAdapter;
 import com.example.elo.adapter.tagAdapter;
 import com.example.elo.model.Elos;
+import com.example.elo.model.eloItems;
 import com.example.elo.model.tagCategory;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -63,23 +71,36 @@ public class MainActivity extends AppCompatActivity {
 
         setCategoryRecycler(categoryList);
 
+        List<tagCategory> first = new ArrayList<>();
+        first.add(new tagCategory(1, "java"));
+        first.add(new tagCategory(2, "back"));
+        first.add(new tagCategory(3, "sql"));
+        List<tagCategory> second = new ArrayList<>();
+        second.add(new tagCategory(1, "python"));
+        second.add(new tagCategory(2, "back"));
+        second.add(new tagCategory(3, "sql"));
+        List<tagCategory> third = new ArrayList<>();
+        third.add(new tagCategory(1, "c#"));
+        third.add(new tagCategory(2, "java"));
+        third.add(new tagCategory(3, "front"));
+
         eloList.clear();
         eloList.add(new Elos(1, "Java для начинающих",
                 "Курс Java\nдля Junior-разработчиков",
                 "Курс Java для Junior-разработчиков\nОтлично подойдет для развития навыков работы с backend'ом на Java, в первую очередь для работы с сервером",
-                "Java для начинающих", 1));
+                "Java для начинающих", 1, first));
         eloList.add(new Elos(2, "Элемент обучения 2",
                 "Элемент обучения\nЭлемент обучения\n",
                 "Элемент обучения\nЭлемент обучения\nЭлемент обучения\n",
-                "Элемент обучения 2", 1));
+                "Элемент обучения 2", 1, second));
         eloList.add(new Elos(3, "Элемент обучения 3",
                 "Элемент обучения\nЭлемент обучения\n",
                 "Элемент обучения\nЭлемент обучения\nЭлемент обучения\nЭлемент обучения",
-                "Элемент обучения 3", 2));
+                "Элемент обучения 3", 2, third));
         eloList.add(new Elos(4, "Элемент обучения 4",
                 "Элемент обучения\nЭлемент обучения\n",
                 "Элемент обучения\n\nЭлемент обучения\nЭлемент обучения\nЭлемент обучения\n",
-                "Элемент обучения 4", 3));
+                "Элемент обучения 4", 3, third));
 
         allEloList.addAll(eloList);
         setEloRecycler(eloList);

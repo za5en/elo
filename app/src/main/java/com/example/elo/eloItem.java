@@ -36,15 +36,15 @@ public class eloItem  extends AppCompatActivity {
         tagList.add(new eloItems(9, "другое"));
         tagList.add(new eloItems(10, "debug"));
 
-        setTagRecycler(tagList);
+        //setTagRecycler(tagList);
     }
 
-    private void setTagRecycler(List<eloItems> tagList) {
-
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
-        tagRecycler = findViewById(R.id.eloTagRecycler);
-        tagRecycler.setLayoutManager(layoutManager);
-        eloItemAdapter = new eloItemAdapter(this, tagList);
-        tagRecycler.setAdapter(eloItemAdapter);
-    }
+//    private void setTagRecycler(List<eloItems> tagList) {
+//
+//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
+//        tagRecycler = findViewById(R.id.eloTagRecycler);
+//        tagRecycler.setLayoutManager(layoutManager);
+//        eloItemAdapter = new eloItemAdapter(this, tagList);
+//        tagRecycler.setAdapter(eloItemAdapter);
+//    }
 }

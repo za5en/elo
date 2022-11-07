@@ -28,8 +28,8 @@ public class profile extends AppCompatActivity {
     ImageButton create, home;
     RecyclerView eloRecycler, typeRecycler;
     typeAdapter typeAdapter;
-    static eloAdapter eloAdapter;
-    static List<Elos> eloList = new ArrayList<>();
+    static eloProfileAdapter eloAdapter;
+    static List<EloProfile> eloList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,22 +48,22 @@ public class profile extends AppCompatActivity {
         setTypesRecycler(typesList);
 
         eloList.clear();
-        eloList.add(new Elos(1, "Java для начинающих",
+        eloList.add(new EloProfile(1, "Java для начинающих",
                 "Курс Java\nдля Junior-разработчиков",
                 "Курс Java для Junior-разработчиков\nОтлично подойдет для развития навыков работы с backend'ом на Java, в первую очередь для работы с сервером",
-                "Java для начинающих", 1));
-        eloList.add(new Elos(2, "Элемент обучения 2",
+                "Java для начинающих", 1, "65%"));
+        eloList.add(new EloProfile(2, "Элемент обучения 2",
                 "Элемент обучения\nЭлемент обучения\n",
                 "Элемент обучения\nЭлемент обучения\nЭлемент обучения\n",
-                "Элемент обучения 2", 1));
-        eloList.add(new Elos(3, "Элемент обучения 3",
+                "Элемент обучения 2", 1, "65%"));
+        eloList.add(new EloProfile(3, "Элемент обучения 3",
                 "Элемент обучения\nЭлемент обучения\n",
                 "Элемент обучения\nЭлемент обучения\nЭлемент обучения\nЭлемент обучения",
-                "Элемент обучения 3", 2));
-        eloList.add(new Elos(4, "Элемент обучения 4",
+                "Элемент обучения 3", 2, "65%"));
+        eloList.add(new EloProfile(4, "Элемент обучения 4",
                 "Элемент обучения\nЭлемент обучения\n",
                 "Элемент обучения\n\nЭлемент обучения\nЭлемент обучения\nЭлемент обучения\n",
-                "Элемент обучения 4", 3));
+                "Элемент обучения 4", 3, "65%"));
 
         setEloRecycler(eloList);
 
@@ -83,11 +83,11 @@ public class profile extends AppCompatActivity {
         });
     }
 
-    private void setEloRecycler(List<Elos> eloList) {
+    private void setEloRecycler(List<EloProfile> eloList) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         eloRecycler = findViewById(R.id.eloProfileRecycler);
         eloRecycler.setLayoutManager(layoutManager);
-        eloAdapter = new eloAdapter(this, eloList);
+        eloAdapter = new eloProfileAdapter(this, eloList);
         eloRecycler.setAdapter(eloAdapter);
     }
 

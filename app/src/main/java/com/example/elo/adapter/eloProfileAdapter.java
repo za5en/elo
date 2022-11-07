@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.elo.EloInfo;
 import com.example.elo.R;
 import com.example.elo.model.EloProfile;
-import com.example.elo.model.Elos;
 
 import java.util.List;
 
@@ -39,6 +38,7 @@ public class eloProfileAdapter extends RecyclerView.Adapter<eloProfileAdapter.El
     public void onBindViewHolder(@NonNull eloProfileAdapter.EloViewHolder holder, int position) {
 
         holder.eloName.setText(eloList.get(position).getName());
+        holder.eloProgress.setText(eloList.get(position).getProgress());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
