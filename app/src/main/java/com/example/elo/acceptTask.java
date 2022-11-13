@@ -51,8 +51,8 @@ public class acceptTask extends AppCompatActivity {
 
         this.acceptTaskListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        acceptTask m = new acceptTask("Mikhail","Задание 1, C#");
-        acceptTask r = new acceptTask("RUSTAM","Задание 5, Java");
+        acceptTask m = new acceptTask("Mikhail","Задание 5, C#");
+        acceptTask r = new acceptTask("RUSTAM","Задание 1, Java");
         acceptTask s = new acceptTask("Sumvel","Задание 3, SQL");
 
         acceptTask[] users = new acceptTask[]{m, r, s};

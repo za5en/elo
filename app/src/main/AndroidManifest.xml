@@ -22,6 +22,10 @@
         <activity android:name=".acceptTask"/>
         <activity android:name=".profile"/>
         <activity android:name=".EloInfo"/>
+        <activity android:name=".addEloConfirm"/>
+        <activity android:name=".tagsConfirm"/>
+        <activity android:name=".employeesConfirm"/>
+        <activity android:name=".tasksConfirm"/>
         <activity android:name=".auth"
             android:windowSoftInputMode="adjustPan"
             android:exported="true">

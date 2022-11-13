@@ -47,4 +47,8 @@
     <string name="progress">Ваш прогресс:</string>
     <string name="add_user">Одобрить заявку?</string>
     <string name="accept_task">Подтвердить выполнение?</string>
+    <string name="tags_list">теги</string>
+    <string name="employees_list">сотрудники</string>
+    <string name="tasks_list">задачи</string>
+    <string name="cancel">отмена</string>
 </resources>

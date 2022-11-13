@@ -101,11 +101,11 @@ public class workerMain extends AppCompatActivity {
         eloList.add(new Elos(3, "SQL for juniors",
                 "SQL для самых маленьких\nи не только\n",
                 "Азы работы с базами данных, все важные аспекты написания и обработки запросов, особенности работы с PostgreSQL",
-                "SQL for juniors", 6, third));
+                "SQL for juniors", 7, third));
         eloList.add(new Elos(4, "FRONTEND FOR JUNIORS",
                 "база фронтенда\nв одном ЭлО\n",
                 "лучший курс для укрепления основных навыков работы с фронтендом\nплюс вы научитесь связывать фронт с бэком (а это самое главное)",
-                "FRONTEND FOR JUNIORS", 3, fourth));
+                "FRONTEND FOR JUNIORS", 1, fourth));
 
         allEloList.addAll(eloList);
         setEloRecycler(eloList);

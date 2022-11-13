@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class constructor extends AppCompatActivity {
     final Context context = this;
     Button tags, employees, tasks;
-    ImageButton home;
+    ImageButton home, create;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +23,7 @@ public class constructor extends AppCompatActivity {
         employees = findViewById(R.id.buttonEmpl);
         tasks = findViewById(R.id.buttonTasks);
         home = findViewById(R.id.homeButton);
+        create = findViewById(R.id.create);
 
         tags.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +54,15 @@ public class constructor extends AppCompatActivity {
             public void onClick(View view) {
                 finish();
                 Intent intent = new Intent(context, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                Intent intent = new Intent(context, addEloConfirm.class);
                 startActivity(intent);
             }
         });
