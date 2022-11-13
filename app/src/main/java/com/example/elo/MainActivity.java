@@ -91,19 +91,19 @@ public class MainActivity extends AppCompatActivity {
         eloList.add(new Elos(1, "Java для Senior",
                 "Курс Java\nдля Senior-разработчиков",
                 "Курс Java для Senior-разработчиков\nСборник секретиков, недоступных и непонятных обычным девелоперам",
-                "Java для Senior", 4, first));
+                "Java для Senior", 4, first, false));
         eloList.add(new Elos(2, "Нейросети в Python",
                 "Основы машинного обучения\nна Python\n",
                 "Основы машинного обучения на Python, создание и обучение нейросетей, алгоритмы работы",
-                "Нейросети в Python", 5, second));
+                "Нейросети в Python", 5, second, false));
         eloList.add(new Elos(3, "Основы Python",
                 "Базовые знания Python\nОсновы синтаксиса\n",
                 "Базовые знания Python.\nОсновы синтаксиса и другие важные моменты",
-                "Основы Python", 5, second));
+                "Основы Python", 5, second, true));
         eloList.add(new Elos(4, "Front&back",
                 "Важные моменты\nсвязи фронта с бэком\n",
                 "Важные моменты связи фронта с бэком с точки зрения фронтэндера: как избежать конфликтов",
-                "Front&back", 1, fourth));
+                "Front&back", 1, fourth, false));
 
         allEloList.addAll(eloList);
         setEloRecycler(eloList);

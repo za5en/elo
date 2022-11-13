@@ -25,6 +25,7 @@ public class EloInfo extends AppCompatActivity {
     RecyclerView tagRecycler;
     tagAdapter tagAdapter;
     List<tagCategory> categoryList;
+    boolean isPrivate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,13 @@ public class EloInfo extends AppCompatActivity {
 
         eloDescText.setText(getIntent().getStringExtra("previewDesc"));
         eloName.setText(getIntent().getStringExtra("previewName"));
+        isPrivate = getIntent().getBooleanExtra("isPrivate", true);
+        take_part = findViewById(R.id.take_part);
+
+        if (isPrivate)
+        {
+            take_part.setImageResource(R.drawable.request);
+        }
 
         List<tagCategory> categoryList = new ArrayList<>();
         categoryList.add(new tagCategory(1, "front"));
@@ -46,7 +54,6 @@ public class EloInfo extends AppCompatActivity {
 
         home = findViewById(R.id.homeButton);
         profile = findViewById(R.id.profileButton);
-        take_part = findViewById(R.id.take_part);
 
         home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,9 +73,15 @@ public class EloInfo extends AppCompatActivity {
         take_part.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "ЭлО добавлен", Toast.LENGTH_SHORT).show();
                 take_part.setEnabled(false);
-                take_part.setImageResource(R.drawable.takepartunavailable);
+                if (!isPrivate) {
+                    Toast.makeText(context, "ЭлО добавлен", Toast.LENGTH_SHORT).show();
+                    take_part.setImageResource(R.drawable.takepartunavailable);
+                }
+                else {
+                    Toast.makeText(context, "Заявка подана", Toast.LENGTH_SHORT).show();
+                    take_part.setImageResource(R.drawable.request_off);
+                }
             }
         });
     }

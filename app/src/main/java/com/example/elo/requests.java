@@ -54,8 +54,9 @@ public class requests extends AppCompatActivity {
         requests m = new requests("Mikhail","front junior");
         requests r = new requests("RUSTAM","back senior");
         requests s = new requests("Sumvel","back middle");
+        requests q = new requests("Worker Name","junior");
 
-        requests[] users = new requests[]{m, r, s};
+        requests[] users = new requests[]{m, r, s, q};
         ArrayAdapter<requests> arrayAdapter
                 = new ArrayAdapter<requests>(this, android.R.layout.simple_list_item_1, users);
 

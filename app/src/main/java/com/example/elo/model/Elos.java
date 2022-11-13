@@ -7,8 +7,9 @@ public class Elos {
     int id, category;
     String name, description, previewDesc, previewName;
     List<tagCategory> cats;
+    boolean isPrivate;
 
-    public Elos(int id, String name, String description, String previewDesc, String previewName, int category, List<tagCategory> cats) {
+    public Elos(int id, String name, String description, String previewDesc, String previewName, int category, List<tagCategory> cats, boolean isPrivate) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -18,6 +19,15 @@ public class Elos {
         this.previewName = previewName;
         this.category = category;
         this.cats = cats;
+        this.isPrivate = isPrivate;
+    }
+
+    public boolean isPrivate() {
+        return isPrivate;
+    }
+
+    public void setPrivate(boolean aPrivate) {
+        isPrivate = aPrivate;
     }
 
     public int getCategory() {

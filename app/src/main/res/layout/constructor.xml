@@ -184,11 +184,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descType" />
 
+    <TextView
+        android:id="@+id/isPrivate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="40dp"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/isPrivate"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonTags" />
+
+    <CheckBox
+        android:id="@+id/checkboxPrivate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonTags"/>
+
     <Button
         android:id="@+id/buttonEmpl"
         android:layout_width="335dp"
         android:layout_height="48dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="@color/buttons"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/employees"
@@ -196,13 +219,13 @@
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonTags" />
+        app:layout_constraintTop_toBottomOf="@+id/checkboxPrivate" />
 
     <Button
         android:id="@+id/buttonTasks"
         android:layout_width="335dp"
         android:layout_height="48dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="@color/buttons"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/tasks"
