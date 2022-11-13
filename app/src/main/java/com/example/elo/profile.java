@@ -29,7 +29,7 @@ import java.util.List;
 public class profile extends AppCompatActivity {
 
     final Context context = this;
-    ImageButton create, home;
+    ImageButton create, home, settingsButton;
     ImageView menu;
     RecyclerView eloRecycler, typeRecycler;
     typeAdapter typeAdapter;
@@ -42,6 +42,7 @@ public class profile extends AppCompatActivity {
 
         create = findViewById(R.id.create_elo);
         home = findViewById(R.id.homeButton);
+        settingsButton = findViewById(R.id.settingsButton);
         menu = findViewById(R.id.menu);
 
         List<userTypes> typesList = new ArrayList<>();
@@ -84,7 +85,7 @@ public class profile extends AppCompatActivity {
             }
         });
 
-        menu.setOnClickListener(new View.OnClickListener() {
+        settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showPopupMenu(view);
