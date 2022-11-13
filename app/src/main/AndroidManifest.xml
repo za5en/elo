@@ -14,9 +14,16 @@
         <activity android:name=".employees"/>
         <activity android:name=".constructor"
             android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".workerMain"/>
+        <activity android:name=".workerProfile"/>
+        <activity android:name=".continueElo"/>
+        <activity android:name=".manageElo"/>
+        <activity android:name=".requests"/>
+        <activity android:name=".acceptTask"/>
         <activity android:name=".profile"/>
         <activity android:name=".EloInfo"/>
-        <activity android:name=".MainActivity"
+        <activity android:name=".auth"
+            android:windowSoftInputMode="adjustPan"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,6 +31,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".register"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".password_reset"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".MainActivity"/>
+
     </application>
 
 </manifest>

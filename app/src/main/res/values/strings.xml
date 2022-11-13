@@ -28,7 +28,23 @@
     <string name="take_part">вступить</string>
     <string name="create_elo">создать эло</string>
     <string name="avatar">аватар</string>
-    <string name="in_progress">В прогрессе</string>
-    <string name="username">Имя Фамилия</string>
+    <string name="manager_elo">Управление ЭлО</string>
+    <string name="in_progress">Текущие ЭлО</string>
+    <string name="username">Mentor Name</string>
+    <string name="worker_name">Worker Name</string>
     <string name="percents">65%</string>
+    <string name="auth">authorization</string>
+    <string name="login">Введите логин</string>
+    <string name="password">Введите пароль</string>
+    <string name="password_reset">восстановить пароль</string>
+    <string name="registration">registration</string>
+    <string name="reset_page">восстановление пароля</string>
+    <string name="reset_mail">введите email, указанный при регистрации: </string>
+    <string name="email_input">Введите email</string>
+    <string name="menu">menu</string>
+    <string name="popup1">Выйти из аккаунта</string>
+    <string name="requests">заявки</string>
+    <string name="progress">Ваш прогресс:</string>
+    <string name="add_user">Одобрить заявку?</string>
+    <string name="accept_task">Подтвердить выполнение?</string>
 </resources>

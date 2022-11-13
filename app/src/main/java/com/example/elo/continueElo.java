@@ -18,10 +18,10 @@ import com.example.elo.model.tagCategory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EloInfo extends AppCompatActivity {
+public class continueElo extends AppCompatActivity {
 
     final Context context = this;
-    ImageButton home, profile, take_part;
+    ImageButton home, profile, continue_elo;
     RecyclerView tagRecycler;
     tagAdapter tagAdapter;
     List<tagCategory> categoryList;
@@ -29,7 +29,7 @@ public class EloInfo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.elo_info);
+        setContentView(R.layout.continue_elo);
 
         TextView eloName = findViewById(R.id.elo_name);
         TextView eloDescText = findViewById(R.id.elo_desc_text);
@@ -46,29 +46,26 @@ public class EloInfo extends AppCompatActivity {
 
         home = findViewById(R.id.homeButton);
         profile = findViewById(R.id.profileButton);
-        take_part = findViewById(R.id.take_part);
+        continue_elo = findViewById(R.id.continueElo);
 
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                Intent intent = new Intent(context, workerMain.class);
+                startActivity(intent);
             }
         });
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, profile.class);
-                startActivity(intent);
+                finish();
             }
         });
 
-        take_part.setOnClickListener(new View.OnClickListener() {
+        continue_elo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "ЭлО добавлен", Toast.LENGTH_SHORT).show();
-                take_part.setEnabled(false);
-                take_part.setImageResource(R.drawable.takepartunavailable);
             }
         });
     }

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.elo.adapter.eloAdapter;
 import com.example.elo.adapter.eloProfileAdapter;
+import com.example.elo.adapter.eloWorkAdapter;
 import com.example.elo.adapter.tagAdapter;
 import com.example.elo.adapter.typeAdapter;
 import com.example.elo.model.EloProfile;
@@ -26,30 +27,30 @@ import com.example.elo.model.userTypes;
 import java.util.ArrayList;
 import java.util.List;
 
-public class profile extends AppCompatActivity {
+public class workerProfile extends AppCompatActivity {
 
     final Context context = this;
-    ImageButton create, home;
+    ImageButton home;
     ImageView menu;
+
     RecyclerView eloRecycler, typeRecycler;
     typeAdapter typeAdapter;
-    static eloProfileAdapter eloAdapter;
+    static eloWorkAdapter eloAdapter;
     static List<EloProfile> eloList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.profile);
+        setContentView(R.layout.worker_profile);
 
-        create = findViewById(R.id.create_elo);
         home = findViewById(R.id.homeButton);
         menu = findViewById(R.id.menu);
 
         List<userTypes> typesList = new ArrayList<>();
-        typesList.add(new userTypes(1, "Наставник"));
-        typesList.add(new userTypes(2, "Senior"));
-        typesList.add(new userTypes(3, "C#"));
-        typesList.add(new userTypes(4, "java"));
-        typesList.add(new userTypes(5, "sql"));
+        typesList.add(new userTypes(1, "Сотрудник"));
+        typesList.add(new userTypes(2, "Junior"));
+        typesList.add(new userTypes(3, "java"));
+        typesList.add(new userTypes(4, "sql"));
+        typesList.add(new userTypes(5, "python"));
 
         setTypesRecycler(typesList);
 
@@ -66,16 +67,12 @@ public class profile extends AppCompatActivity {
                 "SQL для самых маленьких\nи не только\n",
                 "Азы работы с базами данных, все важные аспекты написания и обработки запросов, особенности работы с PostgreSQL",
                 "SQL for juniors", 6, "65%"));
+        eloList.add(new EloProfile(4, "FRONTEND FOR JUNIORS",
+                "база фронтенда\nв одном ЭлО\n",
+                "лучший курс для укрепления основных навыков работы с фронтендом\nплюс вы научитесь связывать фронт с бэком (а это самое главное)",
+                "FRONTEND FOR JUNIORS", 3, "65%"));
 
         setEloRecycler(eloList);
-
-        create.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, constructor.class);
-                startActivity(intent);
-            }
-        });
 
         home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,7 +93,7 @@ public class profile extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         eloRecycler = findViewById(R.id.eloProfileRecycler);
         eloRecycler.setLayoutManager(layoutManager);
-        eloAdapter = new eloProfileAdapter(this, eloList);
+        eloAdapter = new eloWorkAdapter(this, eloList);
         eloRecycler.setAdapter(eloAdapter);
     }
 
@@ -113,18 +110,18 @@ public class profile extends AppCompatActivity {
         popupMenu.inflate(R.menu.popupmenu);
 
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        if (item.getItemId() == R.id.menu1)
-                        {
-                            Intent intent = new Intent(context, auth.class);
-                            startActivity(intent);
-                            return true;
-                        }
-                        else
-                            return false;
-                    }
-                });
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if (item.getItemId() == R.id.menu1)
+                {
+                    Intent intent = new Intent(context, auth.class);
+                    startActivity(intent);
+                    return true;
+                }
+                else
+                    return false;
+            }
+        });
         popupMenu.show();
     }
 }

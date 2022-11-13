@@ -144,7 +144,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-                <androidx.recyclerview.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/user_tags"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
@@ -176,7 +176,7 @@
         android:layout_marginTop="14dp"
         android:layout_marginStart="25dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="@string/manager_elo"
+        android:text="@string/in_progress"
         android:textColor="@color/black"
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -189,12 +189,35 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/create_elo"
+        app:layout_constraintBottom_toTopOf="@+id/manageText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/in_progress"
         app:layout_constraintVertical_bias="0.0"
+        tools:listitem="@layout/elo_item_profile" />
+
+    <TextView
+        android:id="@+id/manageText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/manager_elo"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/manageEloProfile"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/manageEloProfile"
+        android:layout_width="0dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/create_elo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:listitem="@layout/elo_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
