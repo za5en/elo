@@ -6,6 +6,7 @@
     <string name="desc">описание</string>
     <string name="type_desc">введите описание</string>
     <string name="tags">задать теги</string>
+    <string name="level">выбрать уровень</string>
     <string name="employees">доступные сотрудники</string>
     <string name="tasks">указать задачи</string>
     <string name="back">назад</string>
@@ -34,7 +35,8 @@
     <string name="worker_name">Worker Name</string>
     <string name="percents">65%</string>
     <string name="auth">authorization</string>
-    <string name="login">Введите логин</string>
+    <string name="name_register">Введите имя</string>
+    <string name="surname_register">Введите фамилию</string>
     <string name="password">Введите пароль</string>
     <string name="password_reset">восстановить пароль</string>
     <string name="registration">registration</string>
@@ -52,4 +54,8 @@
     <string name="tasks_list">задачи</string>
     <string name="cancel">отмена</string>
     <string name="isPrivate">Все могут присоединиться?</string>
+    <string name="junior">junior</string>
+    <string name="middle">middle</string>
+    <string name="senior">senior</string>
+    <string name="login">войти</string>
 </resources>

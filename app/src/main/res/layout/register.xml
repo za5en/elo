@@ -14,7 +14,7 @@
             android:id="@+id/regText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="50dp"
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/registration"
             android:textAlignment="center"
@@ -33,18 +33,43 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/login"
-                android:labelFor="@+id/login" />
+                android:text="@string/name_register"
+                android:labelFor="@+id/name" />
 
             <EditText
-                android:id="@+id/login"
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/login"
+                android:hint="@string/name_register"
                 android:inputType="text"
                 android:textColor="@android:color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/regText"
+                android:importantForAutofill="no" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="15dp"
+            android:layout_height="60dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/surname_register"
+                android:labelFor="@+id/surname" />
+
+            <EditText
+                android:id="@+id/surname"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/surname_register"
+                android:inputType="text"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/name"
                 android:importantForAutofill="no" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -69,7 +94,7 @@
                 android:inputType="textEmailAddress"
                 android:textColor="@android:color/black"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/login"
+                app:layout_constraintTop_toBottomOf="@id/surname"
                 android:importantForAutofill="no" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -99,11 +124,37 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <Button
+            android:id="@+id/buttonTags"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/buttons"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/tags"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/password" />
+
+        <Button
+            android:id="@+id/buttonLevel"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/buttons"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/level"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonTags" />
+
         <ImageButton
             android:id="@+id/register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="50dp"
             android:layout_marginBottom="20dp"
             android:background="@android:color/transparent"
             android:contentDescription="@string/registration"
