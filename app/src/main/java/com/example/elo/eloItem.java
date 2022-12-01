@@ -14,7 +14,7 @@ import com.example.elo.model.tagCategory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class eloItem  extends AppCompatActivity {
+public class eloItem extends AppCompatActivity {
     
     eloItemAdapter eloItemAdapter;
     RecyclerView tagRecycler;

@@ -6,21 +6,16 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.elo.adapter.eloAdapter;
 import com.example.elo.adapter.eloProfileAdapter;
-import com.example.elo.adapter.tagAdapter;
+import com.example.elo.adapter.eloWorkAdapter;
 import com.example.elo.adapter.typeAdapter;
 import com.example.elo.model.EloProfile;
-import com.example.elo.model.Elos;
-import com.example.elo.model.tagCategory;
 import com.example.elo.model.userTypes;
 
 import java.util.ArrayList;
@@ -30,11 +25,12 @@ public class profile extends AppCompatActivity {
 
     final Context context = this;
     ImageButton create, home, settingsButton;
-    ImageView menu;
-    RecyclerView eloRecycler, typeRecycler;
+    RecyclerView eloRecycler, eloWorkerRecycler, typeRecycler;
     typeAdapter typeAdapter;
     static eloProfileAdapter eloAdapter;
     static List<EloProfile> eloList = new ArrayList<>();
+    static eloWorkAdapter eloWorkerAdapter;
+    static List<EloProfile> eloWorkerList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +39,6 @@ public class profile extends AppCompatActivity {
         create = findViewById(R.id.create_elo);
         home = findViewById(R.id.homeButton);
         settingsButton = findViewById(R.id.settingsButton);
-        menu = findViewById(R.id.menu);
 
         List<userTypes> typesList = new ArrayList<>();
         typesList.add(new userTypes(1, "Наставник"));
@@ -70,6 +65,26 @@ public class profile extends AppCompatActivity {
 
         setEloRecycler(eloList);
 
+        eloWorkerList.clear();
+        eloWorkerList.add(new EloProfile(1, "Java для Senior",
+                "Курс Java\nдля Senior-разработчиков",
+                "Курс Java для Senior-разработчиков\nСборник секретиков, недоступных и непонятных обычным девелоперам",
+                "Java для Senior", 4, "65%"));
+        eloWorkerList.add(new EloProfile(2, "Нейросети в Python",
+                "Основы машинного обучения\nна Python\n",
+                "Основы машинного обучения на Python, создание и обучение нейросетей, алгоритмы работы",
+                "Нейросети в Python", 5, "65%"));
+        eloWorkerList.add(new EloProfile(3, "Основы Python",
+                "Базовые знания Python\nОсновы синтаксиса\n",
+                "Базовые знания Python.\nОсновы синтаксиса и другие важные моменты",
+                "Основы Python", 5, "65%"));
+        eloWorkerList.add(new EloProfile(4, "Front&back",
+                "Важные моменты\nсвязи фронта с бэком\n",
+                "Важные моменты связи фронта с бэком с точки зрения фронтэндера: как избежать конфликтов",
+                "Front&back", 1, "65%"));
+
+        setEloWorkerRecycler(eloWorkerList);
+
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,7 +96,9 @@ public class profile extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(context, MainActivity.class);
                 finish();
+                startActivity(intent);
             }
         });
 
@@ -99,6 +116,14 @@ public class profile extends AppCompatActivity {
         eloRecycler.setLayoutManager(layoutManager);
         eloAdapter = new eloProfileAdapter(this, eloList);
         eloRecycler.setAdapter(eloAdapter);
+    }
+
+    private void setEloWorkerRecycler(List<EloProfile> eloList) {
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        eloWorkerRecycler = findViewById(R.id.eloWorkerRecycler);
+        eloWorkerRecycler.setLayoutManager(layoutManager);
+        eloWorkerAdapter = new eloWorkAdapter(this, eloList);
+        eloWorkerRecycler.setAdapter(eloWorkerAdapter);
     }
 
     private void setTypesRecycler(List<userTypes> typesList) {
@@ -119,6 +144,22 @@ public class profile extends AppCompatActivity {
                         if (item.getItemId() == R.id.menu1)
                         {
                             Intent intent = new Intent(context, auth.class);
+                            finish();
+                            finish();
+                            startActivity(intent);
+                            return true;
+                        }
+                        else if (item.getItemId() == R.id.menu2)
+                        {
+                            Intent intent = new Intent(context, workerMain.class);
+                            finish();
+                            finish();
+                            startActivity(intent);
+                            return true;
+                        }
+                        else if (item.getItemId() == R.id.menu3)
+                        {
+                            Intent intent = new Intent(context, adminMain.class);
                             startActivity(intent);
                             return true;
                         }

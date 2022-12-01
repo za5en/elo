@@ -58,4 +58,11 @@
     <string name="middle">middle</string>
     <string name="senior">senior</string>
     <string name="login">войти</string>
+    <string name="acc_swap">swap</string>
+    <string name="to_admin">admin</string>
+    <string name="admin_name">Admin Name</string>
+    <string name="manage_users">управление сотрудниками</string>
+    <string name="users">сотрудники</string>
+    <string name="user_name">user name</string>
+    <string name="user_level">user level</string>
 </resources>

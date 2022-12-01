@@ -124,18 +124,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
-                <ImageView
-                    android:id="@+id/menu"
-                    android:layout_width="wrap_content"
-                    android:layout_marginTop="45.5dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:contentDescription="@string/menu"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="parent"
-                    app:srcCompat="@drawable/menu" />
-
             </LinearLayout>
 
         </LinearLayout>
@@ -160,7 +148,7 @@
         android:id="@+id/create_elo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/create_elo"
         android:minHeight="48dp"
@@ -170,10 +158,10 @@
         app:srcCompat="@drawable/create" />
 
     <TextView
-        android:id="@+id/in_progress"
+        android:id="@+id/manage_elo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="25dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/manager_elo"
@@ -187,14 +175,44 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/eloWorkerRecycler"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/manage_elo"
+        app:layout_constraintVertical_bias="0.0"
+        tools:listitem="@layout/elo_item" />
+
+    <TextView
+        android:id="@+id/in_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="25dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/in_progress"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eloProfileRecycler" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/eloWorkerRecycler"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="40dp"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/create_elo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/in_progress"
+        app:layout_constraintTop_toBottomOf="@+id/eloProfileRecycler"
         app:layout_constraintVertical_bias="0.0"
-        tools:listitem="@layout/elo_item" />
+        tools:listitem="@layout/elo_item_profile" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

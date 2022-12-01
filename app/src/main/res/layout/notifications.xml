@@ -4,8 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -66,7 +65,6 @@
             app:srcCompat="@drawable/profile" />
 
         <ImageButton
-
             android:id="@+id/settingsButton"
             android:layout_width="60dp"
             android:layout_height="56dp"
@@ -96,78 +94,36 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/username"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/avatar"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:contentDescription="@string/avatar"
-                    android:layout_margin="20dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/avatar1" />
-
-                <TextView
-                    android:id="@+id/username"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginStart="15dp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="@string/worker_name"
-                    android:textColor="@color/black"
-                    android:textSize="25sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cardView" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/user_tags"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginStart="175dp"
-                android:layout_marginTop="90dp"
-                tools:listitem="@layout/tag_item" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="120dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/notifications"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/in_progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:layout_marginStart="25dp"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="@string/in_progress"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/eloProfileRecycler"
+        android:id="@+id/eloRecycler"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="25dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/in_progress"
-        tools:listitem="@layout/elo_item_profile" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        tools:listitem="@layout/elo_item" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

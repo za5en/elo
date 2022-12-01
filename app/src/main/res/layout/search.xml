@@ -4,8 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -66,7 +65,6 @@
             app:srcCompat="@drawable/profile" />
 
         <ImageButton
-
             android:id="@+id/settingsButton"
             android:layout_width="60dp"
             android:layout_height="56dp"
@@ -92,82 +90,74 @@
 
         <LinearLayout
             android:id="@+id/top"
-            android:layout_width="match_parent"
+            android:layout_marginBottom="20dp"
+            android:layout_width="320dp"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/avatar"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:contentDescription="@string/avatar"
-                    android:layout_margin="20dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/avatar1" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="30dp"
+                android:layout_height="60dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
                 <TextView
-                    android:id="@+id/username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginStart="15dp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="@string/worker_name"
-                    android:textColor="@color/black"
-                    android:textSize="25sp"
+                    android:text="@string/search"
+                    android:labelFor="@+id/name" />
+
+                <EditText
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/search"
+                    android:inputType="text"
+                    android:textColor="@android:color/black"
+                    android:layout_marginStart="80dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cardView" />
+                    app:layout_constraintTop_toBottomOf="@id/regText"
+                    android:importantForAutofill="no" />
 
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/user_tags"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginStart="175dp"
-                android:layout_marginTop="90dp"
-                tools:listitem="@layout/tag_item" />
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/in_progress"
+    <ImageButton
+        android:id="@+id/resetButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:layout_marginStart="25dp"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="@string/in_progress"
-        android:textColor="@color/black"
-        android:textSize="25sp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/reset"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+        app:layout_constraintTop_toBottomOf="@id/cardView"
+        app:srcCompat="@drawable/reset" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/eloProfileRecycler"
+        android:id="@+id/tagRecycler"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toEndOf="@id/resetButton"
+        app:layout_constraintTop_toBottomOf="@id/cardView"
+        tools:listitem="@layout/tag_item" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/eloRecycler"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="25dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/in_progress"
-        tools:listitem="@layout/elo_item_profile" />
+        app:layout_constraintTop_toBottomOf="@+id/tagRecycler"
+        tools:listitem="@layout/elo_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
