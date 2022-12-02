@@ -31,7 +31,6 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class MainActivity extends AppCompatActivity {
-
     final Context context = this;
     RecyclerView tagRecycler, eloRecycler;
     tagAdapter tagAdapter;

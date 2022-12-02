@@ -7,10 +7,24 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.elo.adapter.eloAdapter;
+import com.example.elo.adapter.tagAdapter;
+import com.example.elo.model.Elos;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class notifications extends AppCompatActivity {
     final Context context = this;
     ImageButton settings, search, home, profile;
+
+    RecyclerView nfRecycler;
+    com.example.elo.adapter.tagAdapter tagAdapter;
+    static com.example.elo.adapter.eloAdapter eloAdapter;
+    static List<Elos> eloList = new ArrayList<>();
+    static List<Elos> allEloList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

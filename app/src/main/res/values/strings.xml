@@ -65,4 +65,6 @@
     <string name="users">сотрудники</string>
     <string name="user_name">user name</string>
     <string name="user_level">user level</string>
+    <string name="notification_theme">theme</string>
+    <string name="notification_text">notification text</string>
 </resources>
