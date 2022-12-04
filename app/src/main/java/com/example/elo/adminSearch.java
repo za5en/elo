@@ -10,19 +10,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.elo.adapter.eloAdapter;
 import com.example.elo.adapter.tagAdapter;
 import com.example.elo.model.tagCategory;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class search extends AppCompatActivity {
+public class adminSearch extends AppCompatActivity {
     final Context context = this;
     ImageButton settings, home, notifications, profile, reset;
     RecyclerView tagRecycler;
     tagAdapter tagAdapter;
-    static eloAdapter eloAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +38,6 @@ public class search extends AppCompatActivity {
         categoryList.add(new tagCategory(8, "react"));
         categoryList.add(new tagCategory(9, "другое"));
         categoryList.add(new tagCategory(10, "debug"));
-        setCategoryRecycler(categoryList);
 
         profile = findViewById(R.id.profileButton);
         notifications = findViewById(R.id.notificationsButton);
@@ -49,7 +46,7 @@ public class search extends AppCompatActivity {
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, profile.class);
+                Intent intent = new Intent(context, adminProfile.class);
                 finish();
                 startActivity(intent);
             }
@@ -58,7 +55,7 @@ public class search extends AppCompatActivity {
         notifications.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, notifications.class);
+                Intent intent = new Intent(context, adminNotifications.class);
                 finish();
                 startActivity(intent);
             }
@@ -67,11 +64,13 @@ public class search extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, MainActivity.class);
+                Intent intent = new Intent(context, adminMain.class);
                 finish();
                 startActivity(intent);
             }
         });
+
+
 
 //        reset.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -80,12 +79,6 @@ public class search extends AppCompatActivity {
 //            }
 //        });
     }
-
-//    public void resetEloCategories(View view) {
-//        eloList.clear();
-//        eloList.addAll(allEloList);
-//        eloAdapter.notifyDataSetChanged();
-//    }
 
     private void setCategoryRecycler(List<tagCategory> categoryList) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);

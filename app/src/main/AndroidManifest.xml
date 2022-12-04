@@ -31,6 +31,7 @@
         <activity android:name=".adminProfile"/>
         <activity android:name=".adminMain"/>
         <activity android:name=".manageUsers"/>
+        <activity android:name=".notificationPage"/>
         <activity android:name=".auth"
             android:windowSoftInputMode="adjustPan"
             android:exported="true">

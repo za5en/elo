@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ import com.example.elo.EloInfo;
 import com.example.elo.R;
 import com.example.elo.model.Elos;
 import com.example.elo.model.Notifications;
+import com.example.elo.notificationPage;
 
 import java.util.List;
 
@@ -22,6 +24,7 @@ public class notificationsAdapter extends RecyclerView.Adapter<notificationsAdap
 
     Context context;
     List<Notifications> nfList;
+    ImageView point;
 
     public notificationsAdapter(Context context, List<Notifications> nfList) {
         this.context = context;
@@ -40,11 +43,13 @@ public class notificationsAdapter extends RecyclerView.Adapter<notificationsAdap
 
         holder.theme.setText(nfList.get(position).getTheme());
         holder.text.setText(nfList.get(position).getText());
+        point = point.findViewById(R.id.point);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, EloInfo.class); //add full nf page
+                point.setImageResource(R.drawable.nf_read);
+                Intent intent = new Intent(context, notificationPage.class);
 
                 intent.putExtra("fullText", nfList.get(position).getFullText());
                 intent.putExtra("theme", nfList.get(position).getTheme());

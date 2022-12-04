@@ -1,7 +1,5 @@
 package com.example.elo.model;
 
-import java.util.List;
-
 public class Notifications {
 
     int id;
@@ -10,7 +8,8 @@ public class Notifications {
     public Notifications(int id, String theme, String text, String fullText) {
         this.id = id;
         this.theme = theme;
-        this.text = fullText;
+        this.text = text;
+        this.fullText = fullText;
     }
 
     public int getId() {
