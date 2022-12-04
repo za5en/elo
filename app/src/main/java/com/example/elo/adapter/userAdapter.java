@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.elo.R;
+import com.example.elo.changeInfo;
 import com.example.elo.manageUsers;
 import com.example.elo.model.Users;
 
@@ -43,8 +44,10 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.UserViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, manageUsers.class); //add changeuserinfo page
+                Intent intent = new Intent(context, changeInfo.class); //add changeuserinfo page
 
+                intent.putExtra("userName", userList.get(position).getUsername());
+                intent.putExtra("userLevel", userList.get(position).getUserLevel());
                 intent.putExtra("userEmail", userList.get(position).getEmail());
                 intent.putExtra("userPassword", userList.get(position).getPassword());
                 intent.putExtra("id", userList.get(position).getId());

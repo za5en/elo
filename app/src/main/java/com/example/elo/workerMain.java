@@ -124,6 +124,22 @@ public class workerMain extends AppCompatActivity {
             }
         });
 
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, workerSearch.class);
+                startActivity(intent);
+            }
+        });
+
+        notifications.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, workerNotifications.class);
+                startActivity(intent);
+            }
+        });
+
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -21,7 +21,7 @@ import java.util.List;
 public class continueElo extends AppCompatActivity {
 
     final Context context = this;
-    ImageButton home, profile, continue_elo;
+    ImageButton back, continue_elo;
     RecyclerView tagRecycler;
     tagAdapter tagAdapter;
     List<tagCategory> categoryList;
@@ -44,22 +44,14 @@ public class continueElo extends AppCompatActivity {
 
         setCategoryRecycler(categoryList);
 
-        home = findViewById(R.id.homeButton);
-        profile = findViewById(R.id.profileButton);
         continue_elo = findViewById(R.id.continueElo);
 
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, workerMain.class);
-                startActivity(intent);
-            }
-        });
+        back = findViewById(R.id.backButton);
 
-        profile.setOnClickListener(new View.OnClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                finish();
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
 

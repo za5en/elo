@@ -24,7 +24,7 @@ import java.util.List;
 public class profile extends AppCompatActivity {
 
     final Context context = this;
-    ImageButton create, home, settingsButton;
+    ImageButton create, home, search, notifications, settingsButton;
     RecyclerView eloRecycler, eloWorkerRecycler, typeRecycler;
     typeAdapter typeAdapter;
     static eloProfileAdapter eloAdapter;
@@ -39,6 +39,8 @@ public class profile extends AppCompatActivity {
         create = findViewById(R.id.create_elo);
         home = findViewById(R.id.homeButton);
         settingsButton = findViewById(R.id.settingsButton);
+        search = findViewById(R.id.searchButton);
+        notifications = findViewById(R.id.notificationsButton);
 
         List<userTypes> typesList = new ArrayList<>();
         typesList.add(new userTypes(1, "Наставник"));
@@ -98,6 +100,22 @@ public class profile extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(context, MainActivity.class);
                 finish();
+                startActivity(intent);
+            }
+        });
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, search.class);
+                startActivity(intent);
+            }
+        });
+
+        notifications.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, notifications.class);
                 startActivity(intent);
             }
         });

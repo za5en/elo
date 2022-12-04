@@ -67,4 +67,15 @@
     <string name="user_level">user level</string>
     <string name="notification_theme">theme</string>
     <string name="notification_text">notification text</string>
+    <string name="email">email:</string>
+    <string name="pass">пароль:</string>
+    <string name="enter_profile">войти в аккаунт</string>
+    <string name="tags_change">управлять тегами</string>
+    <string name="elo_change">управлять ЭлО</string>
+    <string name="employee">сотрудник</string>
+    <string name="mentor">наставник</string>
+    <string name="name_change">введите имя</string>
+    <string name="email_change">введите email</string>
+    <string name="password_change">введите пароль</string>
+    <string name="avatar_change">редактирование аватара</string>
 </resources>

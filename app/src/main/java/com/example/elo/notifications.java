@@ -30,8 +30,8 @@ public class notifications extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        //notifications for admins and workers
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.notifications);
 
         nfList.clear();
         nfList.add(new Notifications(1, "Java для Senior",
@@ -50,9 +50,6 @@ public class notifications extends AppCompatActivity {
         allNfList.addAll(nfList);
         setNfRecycler(nfList);
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.notifications);
-
         profile = findViewById(R.id.profileButton);
         home = findViewById(R.id.homeButton);
         search = findViewById(R.id.searchButton);
@@ -61,7 +58,6 @@ public class notifications extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, profile.class);
-                finish();
                 startActivity(intent);
             }
         });
@@ -70,7 +66,6 @@ public class notifications extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, search.class);
-                finish();
                 startActivity(intent);
             }
         });
@@ -83,20 +78,11 @@ public class notifications extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        back = findViewById(R.id.backButton);
-
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
     }
 
     private void setNfRecycler(List<Notifications> nfList) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-        nfRecycler = findViewById(R.id.eloRecycler);
+        nfRecycler = findViewById(R.id.nfRecycler);
         nfRecycler.setLayoutManager(layoutManager);
         nfAdapter = new notificationsAdapter(this, nfList);
         nfRecycler.setAdapter(nfAdapter);

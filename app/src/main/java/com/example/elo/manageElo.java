@@ -19,10 +19,10 @@ import java.util.List;
 
 public class manageElo extends AppCompatActivity {
 
-    ImageButton requests, deleteElo, acceptTask;
+    ImageButton back, requests, deleteElo, acceptTask;
     final Context context = this;
     RecyclerView tagRecycler;
-    com.example.elo.adapter.tagAdapter tagAdapter;
+    tagAdapter tagAdapter;
     List<tagCategory> categoryList;
 
     @Override
@@ -58,6 +58,15 @@ public class manageElo extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(context, acceptTask.class);
                 startActivity(intent);
+            }
+        });
+
+        back = findViewById(R.id.backButton);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
 

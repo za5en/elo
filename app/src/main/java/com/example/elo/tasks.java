@@ -15,7 +15,7 @@ import com.example.elo.model.Tasks_elo;
 import java.util.ArrayList;
 
 public class tasks extends ListActivity {
-    ArrayList<String> taskList=new ArrayList<String>();
+    ArrayList<String> taskList = new ArrayList<String>();
     ArrayAdapter<String> adapter;
     Button addTask, back;
     EditText nameInput, descInput;

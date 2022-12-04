@@ -27,7 +27,7 @@ import java.util.List;
 
 public class adminProfile extends AppCompatActivity {
     final Context context = this;
-    ImageButton create, home, settingsButton;
+    ImageButton create, search, notifications, home, settingsButton;
     RecyclerView eloRecycler, eloWorkerRecycler, typeRecycler;
     com.example.elo.adapter.typeAdapter typeAdapter;
     static eloProfileAdapter eloAdapter;
@@ -41,10 +41,12 @@ public class adminProfile extends AppCompatActivity {
 
         create = findViewById(R.id.create_elo);
         home = findViewById(R.id.homeButton);
+        search = findViewById(R.id.searchButton);
+        notifications = findViewById(R.id.notificationsButton);
         settingsButton = findViewById(R.id.settingsButton);
 
         List<userTypes> typesList = new ArrayList<>();
-        typesList.add(new userTypes(1, "Администратор"));
+        typesList.add(new userTypes(1, "Админ"));
         typesList.add(new userTypes(2, "HR"));
 
         setTypesRecycler(typesList);
@@ -83,6 +85,8 @@ public class adminProfile extends AppCompatActivity {
                 "Важные моменты связи фронта с бэком с точки зрения фронтэндера: как избежать конфликтов",
                 "Front&back", 1, "65%"));
 
+        setEloWorkerRecycler(eloWorkerList);
+
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,6 +100,22 @@ public class adminProfile extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(context, adminMain.class);
                 finish();
+                startActivity(intent);
+            }
+        });
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, adminSearch.class);
+                startActivity(intent);
+            }
+        });
+
+        notifications.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, adminNotifications.class);
                 startActivity(intent);
             }
         });
@@ -118,7 +138,7 @@ public class adminProfile extends AppCompatActivity {
 
     private void setEloWorkerRecycler(List<EloProfile> eloList) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-        eloWorkerRecycler = findViewById(R.id.eloProfileRecycler);
+        eloWorkerRecycler = findViewById(R.id.eloWorkerRecycler);
         eloWorkerRecycler.setLayoutManager(layoutManager);
         eloWorkerAdapter = new eloWorkAdapter(this, eloList);
         eloWorkerRecycler.setAdapter(eloWorkerAdapter);
@@ -134,7 +154,7 @@ public class adminProfile extends AppCompatActivity {
 
     private void showPopupMenu(View v) {
         PopupMenu popupMenu = new PopupMenu(this, v);
-        popupMenu.inflate(R.menu.popupmenu);
+        popupMenu.inflate(R.menu.popupmenu_admin);
 
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override

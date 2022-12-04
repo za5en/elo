@@ -21,7 +21,7 @@ import java.util.List;
 public class EloInfo extends AppCompatActivity {
 
     final Context context = this;
-    ImageButton home, profile, take_part;
+    ImageButton back, take_part;
     RecyclerView tagRecycler;
     tagAdapter tagAdapter;
     List<tagCategory> categoryList;
@@ -52,21 +52,12 @@ public class EloInfo extends AppCompatActivity {
 
         setCategoryRecycler(categoryList);
 
-        home = findViewById(R.id.homeButton);
-        profile = findViewById(R.id.profileButton);
+        back = findViewById(R.id.backButton);
 
-        home.setOnClickListener(new View.OnClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
-        profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, profile.class);
-                startActivity(intent);
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
 

@@ -43,12 +43,11 @@ public class notificationsAdapter extends RecyclerView.Adapter<notificationsAdap
 
         holder.theme.setText(nfList.get(position).getTheme());
         holder.text.setText(nfList.get(position).getText());
-        point = point.findViewById(R.id.point);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                point.setImageResource(R.drawable.nf_read);
+                holder.point.setImageResource(R.drawable.nf_read);
                 Intent intent = new Intent(context, notificationPage.class);
 
                 intent.putExtra("fullText", nfList.get(position).getFullText());
@@ -68,12 +67,14 @@ public class notificationsAdapter extends RecyclerView.Adapter<notificationsAdap
     public static final class NfViewHolder extends RecyclerView.ViewHolder {
 
         TextView theme, text;
+        ImageView point;
 
         public NfViewHolder(@NonNull View itemView) {
             super(itemView);
 
             theme = itemView.findViewById(R.id.nfName);
             text = itemView.findViewById(R.id.nfText);
+            point = itemView.findViewById(R.id.point);
         }
     }
 }

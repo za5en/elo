@@ -21,7 +21,7 @@ import java.util.List;
 
 public class workerNotifications extends AppCompatActivity {
     final Context context = this;
-    ImageButton back, settings, search, home, profile;
+    ImageButton settings, search, home, profile;
 
     RecyclerView nfRecycler;
     static notificationsAdapter nfAdapter;
@@ -30,6 +30,8 @@ public class workerNotifications extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.notifications);
         nfList.clear();
         nfList.add(new Notifications(1, "Java для Senior",
                 "Курс Java\nдля Senior-разработчиков",
@@ -47,9 +49,6 @@ public class workerNotifications extends AppCompatActivity {
         allNfList.addAll(nfList);
         setNfRecycler(nfList);
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.notifications);
-
         profile = findViewById(R.id.profileButton);
         home = findViewById(R.id.homeButton);
         search = findViewById(R.id.searchButton);
@@ -58,7 +57,6 @@ public class workerNotifications extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, workerProfile.class);
-                finish();
                 startActivity(intent);
             }
         });
@@ -66,8 +64,7 @@ public class workerNotifications extends AppCompatActivity {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, workerNotifications.class);
-                finish();
+                Intent intent = new Intent(context, workerSearch.class);
                 startActivity(intent);
             }
         });
@@ -80,20 +77,11 @@ public class workerNotifications extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        back = findViewById(R.id.backButton);
-
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
     }
 
     private void setNfRecycler(List<Notifications> nfList) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-        nfRecycler = findViewById(R.id.eloRecycler);
+        nfRecycler = findViewById(R.id.nfRecycler);
         nfRecycler.setLayoutManager(layoutManager);
         nfAdapter = new notificationsAdapter(this, nfList);
         nfRecycler.setAdapter(nfAdapter);

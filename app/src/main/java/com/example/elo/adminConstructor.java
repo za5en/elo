@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class adminConstructor extends AppCompatActivity {
     final Context context = this;
     Button tags, employees, tasks;
-    ImageButton home, create;
+    ImageButton home, search, notifications, create;
     CheckBox isPrivate;
 
     @Override
@@ -25,6 +25,8 @@ public class adminConstructor extends AppCompatActivity {
         employees = findViewById(R.id.buttonEmpl);
         tasks = findViewById(R.id.buttonTasks);
         home = findViewById(R.id.homeButton);
+        search = findViewById(R.id.searchButton);
+        notifications = findViewById(R.id.notificationsButton);
         create = findViewById(R.id.create);
         isPrivate = findViewById(R.id.checkboxPrivate);
 
@@ -61,6 +63,22 @@ public class adminConstructor extends AppCompatActivity {
             public void onClick(View view) {
                 finish();
                 Intent intent = new Intent(context, adminMain.class);
+                startActivity(intent);
+            }
+        });
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, adminSearch.class);
+                startActivity(intent);
+            }
+        });
+
+        notifications.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, adminNotifications.class);
                 startActivity(intent);
             }
         });

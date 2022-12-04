@@ -30,7 +30,7 @@ import java.util.List;
 public class workerProfile extends AppCompatActivity {
 
     final Context context = this;
-    ImageButton home, settingsButton;
+    ImageButton home, search, notifications, settingsButton;
 
     RecyclerView eloRecycler, typeRecycler;
     typeAdapter typeAdapter;
@@ -43,6 +43,8 @@ public class workerProfile extends AppCompatActivity {
 
         home = findViewById(R.id.homeButton);
         settingsButton = findViewById(R.id.settingsButton);
+        search = findViewById(R.id.searchButton);
+        notifications = findViewById(R.id.notificationsButton);
 
         List<userTypes> typesList = new ArrayList<>();
         typesList.add(new userTypes(1, "Сотрудник"));
@@ -78,6 +80,22 @@ public class workerProfile extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(context, workerMain.class);
                 finish();
+                startActivity(intent);
+            }
+        });
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, workerSearch.class);
+                startActivity(intent);
+            }
+        });
+
+        notifications.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, workerNotifications.class);
                 startActivity(intent);
             }
         });

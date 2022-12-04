@@ -99,7 +99,7 @@ public class manageUsers extends AppCompatActivity {
         notifications.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, notifications.class); //admin
+                Intent intent = new Intent(context, adminNotifications.class);
                 finish();
                 startActivity(intent);
             }
@@ -117,7 +117,7 @@ public class manageUsers extends AppCompatActivity {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, search.class); //admin
+                Intent intent = new Intent(context, adminSearch.class);
                 finish();
                 startActivity(intent);
             }
@@ -135,7 +135,7 @@ public class manageUsers extends AppCompatActivity {
 
     private void setUserRecycler(List<Users> userList) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-        userRecycler = findViewById(R.id.eloRecycler);
+        userRecycler = findViewById(R.id.usersRecycler);
         userRecycler.setLayoutManager(layoutManager);
         userAdapter = new userAdapter(this, userList);
         userRecycler.setAdapter(userAdapter);

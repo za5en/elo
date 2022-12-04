@@ -16,11 +16,15 @@
             android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".workerMain"/>
         <activity android:name=".workerProfile"/>
+        <activity android:name=".workerNotifications"/>
+        <activity android:name=".workerSearch"/>
         <activity android:name=".continueElo"/>
         <activity android:name=".manageElo"/>
         <activity android:name=".requests"/>
         <activity android:name=".acceptTask"/>
         <activity android:name=".profile"/>
+        <activity android:name=".notifications"/>
+        <activity android:name=".search"/>
         <activity android:name=".EloInfo"/>
         <activity android:name=".addEloConfirm"/>
         <activity android:name=".tagsConfirm"/>
@@ -30,7 +34,10 @@
             android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".adminProfile"/>
         <activity android:name=".adminMain"/>
+        <activity android:name=".adminNotifications"/>
+        <activity android:name=".adminSearch"/>
         <activity android:name=".manageUsers"/>
+        <activity android:name=".changeInfo"/>
         <activity android:name=".notificationPage"/>
         <activity android:name=".auth"
             android:windowSoftInputMode="adjustPan"

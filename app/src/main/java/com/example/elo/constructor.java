@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class constructor extends AppCompatActivity {
     final Context context = this;
     Button tags, employees, tasks;
-    ImageButton home, create;
+    ImageButton home, search, notifications, create;
     CheckBox isPrivate;
 
     @Override
@@ -26,6 +26,8 @@ public class constructor extends AppCompatActivity {
         tasks = findViewById(R.id.buttonTasks);
         home = findViewById(R.id.homeButton);
         create = findViewById(R.id.create);
+        search = findViewById(R.id.searchButton);
+        notifications = findViewById(R.id.notificationsButton);
         isPrivate = findViewById(R.id.checkboxPrivate);
 
         tags.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +63,22 @@ public class constructor extends AppCompatActivity {
             public void onClick(View view) {
                 finish();
                 Intent intent = new Intent(context, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, search.class);
+                startActivity(intent);
+            }
+        });
+
+        notifications.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, notifications.class);
                 startActivity(intent);
             }
         });

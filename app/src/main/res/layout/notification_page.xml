@@ -26,8 +26,7 @@
             android:contentDescription="@string/settings"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/settings"
-            tools:srcCompat="@drawable/back_button" />
+            app:srcCompat="@drawable/back_button" />
 
         <LinearLayout
             android:id="@+id/top"
