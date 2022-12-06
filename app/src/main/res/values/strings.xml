@@ -78,4 +78,5 @@
     <string name="email_change">введите email</string>
     <string name="password_change">введите пароль</string>
     <string name="avatar_change">редактирование аватара</string>
+    <string name="user_stack_level">изменить уровень</string>
 </resources>

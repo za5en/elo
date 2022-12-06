@@ -193,6 +193,21 @@
         app:layout_constraintTop_toBottomOf="@id/tags_change" />
 
     <Button
+        android:id="@+id/stack_level_change"
+        android:layout_width="336dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/buttons"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/user_stack_level"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/elo_change" />
+
+    <Button
         android:id="@+id/enter_profile"
         android:layout_width="336dp"
         android:layout_height="48dp"

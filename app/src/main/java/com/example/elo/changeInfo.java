@@ -25,7 +25,7 @@ import com.example.elo.model.Tasks_elo;
 public class changeInfo extends AppCompatActivity {
     final Context context = this;
     TextView email, password, userName, userLevel;
-    ImageButton back;
+    ImageButton back, resetPassword;
     ImageView avatar;
     Button eloChange, tagsChange, enterProfile;
 
@@ -40,6 +40,7 @@ public class changeInfo extends AppCompatActivity {
         userLevel = findViewById(R.id.user_level);
 
         back = findViewById(R.id.backButton);
+        resetPassword = findViewById(R.id.reset_password);
 
         avatar = findViewById(R.id.avatar);
 
@@ -66,7 +67,7 @@ public class changeInfo extends AppCompatActivity {
                         .setPositiveButton("Готово", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                userName.setText(emailInput.getText().toString());
+                                email.setText(emailInput.getText().toString());
                                 Log.i("AlertDialog",emailInput.getText().toString());
                             }
                         })
@@ -95,7 +96,7 @@ public class changeInfo extends AppCompatActivity {
                         .setPositiveButton("Готово", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                userName.setText(passwordInput.getText().toString());
+                                password.setText(passwordInput.getText().toString());
                                 Log.i("AlertDialog",passwordInput.getText().toString());
                             }
                         })
@@ -153,6 +154,37 @@ public class changeInfo extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 dialogInterface.dismiss();
+                            }
+                        })
+                        .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        });
+
+                dialBuilder.create().show();
+            }
+        });
+
+        resetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                password.setText("");
+                Toast.makeText(context, "Пароль удален", Toast.LENGTH_SHORT).show();
+                LayoutInflater layoutInflater = LayoutInflater.from(context);
+                View dialView = layoutInflater.inflate(R.layout.change_password, null);
+                AlertDialog.Builder dialBuilder = new AlertDialog.Builder(context);
+
+                dialBuilder.setView(dialView);
+                final EditText passwordInput = dialView.findViewById(R.id.input);
+
+                dialBuilder.setCancelable(false)
+                        .setPositiveButton("Готово", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                password.setText(passwordInput.getText().toString());
+                                Log.i("AlertDialog",passwordInput.getText().toString());
                             }
                         })
                         .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
