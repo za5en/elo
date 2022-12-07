@@ -85,4 +85,6 @@
     <string name="elo_created_en">created elo</string>
     <string name="elo_part_en">participation in elo</string>
     <string name="delete">delete</string>
+    <string name="clear_nf">очистить уведомления</string>
+    <string name="read_nf">отметить прочитанными</string>
 </resources>

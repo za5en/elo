@@ -4,12 +4,14 @@ public class Notifications {
 
     int id;
     String theme, text, fullText;
+    boolean read;
 
-    public Notifications(int id, String theme, String text, String fullText) {
+    public Notifications(int id, String theme, String text, String fullText, boolean read) {
         this.id = id;
         this.theme = theme;
         this.text = text;
         this.fullText = fullText;
+        this.read = read;
     }
 
     public int getId() {
@@ -22,6 +24,14 @@ public class Notifications {
 
     public String getTheme() {
         return theme;
+    }
+
+    public boolean isRead() {
+        return read;
+    }
+
+    public void setRead(boolean read) {
+        this.read = read;
     }
 
     public void setTheme(String theme) {

@@ -20,38 +20,34 @@ import com.example.elo.notificationPage;
 
 import java.util.List;
 
-public class notificationsAdapter extends RecyclerView.Adapter<notificationsAdapter.NfViewHolder> {
+public class nfReadAdapter extends RecyclerView.Adapter<nfReadAdapter.NfViewHolder> {
 
     Context context;
     List<Notifications> nfList;
     ImageView point;
 
-    public notificationsAdapter(Context context, List<Notifications> nfList) {
+    public nfReadAdapter(Context context, List<Notifications> nfList) {
         this.context = context;
         this.nfList = nfList;
     }
 
     @NonNull
     @Override
-    public notificationsAdapter.NfViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public nfReadAdapter.NfViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View eloItems = LayoutInflater.from(context).inflate(R.layout.notification_item, parent, false);
-        return new notificationsAdapter.NfViewHolder(eloItems);
+        return new nfReadAdapter.NfViewHolder(eloItems);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull notificationsAdapter.NfViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull nfReadAdapter.NfViewHolder holder, int position) {
 
         holder.theme.setText(nfList.get(position).getTheme());
         holder.text.setText(nfList.get(position).getText());
-        if (nfList.get(position).isRead())
-            holder.point.setImageResource(R.drawable.nf_read);
-        else
-            holder.point.setImageResource(R.drawable.nf_unread);
+        holder.point.setImageResource(R.drawable.nf_read);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.point.setImageResource(R.drawable.nf_read);
                 Intent intent = new Intent(context, notificationPage.class);
 
                 intent.putExtra("fullText", nfList.get(position).getFullText());
