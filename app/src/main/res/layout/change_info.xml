@@ -30,9 +30,9 @@
                     android:id="@+id/backButton"
                     android:layout_width="48dp"
                     android:layout_height="52dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:background="@android:color/transparent"
-                    android:contentDescription="@string/settings"
+                    android:contentDescription="@string/back"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/back_button" />
@@ -42,9 +42,9 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:contentDescription="@string/avatar"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="25dp"
                     android:layout_marginStart="5dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="30dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -59,7 +59,7 @@
                         android:id="@+id/user_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="35dp"
+                        android:layout_marginTop="20dp"
                         android:layout_marginStart="15dp"
                         android:fontFamily="@font/montserrat_bold"
                         android:text="@string/username"
@@ -68,18 +68,69 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
-                    <TextView
-                        android:id="@+id/user_level"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginStart="15dp"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:text="@string/user_level"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/user_access_level"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginStart="15dp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="@string/user_access_level"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+                        <ImageButton
+                            android:id="@+id/triangle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="25dp"
+                            android:layout_marginStart="3dp"
+                            android:background="@android:color/transparent"
+                            android:contentDescription="@string/settings"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/triangle_down" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/user_level"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginStart="15dp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="@string/user_level"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+                        <ImageButton
+                            android:id="@+id/triangle2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="25dp"
+                            android:layout_marginStart="3dp"
+                            android:background="@android:color/transparent"
+                            android:contentDescription="@string/settings"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/triangle_down" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -123,6 +174,18 @@
         app:layout_constraintStart_toEndOf="@id/email"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
+    <ImageButton
+        android:id="@+id/edit1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:layout_marginStart="8dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/settings"
+        app:srcCompat="@drawable/edit"
+        app:layout_constraintStart_toEndOf="@id/email_address"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"/>
+
     <TextView
         android:id="@+id/password"
         android:layout_width="wrap_content"
@@ -148,6 +211,18 @@
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@id/password"
         app:layout_constraintTop_toBottomOf="@+id/email_address" />
+
+    <ImageButton
+        android:id="@+id/edit2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="8dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/settings"
+        app:srcCompat="@drawable/edit"
+        app:layout_constraintStart_toEndOf="@id/password_text"
+        app:layout_constraintTop_toBottomOf="@+id/email_address"/>
 
     <ImageButton
         android:id="@+id/reset_password"
@@ -178,13 +253,13 @@
         app:layout_constraintTop_toBottomOf="@id/reset_password" />
 
     <Button
-        android:id="@+id/elo_change"
+        android:id="@+id/elo_created"
         android:layout_width="336dp"
         android:layout_height="48dp"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/buttons"
         android:fontFamily="@font/montserrat_bold"
-        android:text="@string/elo_change"
+        android:text="@string/elo_created"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -193,19 +268,19 @@
         app:layout_constraintTop_toBottomOf="@id/tags_change" />
 
     <Button
-        android:id="@+id/stack_level_change"
+        android:id="@+id/elo_part"
         android:layout_width="336dp"
         android:layout_height="48dp"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/buttons"
         android:fontFamily="@font/montserrat_bold"
-        android:text="@string/user_stack_level"
+        android:text="@string/elo_part"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/elo_change" />
+        app:layout_constraintTop_toBottomOf="@id/elo_created" />
 
     <Button
         android:id="@+id/enter_profile"

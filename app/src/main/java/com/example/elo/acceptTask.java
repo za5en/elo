@@ -9,15 +9,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.elo.model.Tasks_elo;
 
 public class acceptTask extends AppCompatActivity {
 
@@ -67,7 +64,7 @@ public class acceptTask extends AppCompatActivity {
                 Log.i(tag, "onItemClick: " +position);
                 acceptTask user = (acceptTask) acceptTaskListView.getItemAtPosition(position);
                 LayoutInflater layoutInflater = LayoutInflater.from(context);
-                View dialView = layoutInflater.inflate(R.layout.accept_task_dial, null);
+                View dialView = layoutInflater.inflate(R.layout.change_level_confirm, null);
                 AlertDialog.Builder dialBuilder = new AlertDialog.Builder(context);
 
                 dialBuilder.setView(dialView);

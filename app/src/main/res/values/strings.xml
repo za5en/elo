@@ -62,16 +62,18 @@
     <string name="to_admin">admin</string>
     <string name="admin_name">Admin Name</string>
     <string name="manage_users">управление сотрудниками</string>
-    <string name="users">сотрудники</string>
+    <string name="users">staff</string>
     <string name="user_name">user name</string>
     <string name="user_level">user level</string>
+    <string name="user_access_level">user access level</string>
     <string name="notification_theme">theme</string>
     <string name="notification_text">notification text</string>
     <string name="email">email:</string>
     <string name="pass">пароль:</string>
     <string name="enter_profile">войти в аккаунт</string>
     <string name="tags_change">управлять тегами</string>
-    <string name="elo_change">управлять ЭлО</string>
+    <string name="elo_created">созданные ЭлО</string>
+    <string name="elo_part">участие в ЭлО</string>
     <string name="employee">сотрудник</string>
     <string name="mentor">наставник</string>
     <string name="name_change">введите имя</string>
@@ -79,4 +81,8 @@
     <string name="password_change">введите пароль</string>
     <string name="avatar_change">редактирование аватара</string>
     <string name="user_stack_level">изменить уровень</string>
+    <string name="confirm_level_change">подтвердить изменения?</string>
+    <string name="elo_created_en">created elo</string>
+    <string name="elo_part_en">participation in elo</string>
+    <string name="delete">delete</string>
 </resources>

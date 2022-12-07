@@ -88,7 +88,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:background="@android:color/transparent"
-        android:contentDescription="@string/settings"
+        android:contentDescription="@string/back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/back_button" />

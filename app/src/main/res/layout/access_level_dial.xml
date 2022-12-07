@@ -5,44 +5,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".levelDial"
+    tools:context=".tagDial"
     android:id="@+id/dial">
 
-
-    <LinearLayout
-        android:id="@+id/level"
+    <TextView
+        android:id="@+id/accept_request"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <RadioGroup
-            android:id="@+id/radioGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp">
-
-            <RadioButton
-                android:id="@+id/radio_jun"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_weight="1"
-                android:checked="true"
-                android:text="@string/employee"
-                android:textSize="20sp"/>
-
-            <RadioButton
-                android:id="@+id/radio_mid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_weight="1"
-                android:text="@string/mentor"
-                android:textSize="20sp"/>
-
-        </RadioGroup>
-
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
+        android:maxLines="20"
+        android:scrollbars="vertical"
+        android:text="@string/accept_task"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        tools:ignore="RtlCompat" />
 
 </LinearLayout>

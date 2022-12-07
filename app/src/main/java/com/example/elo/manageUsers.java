@@ -64,19 +64,23 @@ public class manageUsers extends AppCompatActivity {
 
         userList.clear();
         userList.add(new Users(1, "Mentor name",
-                "mentor",
+                "senior",
+                "наставник",
                 "mail@mail.ru",
                 "123123123", first));
         userList.add(new Users(2, "Mentor name",
-                "mentor",
+                "senior",
+                "наставник",
                 "mail@mail.ru",
                 "123123123", first));
         userList.add(new Users(3, "Mentor name",
-                "mentor",
+                "senior",
+                "наставник",
                 "mail@mail.ru",
                 "123123123", first));
         userList.add(new Users(4, "Mentor name",
-                "mentor",
+                "senior",
+                "наставник",
                 "mail@mail.ru",
                 "123123123", first));
 

@@ -39,18 +39,19 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.UserViewHolder
     public void onBindViewHolder(@NonNull userAdapter.UserViewHolder holder, int position) {
 
         holder.userName.setText(userList.get(position).getUsername());
-        holder.userLevel.setText(userList.get(position).getUserLevel());
+        holder.userAccessLevel.setText(userList.get(position).getUserAccessLevel());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, changeInfo.class); //add changeuserinfo page
+                Intent intent = new Intent(context, changeInfo.class);
 
                 intent.putExtra("userName", userList.get(position).getUsername());
                 intent.putExtra("userLevel", userList.get(position).getUserLevel());
                 intent.putExtra("userEmail", userList.get(position).getEmail());
                 intent.putExtra("userPassword", userList.get(position).getPassword());
                 intent.putExtra("id", userList.get(position).getId());
+                intent.putExtra("userAccessLevel", userList.get(position).getUserAccessLevel());
 
                 context.startActivity(intent);
             }
@@ -65,14 +66,14 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.UserViewHolder
     public static final class UserViewHolder extends RecyclerView.ViewHolder {
 
         LinearLayout userBg;
-        TextView userName, userLevel;
+        TextView userName, userAccessLevel;
 
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
 
             userBg = itemView.findViewById(R.id.userBg);
             userName = itemView.findViewById(R.id.userName);
-            userLevel = itemView.findViewById(R.id.userLevel);
+            userAccessLevel = itemView.findViewById(R.id.userAccessLevel);
         }
     }
 }

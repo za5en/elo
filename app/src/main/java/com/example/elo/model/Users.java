@@ -5,17 +5,18 @@ import java.util.List;
 public class Users {
 
     int id;
-    String username, userLevel, email, password;
+    String username, userLevel, userAccessLevel, email, password;
     List<tagCategory> cats;
     //elo_part
     //elo_created
     //photo
     //tags
 
-    public Users(int id, String username, String userLevel, String email, String password, List<tagCategory> cats) {
+    public Users(int id, String username, String userLevel, String userAccessLevel, String email, String password, List<tagCategory> cats) {
         this.id = id;
         this.username = username;
         this.userLevel = userLevel;
+        this.userAccessLevel = userAccessLevel;
         this.email = email;
         this.password = password;
         this.cats = cats;
@@ -31,6 +32,14 @@ public class Users {
 
     public String getUserLevel() {
         return userLevel;
+    }
+
+    public String getUserAccessLevel() {
+        return userAccessLevel;
+    }
+
+    public void setUserAccessLevel(String userAccessLevel) {
+        this.userAccessLevel = userAccessLevel;
     }
 
     public void setUserLevel(String userLevel) {
