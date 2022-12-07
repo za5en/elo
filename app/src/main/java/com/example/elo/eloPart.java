@@ -55,6 +55,7 @@ public class eloPart extends AppCompatActivity {
         allEloList.addAll(eloList);
         setEloWorkerRecycler(eloList);
 
+        iconsList.clear();
         iconsList.add(new DeleteIcons(1));
         iconsList.add(new DeleteIcons(2));
         iconsList.add(new DeleteIcons(3));
@@ -75,6 +76,8 @@ public class eloPart extends AppCompatActivity {
     private void setEloWorkerRecycler(List<EloProfile> eloList) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         eloWorkerRecycler = findViewById(R.id.eloRecycler);
+        eloWorkerRecycler.setHasFixedSize(true);
+        eloWorkerRecycler.setNestedScrollingEnabled(false);
         eloWorkerRecycler.setLayoutManager(layoutManager);
         eloWorkerAdapter = new adminEloWorkAdapter(this, eloList);
         eloWorkerRecycler.setAdapter(eloWorkerAdapter);
@@ -83,6 +86,8 @@ public class eloPart extends AppCompatActivity {
     private void setIconsRecycler(List<DeleteIcons> iconsList) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         iconsRecycler = findViewById(R.id.deleteRecycler);
+        iconsRecycler.setHasFixedSize(true);
+        iconsRecycler.setNestedScrollingEnabled(false);
         iconsRecycler.setLayoutManager(layoutManager);
         deleteIconsAdapter = new deleteIconsWorkAdapter(this, iconsList);
         iconsRecycler.setAdapter(deleteIconsAdapter);

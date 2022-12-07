@@ -40,7 +40,7 @@ public class eloCreated extends AppCompatActivity {
 
         eloList.clear();
         eloList.add(new EloProfile(1, "Java для начинающих",
-                "Курс Java\nдля Junior-разработчиков",
+                "Курс Java для\nJunior-разработчиков",
                 "Курс Java для Junior-разработчиков\nОтлично подойдет для развития навыков работы с backend'ом на Java, в первую очередь для работы с сервером",
                 "Java для начинающих", 2, "65%"));
         eloList.add(new EloProfile(2, "C# для начинающих",
@@ -55,6 +55,7 @@ public class eloCreated extends AppCompatActivity {
         allEloList.addAll(eloList);
         setEloRecycler(eloList);
 
+        iconsList.clear();
         iconsList.add(new DeleteIcons(1));
         iconsList.add(new DeleteIcons(2));
         iconsList.add(new DeleteIcons(3));
@@ -74,6 +75,8 @@ public class eloCreated extends AppCompatActivity {
     private void setEloRecycler(List<EloProfile> eloList) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         eloRecycler = findViewById(R.id.eloRecycler);
+        eloRecycler.setHasFixedSize(true);
+        eloRecycler.setNestedScrollingEnabled(false);
         eloRecycler.setLayoutManager(layoutManager);
         eloAdapter = new adminEloProfileAdapter(this, eloList);
         eloRecycler.setAdapter(eloAdapter);
@@ -82,6 +85,8 @@ public class eloCreated extends AppCompatActivity {
     private void setIconsRecycler(List<DeleteIcons> iconsList) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         iconsRecycler = findViewById(R.id.deleteRecycler);
+        iconsRecycler.setHasFixedSize(true);
+        iconsRecycler.setNestedScrollingEnabled(false);
         iconsRecycler.setLayoutManager(layoutManager);
         deleteIconsAdapter = new deleteIconsAdapter(this, iconsList);
         iconsRecycler.setAdapter(deleteIconsAdapter);
