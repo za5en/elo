@@ -3,15 +3,33 @@ package com.example.elo.model;
 public class Notifications {
 
     int id;
-    String theme, text, fullText;
+    String theme, text, fullText, date, eloDesc;
     boolean read;
 
-    public Notifications(int id, String theme, String text, String fullText, boolean read) {
+    public Notifications(int id, String theme, String text, String fullText, String date, String eloDesc, boolean read) {
         this.id = id;
         this.theme = theme;
         this.text = text;
         this.fullText = fullText;
+        this.date = date;
+        this.eloDesc = eloDesc;
         this.read = read;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getEloDesc() {
+        return eloDesc;
+    }
+
+    public void setEloDesc(String eloDesc) {
+        this.eloDesc = eloDesc;
     }
 
     public int getId() {

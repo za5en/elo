@@ -46,7 +46,7 @@
                     android:layout_marginEnd="20dp"
                     android:textAlignment="center"
                     android:layout_marginTop="35dp"
-                    android:layout_marginBottom="30dp"
+                    android:layout_marginBottom="25dp"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="@string/notification_theme"
                     android:textColor="@color/black"
@@ -55,6 +55,22 @@
                     app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/nf_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="20dp"
+                android:textAlignment="center"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/nf_date"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
         </LinearLayout>
 
@@ -75,5 +91,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    <ImageButton
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/button"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/manage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

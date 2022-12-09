@@ -21,7 +21,6 @@ public class notificationsAdapter extends RecyclerView.Adapter<notificationsAdap
 
     Context context;
     List<Notifications> nfList;
-    ImageView point;
 
     public notificationsAdapter(Context context, List<Notifications> nfList) {
         this.context = context;
@@ -52,8 +51,11 @@ public class notificationsAdapter extends RecyclerView.Adapter<notificationsAdap
                 Intent intent = new Intent(context, notificationPage.class);
 
                 intent.putExtra("fullText", nfList.get(position).getFullText());
+                intent.putExtra("text", nfList.get(position).getText());
                 intent.putExtra("theme", nfList.get(position).getTheme());
                 intent.putExtra("id", nfList.get(position).getId());
+                intent.putExtra("date", nfList.get(position).getDate());
+                intent.putExtra("eloDesc", nfList.get(position).getEloDesc());
 
                 context.startActivity(intent);
             }

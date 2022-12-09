@@ -398,10 +398,10 @@ public class changeInfo extends AppCompatActivity {
                                     Toast.makeText(context, "изменения применены", Toast.LENGTH_SHORT).show();
 
                                     if (Objects.equals(role, "сотрудник")) {
-                                        Intent intent = new Intent(context, workerProfile.class); //depends on user
+                                        Intent intent = new Intent(context, workerProfile.class);
                                         startActivity(intent);
                                     } else if (Objects.equals(role, "наставник")) {
-                                        Intent intent = new Intent(context, profile.class); //depends on user
+                                        Intent intent = new Intent(context, profile.class);
                                         startActivity(intent);
                                     }
                                 }
