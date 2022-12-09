@@ -7,9 +7,12 @@
             android:title="@string/popup1"/>
         <item
             android:id="@+id/menu2"
-            android:title="@string/acc_swap"/>
+            android:title="@string/nf_deadline"/>
         <item
             android:id="@+id/menu3"
+            android:title="@string/acc_swap"/>
+        <item
+            android:id="@+id/menu4"
             android:title="@string/to_admin"/>
     </group>
 </menu>

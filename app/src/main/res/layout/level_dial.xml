@@ -5,53 +5,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".levelDial"
+    tools:context=".login.levelDial"
     android:id="@+id/dial">
 
 
-        <LinearLayout
-            android:id="@+id/level"
+    <LinearLayout
+        android:id="@+id/level"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp">
 
-            <RadioGroup
-                android:id="@+id/radioGroup"
-                android:layout_width="match_parent"
+            <RadioButton
+                android:id="@+id/radio_jun"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp">
+                android:layout_marginStart="24dp"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="@string/junior"
+                android:textSize="20sp"/>
 
-                <RadioButton
-                    android:id="@+id/radio_jun"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_weight="1"
-                    android:checked="true"
-                    android:text="@string/junior"
-                    android:textSize="20sp"/>
+            <RadioButton
+                android:id="@+id/radio_mid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_weight="1"
+                android:text="@string/middle"
+                android:textSize="20sp"/>
 
-                <RadioButton
-                    android:id="@+id/radio_mid"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_weight="1"
-                    android:text="@string/middle"
-                    android:textSize="20sp"/>
+            <RadioButton
+                android:id="@+id/radio_sen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_weight="1"
+                android:text="@string/senior"
+                android:textSize="20sp"/>
 
-                <RadioButton
-                    android:id="@+id/radio_sen"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_weight="1"
-                    android:text="@string/senior"
-                    android:textSize="20sp"/>
+        </RadioGroup>
 
-            </RadioGroup>
-
-        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

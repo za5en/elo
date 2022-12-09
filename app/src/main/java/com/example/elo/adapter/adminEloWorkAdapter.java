@@ -2,23 +2,18 @@ package com.example.elo.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.elo.EloInfo;
 import com.example.elo.R;
-import com.example.elo.continueElo;
-import com.example.elo.manageElo;
+import com.example.elo.mentor.manage.manageElo;
 import com.example.elo.model.EloProfile;
-import com.example.elo.model.Elos;
 
 import java.util.List;
 

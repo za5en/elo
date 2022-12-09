@@ -9,9 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.elo.MainActivity;
 import com.example.elo.R;
-import com.example.elo.adminMain;
+import com.example.elo.admin.adminMain;
 import com.example.elo.model.tagCategory;
 
 import java.util.List;

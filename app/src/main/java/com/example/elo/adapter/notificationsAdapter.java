@@ -6,17 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.elo.EloInfo;
 import com.example.elo.R;
-import com.example.elo.model.Elos;
 import com.example.elo.model.Notifications;
-import com.example.elo.notificationPage;
+import com.example.elo.mentor.notification.notificationPage;
 
 import java.util.List;
 

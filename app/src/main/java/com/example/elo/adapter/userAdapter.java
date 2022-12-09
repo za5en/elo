@@ -12,8 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.elo.R;
-import com.example.elo.changeInfo;
-import com.example.elo.manageUsers;
+import com.example.elo.admin.profile.manage.changeInfo;
 import com.example.elo.model.Users;
 
 import java.util.List;

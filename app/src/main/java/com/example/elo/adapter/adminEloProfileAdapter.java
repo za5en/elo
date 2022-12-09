@@ -11,9 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.elo.EloInfo;
 import com.example.elo.R;
-import com.example.elo.manageElo;
+import com.example.elo.mentor.manage.manageElo;
 import com.example.elo.model.EloProfile;
 
 import java.util.List;

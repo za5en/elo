@@ -41,7 +41,7 @@
     <string name="password_reset">восстановить пароль</string>
     <string name="registration">registration</string>
     <string name="reset_page">восстановление пароля</string>
-    <string name="reset_mail">введите email, указанный при регистрации: </string>
+    <string name="reset_mail">Введите email, указанный при регистрации: </string>
     <string name="email_input">Введите email</string>
     <string name="menu">menu</string>
     <string name="popup1">Выйти из аккаунта</string>
@@ -61,7 +61,7 @@
     <string name="acc_swap">swap</string>
     <string name="to_admin">admin</string>
     <string name="admin_name">Admin Name</string>
-    <string name="manage_users">управление сотрудниками</string>
+    <string name="manage_users">Управление сотрудниками</string>
     <string name="users">staff</string>
     <string name="user_name">user name</string>
     <string name="user_level">user level</string>
@@ -81,10 +81,16 @@
     <string name="password_change">введите пароль</string>
     <string name="avatar_change">редактирование аватара</string>
     <string name="user_stack_level">изменить уровень</string>
-    <string name="confirm_level_change">подтвердить изменения?</string>
+    <string name="confirm_level_change">Подтвердить изменения?</string>
     <string name="elo_created_en">created elo</string>
     <string name="elo_part_en">participation in elo</string>
     <string name="delete">delete</string>
-    <string name="clear_nf">очистить уведомления</string>
-    <string name="read_nf">отметить прочитанными</string>
+    <string name="clear_nf">Очистить уведомления</string>
+    <string name="read_nf">Отметить прочитанными</string>
+    <string name="nf_deadline">Уведомления о дедлайнах</string>
+    <string name="nf_deadline_1h">за 1 час</string>
+    <string name="nf_deadline_4h">за 4 часа</string>
+    <string name="nf_deadline_8h">за 8 часов</string>
+    <string name="nf_deadline_24h">за 24 часа</string>
+    <string name="nf_deadline_off">выключены</string>
 </resources>
