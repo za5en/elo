@@ -26,6 +26,7 @@ public class EloInfo extends AppCompatActivity {
     RecyclerView tagRecycler;
     tagAdapter tagAdapter;
     List<tagCategory> categoryList;
+    String name;
     boolean isPrivate;
 
     @Override
@@ -38,6 +39,7 @@ public class EloInfo extends AppCompatActivity {
 
         eloDescText.setText(getIntent().getStringExtra("previewDesc"));
         eloName.setText(getIntent().getStringExtra("previewName"));
+        name = eloName.getText().toString();
         isPrivate = getIntent().getBooleanExtra("isPrivate", true);
         take_part = findViewById(R.id.take_part);
 
@@ -47,9 +49,35 @@ public class EloInfo extends AppCompatActivity {
         }
 
         List<tagCategory> categoryList = new ArrayList<>();
-        categoryList.add(new tagCategory(1, "front"));
-        categoryList.add(new tagCategory(2, "back"));
-        categoryList.add(new tagCategory(3, "qa"));
+        if (name.toLowerCase().contains("java")) {
+            categoryList.add(new tagCategory(1, "java"));
+            categoryList.add(new tagCategory(2, "back"));
+            categoryList.add(new tagCategory(3, "sql"));
+        }
+        else if (name.toLowerCase().contains("python")) {
+            categoryList.add(new tagCategory(1, "python"));
+            categoryList.add(new tagCategory(2, "back"));
+        }
+        else if (name.toLowerCase().contains("front&back")) {
+            categoryList.add(new tagCategory(1, "front"));
+            categoryList.add(new tagCategory(2, "react"));
+            categoryList.add(new tagCategory(3, "back"));
+        }
+        else if (name.toLowerCase().contains("c#")) {
+            categoryList.add(new tagCategory(1, "C#"));
+            categoryList.add(new tagCategory(2, "back"));
+            categoryList.add(new tagCategory(3, "ооп"));
+        }
+        else if (name.toLowerCase().contains("sql")) {
+            categoryList.add(new tagCategory(1, "sql"));
+            categoryList.add(new tagCategory(2, "базы данных"));
+            categoryList.add(new tagCategory(3, "back"));
+        }
+        else if (name.toLowerCase().contains("frontend")) {
+            categoryList.add(new tagCategory(1, "front"));
+            categoryList.add(new tagCategory(2, "java"));
+            categoryList.add(new tagCategory(3, "react"));
+        }
 
         setCategoryRecycler(categoryList);
 

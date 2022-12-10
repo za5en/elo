@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.elo.R;
 import com.example.elo.adapter.tagAdapter;
+import com.example.elo.mentor.eloPage.pass.eloPass;
 import com.example.elo.model.tagCategory;
 
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class continueElo extends AppCompatActivity {
     RecyclerView tagRecycler;
     tagAdapter tagAdapter;
     List<tagCategory> categoryList;
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +39,38 @@ public class continueElo extends AppCompatActivity {
 
         eloDescText.setText(getIntent().getStringExtra("previewDesc"));
         eloName.setText(getIntent().getStringExtra("previewName"));
+        name = eloName.getText().toString();
 
         List<tagCategory> categoryList = new ArrayList<>();
-        categoryList.add(new tagCategory(1, "front"));
-        categoryList.add(new tagCategory(2, "back"));
-        categoryList.add(new tagCategory(3, "qa"));
+        if (name.toLowerCase().contains("java")) {
+            categoryList.add(new tagCategory(1, "java"));
+            categoryList.add(new tagCategory(2, "back"));
+            categoryList.add(new tagCategory(3, "sql"));
+        }
+        else if (name.toLowerCase().contains("python")) {
+            categoryList.add(new tagCategory(1, "python"));
+            categoryList.add(new tagCategory(2, "back"));
+        }
+        else if (name.toLowerCase().contains("front&back")) {
+            categoryList.add(new tagCategory(1, "front"));
+            categoryList.add(new tagCategory(2, "react"));
+            categoryList.add(new tagCategory(3, "back"));
+        }
+        else if (name.toLowerCase().contains("c#")) {
+            categoryList.add(new tagCategory(1, "C#"));
+            categoryList.add(new tagCategory(2, "back"));
+            categoryList.add(new tagCategory(3, "ооп"));
+        }
+        else if (name.toLowerCase().contains("sql")) {
+            categoryList.add(new tagCategory(1, "sql"));
+            categoryList.add(new tagCategory(2, "БД"));
+            categoryList.add(new tagCategory(3, "back"));
+        }
+        else if (name.toLowerCase().contains("frontend")) {
+            categoryList.add(new tagCategory(1, "front"));
+            categoryList.add(new tagCategory(2, "java"));
+            categoryList.add(new tagCategory(3, "react"));
+        }
 
         setCategoryRecycler(categoryList);
 
@@ -59,6 +88,13 @@ public class continueElo extends AppCompatActivity {
         continue_elo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(context, eloPass.class);
+
+                intent.putExtra("taskName", "Задание 1");
+                intent.putExtra("taskDesc", "прочитать статью:");
+                intent.putExtra("url", "https://stackoverflow.com/questions/9643610/how-to-including-variables-within-strings");
+
+                context.startActivity(intent);
             }
         });
     }

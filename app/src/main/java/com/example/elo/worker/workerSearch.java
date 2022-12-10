@@ -163,8 +163,8 @@ public class workerSearch extends AppCompatActivity {
         }
 
         if (filter.isEmpty()) {
-            if (!(text.isEmpty()))
-                Toast.makeText(context, "ничего не найдено", Toast.LENGTH_SHORT).show();
+            //if (!(text.isEmpty()))
+                //Toast.makeText(context, "ничего не найдено", Toast.LENGTH_SHORT).show();
             filter.clear();
             eloAdapter.setFilteredList(filter);
         }

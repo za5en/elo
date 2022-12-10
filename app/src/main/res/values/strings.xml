@@ -95,4 +95,6 @@
     <string name="nf_deadline_off">выключены</string>
     <string name="nf_date">date</string>
     <string name="button">button</string>
+    <string name="task_desc">задание:</string>
+    <string name="url">url</string>
 </resources>
