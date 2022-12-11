@@ -51,6 +51,7 @@ public class tasks extends ListActivity {
                 dialBuilder.setView(dialView);
                 final EditText nameInput = dialView.findViewById(R.id.task_type);
                 final EditText descInput = dialView.findViewById(R.id.desc_type);
+                final EditText urlInput = dialView.findViewById(R.id.url_type);
 
                 dialBuilder.setCancelable(false)
                         .setPositiveButton("Готово", new DialogInterface.OnClickListener() {
@@ -62,6 +63,8 @@ public class tasks extends ListActivity {
                                 Tasks_elo.task_name[task_id] = nameInput.getText().toString();
                                 Log.i("AlertDialog",descInput.getText().toString());
                                 Tasks_elo.task_desc[task_id] = descInput.getText().toString();
+                                Log.i("AlertDialog",urlInput.getText().toString());
+                                Tasks_elo.task_url[task_id] = urlInput.getText().toString();
                             }
                         })
                         .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {

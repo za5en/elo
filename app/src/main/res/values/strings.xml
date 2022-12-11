@@ -97,4 +97,7 @@
     <string name="button">button</string>
     <string name="task_desc">задание:</string>
     <string name="url">url</string>
+    <string name="tasks_text">tasks</string>
+    <string name="requests_text">requests</string>
+    <string name="link">ссылка</string>
 </resources>

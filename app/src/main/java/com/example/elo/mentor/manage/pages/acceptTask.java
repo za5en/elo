@@ -2,48 +2,65 @@ package com.example.elo.mentor.manage.pages;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
 import android.os.Bundle;
+import android.text.TextPaint;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.elo.R;
+import com.example.elo.adapter.acceptTaskAdapter;
+import com.example.elo.adapter.eloAdapter;
+import com.example.elo.adapter.tagAdapter;
 import com.example.elo.model.AcceptTask;
+import com.example.elo.model.Elos;
+import com.example.elo.model.tagCategory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class acceptTask extends AppCompatActivity {
+    RecyclerView tasksRecycler;
+    static acceptTaskAdapter tasksAdapter;
 
-    private String userName;
-    private String userTask;
-    public static final String tag = "acceptTask";
-    private ListView acceptTaskListView;
-    final Context context = this;
+    static List<AcceptTask> tasks = new ArrayList<>();
+    static List<AcceptTask> allTasks = new ArrayList<>();
 
-    public acceptTask() {};
-
-    public acceptTask(String userName, String userTask)  {
-        this.userName = userName;
-        this.userTask = userTask;
-    }
-
-    static List<AcceptTask> users = new ArrayList<>();
+    String name;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.accept_task);
-        Button back = findViewById(R.id.backButton);
+        ImageButton back = findViewById(R.id.backButton);
+
+        name = getIntent().getStringExtra("eloName");
+
+        TextView textView = findViewById(R.id.textView);
+        TextPaint paint = textView.getPaint();
+        float width = paint.measureText("tasks");
+        Shader textShader = new LinearGradient(0, 0, width, textView.getTextSize(),
+                new int[]{
+                        getColor(R.color.dark),
+                        getColor(R.color.middle),
+                        getColor(R.color.light),
+                }, null, Shader.TileMode.CLAMP);
+        textView.getPaint().setShader(textShader);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,75 +69,70 @@ public class acceptTask extends AppCompatActivity {
             }
         });
 
-        this.acceptTaskListView = findViewById(R.id.listView);
+        tasks.clear();
+        allTasks.clear();
 
-        this.acceptTaskListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        if (name.toLowerCase().contains("java")) {
+            tasks.add(new AcceptTask("Артём","Задание 5", 1));
+            tasks.add(new AcceptTask("RUSTAM","Задание 3", 2));
+            tasks.add(new AcceptTask("Worker Name","Задание 1", 3));
+        }
+        else if (name.toLowerCase().contains("python")) {
+            tasks.add(new AcceptTask("Кирилл","Задание 11", 1));
+            tasks.add(new AcceptTask("RUSTAM","Задание 4", 2));
+            tasks.add(new AcceptTask("Максим Максим","Задание 1", 3));
+            tasks.add(new AcceptTask("Виталий Н","Задание 5", 4));
+            tasks.add(new AcceptTask("Андрей","Задание 10", 5));
+            tasks.add(new AcceptTask("Дима Перевозчиков","Задание 9", 6));
+        }
+        else if (name.toLowerCase().contains("front&back")) {
+            tasks.add(new AcceptTask("Фёдор Власов","Задание 11", 1));
+        }
+        else if (name.toLowerCase().contains("c#")) {
+            tasks.add(new AcceptTask("Worker Name","Задание 2", 1));
+            tasks.add(new AcceptTask("Кирилл","Задание 6", 2));
+            tasks.add(new AcceptTask("Виталий Н","Задание 7", 3));
+        }
+        else if (name.toLowerCase().contains("sql")) {
+            tasks.add(new AcceptTask("Worker Name","Итоговое задание", 1));
+            tasks.add(new AcceptTask("Карина","Задание 8", 2));
+        }
+        else if (name.toLowerCase().contains("frontend")) {
+            tasks.add(new AcceptTask("Worker Name","Задание 4", 1));
+            tasks.add(new AcceptTask("Рустам Авангард","Задание 1", 2));
+            tasks.add(new AcceptTask("Артём","Задание 1", 3));
+            tasks.add(new AcceptTask("Самвел Семенов","Задание 2", 4));
+        }
 
-        acceptTask m = new acceptTask("Worker Name","Задание 5, C#");
-        acceptTask r = new acceptTask("RUSTAM","Задание 1, Java");
-        acceptTask s = new acceptTask("Sumvel","Задание 3, SQL");
-
-//        users.clear();
-//        users.add(new AcceptTask("Mikhail","Задание 5, C#"));
-//        users.add(new AcceptTask("RUSTAM","Задание 1, Java"));
-//        users.add(new AcceptTask("Sumvel","Задание 3, SQL"));
-
-        acceptTask[] users = new acceptTask[]{m, r, s};
-        ArrayAdapter<acceptTask> arrayAdapter
-                = new ArrayAdapter<acceptTask>(this, android.R.layout.simple_list_item_1, users);
-
-        this.acceptTaskListView.setAdapter(arrayAdapter);
-
-        this.acceptTaskListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i(tag, "onItemClick: " +position);
-                acceptTask user = (acceptTask) acceptTaskListView.getItemAtPosition(position);
-                LayoutInflater layoutInflater = LayoutInflater.from(context);
-                View dialView = layoutInflater.inflate(R.layout.accept_task_dial, null);
-                AlertDialog.Builder dialBuilder = new AlertDialog.Builder(context);
-
-                dialBuilder.setView(dialView);
-
-                dialBuilder.setCancelable(false)
-                        .setPositiveButton("Подтвердить", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Toast.makeText(context, "выполнение подтверждено", Toast.LENGTH_SHORT).show();
-                                acceptTaskListView.invalidateViews();
-                            }
-                        })
-                        .setNegativeButton("Отклонить", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Toast.makeText(context, "выполнение не подтверждено", Toast.LENGTH_SHORT).show();
-                                acceptTaskListView.invalidateViews();
-                            }
-                        });
-
-                dialBuilder.create().show();
-            }
-        });
-
+        allTasks.addAll(tasks);
+        setTaskRecycler(tasks);
     }
 
-    public String getuserTask() {
-        return userTask;
+    private void setTaskRecycler(List<AcceptTask> tasks) {
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        tasksRecycler = findViewById(R.id.tasksRecycler);
+        tasksRecycler.setLayoutManager(layoutManager);
+        tasksAdapter = new acceptTaskAdapter(this, tasks);
+        tasksRecycler.setAdapter(tasksAdapter);
     }
 
-    public void setuserTask(String userTask) {
-        this.userTask = userTask;
-    }
+    public static void removeTasks(int id) {
 
-    public String getUserName() {
-        return userName;
-    }
+        tasks.clear();
+        tasks.addAll(allTasks);
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+        List<AcceptTask> filter = new ArrayList<>();
 
-    @NonNull
-    @Override
-    public String toString() { return this.userName +" ("+ this.userTask+")"; }
+        for (AcceptTask c : tasks) {
+            if(c.getId() != id)
+                filter.add(c);
+        }
+
+        tasks.clear();
+        tasks.addAll(filter);
+        allTasks.clear();
+        allTasks.addAll(filter);
+
+        tasksAdapter.notifyDataSetChanged();
+    }
 }

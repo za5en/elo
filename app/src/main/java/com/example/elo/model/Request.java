@@ -1,13 +1,13 @@
 package com.example.elo.model;
 
-public class AcceptTask {
+public class Request {
     String userName;
-    String userTask;
+    String userType;
     int id;
 
-    public AcceptTask(String userName, String userTask, int id)  {
+    public Request(String userName, String userType, int id)  {
         this.userName = userName;
-        this.userTask = userTask;
+        this.userType = userType;
         this.id = id;
     }
 
@@ -27,11 +27,11 @@ public class AcceptTask {
         this.userName = userName;
     }
 
-    public String getUserTask() {
-        return userTask;
+    public String getUserType() {
+        return userType;
     }
 
-    public void setUserTask(String userTask) {
-        this.userTask = userTask;
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 }

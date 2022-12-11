@@ -7,4 +7,5 @@ public class Tasks_elo {
     public static Set<Integer> tasks_id = new HashSet<>();
     public static String[] task_name = new String[50];
     public static String[] task_desc = new String[500];
+    public static String[] task_url = new String[200];
 }

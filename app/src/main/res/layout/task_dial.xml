@@ -81,6 +81,34 @@
                 <requestFocus />
             </EditText>
 
+            <TextView
+                android:id="@+id/task_url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center"
+                android:maxLines="20"
+                android:scrollbars="vertical"
+                android:text="@string/link"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                tools:ignore="RtlCompat" />
+
+            <EditText
+                android:id="@+id/url_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/blue"
+                android:textColorLink="@color/blue"
+                tools:ignore="SpeakableTextPresentCheck">
+
+                <requestFocus />
+            </EditText>
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

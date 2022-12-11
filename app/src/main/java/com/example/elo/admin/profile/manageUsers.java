@@ -40,7 +40,7 @@ public class manageUsers extends AppCompatActivity {
 
         TextView textView = findViewById(R.id.textView);
         TextPaint paint = textView.getPaint();
-        float width = paint.measureText("elo");
+        float width = paint.measureText("staff");
         Shader textShader=new LinearGradient(0, 0, width, textView.getTextSize(),
                 new int[]{
                         getColor(R.color.dark),

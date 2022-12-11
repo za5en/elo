@@ -27,11 +27,11 @@ public class auth extends AppCompatActivity {
     ImageButton loginButton, register, resetPassword;
     EditText login, password;
 
-    final String mentor_login = "mentor1";
+    final String mentor_login = "mentor1@mail.ru";
     final String mentor_password = "mentSj17aks";
-    final String worker_login = "employee25";
+    final String worker_login = "employee25@mail.ru";
     final String worker_password = "emplPj225qlzv";
-    final String admin_login = "admin777";
+    final String admin_login = "admin777@mail.ru";
     final String admin_password = "777adminmskinno111";
 
     @Override

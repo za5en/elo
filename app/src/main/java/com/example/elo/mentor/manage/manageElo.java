@@ -25,6 +25,7 @@ public class manageElo extends AppCompatActivity {
     RecyclerView tagRecycler;
     tagAdapter tagAdapter;
     List<tagCategory> categoryList;
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,24 +33,52 @@ public class manageElo extends AppCompatActivity {
         setContentView(R.layout.manage_elo);
 
         requests = findViewById(R.id.requests);
-        //deleteElo = findViewById(R.id.delete_elo);
         acceptTask = findViewById(R.id.accept_tasks);
         TextView eloName = findViewById(R.id.elo_name);
         TextView eloDescText = findViewById(R.id.elo_desc_text);
 
         eloDescText.setText(getIntent().getStringExtra("previewDesc"));
         eloName.setText(getIntent().getStringExtra("previewName"));
+        name = eloName.getText().toString();
 
         List<tagCategory> categoryList = new ArrayList<>();
-        categoryList.add(new tagCategory(1, "front"));
-        categoryList.add(new tagCategory(2, "back"));
-        categoryList.add(new tagCategory(3, "qa"));
+        if (name.toLowerCase().contains("java")) {
+            categoryList.add(new tagCategory(1, "java"));
+            categoryList.add(new tagCategory(2, "back"));
+            categoryList.add(new tagCategory(3, "sql"));
+        }
+        else if (name.toLowerCase().contains("python")) {
+            categoryList.add(new tagCategory(1, "python"));
+            categoryList.add(new tagCategory(2, "back"));
+        }
+        else if (name.toLowerCase().contains("front&back")) {
+            categoryList.add(new tagCategory(1, "front"));
+            categoryList.add(new tagCategory(2, "react"));
+            categoryList.add(new tagCategory(3, "back"));
+        }
+        else if (name.toLowerCase().contains("c#")) {
+            categoryList.add(new tagCategory(1, "C#"));
+            categoryList.add(new tagCategory(2, "back"));
+            categoryList.add(new tagCategory(3, "ооп"));
+        }
+        else if (name.toLowerCase().contains("sql")) {
+            categoryList.add(new tagCategory(1, "sql"));
+            categoryList.add(new tagCategory(2, "БД"));
+            categoryList.add(new tagCategory(3, "back"));
+        }
+        else if (name.toLowerCase().contains("frontend")) {
+            categoryList.add(new tagCategory(1, "front"));
+            categoryList.add(new tagCategory(2, "java"));
+            categoryList.add(new tagCategory(3, "react"));
+        }
+
         setCategoryRecycler(categoryList);
 
         requests.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, com.example.elo.mentor.manage.pages.requests.class);
+                intent.putExtra("eloName", name);
                 startActivity(intent);
             }
         });
@@ -58,6 +87,7 @@ public class manageElo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, com.example.elo.mentor.manage.pages.acceptTask.class);
+                intent.putExtra("eloName", name);
                 startActivity(intent);
             }
         });
@@ -70,12 +100,6 @@ public class manageElo extends AppCompatActivity {
                 onBackPressed();
             }
         });
-
-//        deleteElo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//            }
-//        });
     }
 
     private void setCategoryRecycler(List<tagCategory> categoryList) {

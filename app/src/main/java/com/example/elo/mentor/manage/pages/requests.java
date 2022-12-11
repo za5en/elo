@@ -2,42 +2,66 @@ package com.example.elo.mentor.manage.pages;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
 import android.os.Bundle;
+import android.text.TextPaint;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.elo.R;
+import com.example.elo.adapter.acceptTaskAdapter;
+import com.example.elo.adapter.eloAdapter;
+import com.example.elo.adapter.requestsAdapter;
+import com.example.elo.adapter.tagAdapter;
+import com.example.elo.model.AcceptTask;
+import com.example.elo.model.Elos;
+import com.example.elo.model.Request;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class requests extends AppCompatActivity {
+    RecyclerView requestsRecycler;
+    static requestsAdapter requestsAdapter;
 
-    private String userName;
-    private String userType;
-    public static final String tag = "requests";
-    private ListView requestsListView;
-    final Context context = this;
+    static List<Request> users = new ArrayList<>();
+    static List<Request> allUsers = new ArrayList<>();
 
-    public requests() {};
-
-    public requests(String userName, String userType)  {
-        this.userName = userName;
-        this.userType = userType;
-    }
+    String name;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.requests);
-        Button back = findViewById(R.id.backButton);
+        ImageButton back = findViewById(R.id.backButton);
+
+        name = getIntent().getStringExtra("eloName");
+
+        TextView textView = findViewById(R.id.textView);
+        TextPaint paint = textView.getPaint();
+        float width = paint.measureText("tasks");
+        Shader textShader = new LinearGradient(0, 0, width, textView.getTextSize(),
+                new int[]{
+                        getColor(R.color.dark),
+                        getColor(R.color.middle),
+                        getColor(R.color.light),
+                }, null, Shader.TileMode.CLAMP);
+        textView.getPaint().setShader(textShader);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,71 +70,75 @@ public class requests extends AppCompatActivity {
             }
         });
 
-        this.requestsListView = findViewById(R.id.listView);
+        users.clear();
+        allUsers.clear();
 
-        this.requestsListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        requests m = new requests("Mikhail","front junior");
-        requests r = new requests("RUSTAM","back senior");
-        requests s = new requests("Sumvel","back middle");
-        requests q = new requests("Worker Name","junior");
+        if (name.toLowerCase().contains("java")) {
+            users.add(new Request("Максим Максим","back junior", 1));
+            users.add(new Request("Кирилл","back junior", 2));
+            users.add(new Request("Самвел Семенов","front junior", 3));
+            users.add(new Request("Worker Name","front junior", 4));
+        }
+        else if (name.toLowerCase().contains("python")) {
+            users.add(new Request("Михаил","back senior", 1));
+            users.add(new Request("Самвел Семенов","front junior", 2));
+        }
+        else if (name.toLowerCase().contains("front&back")) {
+            users.add(new Request("Виталий Н","back senior", 1));
+            users.add(new Request("Артём","back middle", 2));
+            users.add(new Request("Дима Перевозчиков","front middle", 3));
+            users.add(new Request("Самвел Семенов","front junior", 4));
+        }
+        else if (name.toLowerCase().contains("c#")) {
+            users.add(new Request("Фёдор Власов","front middle", 1));
+            users.add(new Request("Кирилл","back junior", 2));
+            users.add(new Request("Самвел Семенов","front junior", 3));
+        }
+        else if (name.toLowerCase().contains("sql")) {
+            users.add(new Request("Фёдор Власов","front middle", 1));
+            users.add(new Request("Кирилл","back junior", 2));
+            users.add(new Request("Самвел Семенов","front junior", 3));
+            users.add(new Request("Alex Kiselev","front junior", 4));
+            users.add(new Request("Worker Name","front junior", 5));
+        }
+        else if (name.toLowerCase().contains("frontend")) {
+            users.add(new Request("RUSTAM","back junior", 1));
+            users.add(new Request("Alex Kiselev","front junior", 2));
+            users.add(new Request("Самвел Семенов","front junior", 3));
+            users.add(new Request("Богдан Бельский","front junior", 4));
+            users.add(new Request("Worker Name","front junior", 5));
+        }
 
-        requests[] users = new requests[]{m, r, s, q};
-        ArrayAdapter<requests> arrayAdapter
-                = new ArrayAdapter<requests>(this, android.R.layout.simple_list_item_1, users);
-
-        this.requestsListView.setAdapter(arrayAdapter);
-
-        this.requestsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i(tag, "onItemClick: " +position);
-                requests user = (requests) requestsListView.getItemAtPosition(position);
-                LayoutInflater layoutInflater = LayoutInflater.from(context);
-                View dialView = layoutInflater.inflate(R.layout.request_dial, null);
-                AlertDialog.Builder dialBuilder = new AlertDialog.Builder(context);
-
-                dialBuilder.setView(dialView);
-
-                dialBuilder.setCancelable(false)
-                        .setPositiveButton("Одобрить", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Toast.makeText(context, "сотруднику предоставлен доступ к ЭлО", Toast.LENGTH_SHORT).show();
-                                requestsListView.invalidateViews();
-                            }
-                        })
-                        .setNegativeButton("Отклонить", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Toast.makeText(context, "заявка на вступление отклонена", Toast.LENGTH_SHORT).show();
-                                requestsListView.invalidateViews();
-                            }
-                        });
-
-                dialBuilder.create().show();
-            }
-        });
-
+        allUsers.addAll(users);
+        setRequestRecycler(users);
     }
 
-    public String getUserType() {
-        return userType;
+    private void setRequestRecycler(List<Request> users) {
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        requestsRecycler = findViewById(R.id.requestsRecycler);
+        requestsRecycler.setLayoutManager(layoutManager);
+        requestsAdapter = new requestsAdapter(this, users);
+        requestsRecycler.setAdapter(requestsAdapter);
     }
 
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
+    public static void removeTasks(int id) {
 
-    public String getUserName() {
-        return userName;
-    }
+        users.clear();
+        users.addAll(allUsers);
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+        List<Request> filter = new ArrayList<>();
 
-    @NonNull
-    @Override
-    public String toString() { return this.userName +" ("+ this.userType+")"; }
+        for (Request c : users) {
+            if(c.getId() != id)
+                filter.add(c);
+        }
+
+        users.clear();
+        users.addAll(filter);
+        allUsers.clear();
+        allUsers.addAll(filter);
+
+        requestsAdapter.notifyDataSetChanged();
+    }
 }
