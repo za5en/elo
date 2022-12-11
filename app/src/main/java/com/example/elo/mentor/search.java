@@ -30,6 +30,7 @@ public class search extends AppCompatActivity {
     static eloAdapter eloAdapter;
     static List<Elos> eloList = new ArrayList<>();
     static List<Elos> allEloList = new ArrayList<>();
+    List<Elos> filter = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +97,8 @@ public class search extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                if (filter.isEmpty())
+                    Toast.makeText(context, "ничего не найдено", Toast.LENGTH_SHORT).show();
                 return false;
             }
 
@@ -151,7 +154,7 @@ public class search extends AppCompatActivity {
     }
 
     private void filterList(String text) {
-        List<Elos> filter = new ArrayList<>();
+        filter.clear();
         for (Elos item : allEloList){
             if (item.getName().toLowerCase().contains(text.toLowerCase()) && !(text.isEmpty())) {
                 filter.add(item);
@@ -159,8 +162,6 @@ public class search extends AppCompatActivity {
         }
 
         if (filter.isEmpty()) {
-            if (!(text.isEmpty()))
-                Toast.makeText(context, "ничего не найдено", Toast.LENGTH_SHORT).show();
             filter.clear();
             eloAdapter.setFilteredList(filter);
         }
