@@ -27,12 +27,12 @@ public class auth extends AppCompatActivity {
     ImageButton loginButton, register, resetPassword;
     EditText login, password;
 
-    final String mentor_login = "mentor1@mail.ru";
+    final String mentor_login = "mail1@gmail.ru";
     final String mentor_password = "mentSj17aks";
-    final String worker_login = "employee25@mail.ru";
+    final String worker_login = "empl25@mail.ru";
     final String worker_password = "emplPj225qlzv";
-    final String admin_login = "admin777@mail.ru";
-    final String admin_password = "777adminmskinno111";
+    final String admin_login = "admin@gmail.ru";
+    final String admin_password = "123admin321";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +79,7 @@ public class auth extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(context, "неверный логин или пароль", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Неверный логин или пароль", Toast.LENGTH_SHORT).show();
                     login.getText().clear();
                     password.getText().clear();
                 }

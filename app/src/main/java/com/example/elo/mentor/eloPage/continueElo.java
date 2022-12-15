@@ -83,14 +83,14 @@ public class continueElo extends AppCompatActivity {
         else if (name.toLowerCase().contains("c#")) {
             categoryList.add(new tagCategory(1, "C#"));
             categoryList.add(new tagCategory(2, "back"));
-            categoryList.add(new tagCategory(3, "ооп"));
+            categoryList.add(new tagCategory(3, "другое"));
             taskName = "Задание 3";
             taskDesc = "Изучение 3 главы:";
             url = "https://metanit.com/sharp/tutorial/3.1.php";
         }
         else if (name.toLowerCase().contains("sql")) {
             categoryList.add(new tagCategory(1, "sql"));
-            categoryList.add(new tagCategory(2, "БД"));
+            categoryList.add(new tagCategory(2, "другое"));
             categoryList.add(new tagCategory(3, "back"));
             taskName = "Задание 1";
             taskDesc = "Посмотреть видео и попрактиковаться:";

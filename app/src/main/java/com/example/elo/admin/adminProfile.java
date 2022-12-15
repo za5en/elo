@@ -19,6 +19,7 @@ import com.example.elo.R;
 import com.example.elo.adapter.eloProfileAdapter;
 import com.example.elo.adapter.eloWorkAdapter;
 import com.example.elo.adapter.typeAdapter;
+import com.example.elo.admin.profile.reports;
 import com.example.elo.login.auth;
 import com.example.elo.admin.profile.manageUsers;
 import com.example.elo.mentor.MainActivity;
@@ -51,7 +52,7 @@ public class adminProfile extends AppCompatActivity {
 
         List<userTypes> typesList = new ArrayList<>();
         typesList.add(new userTypes(1, "Админ"));
-        typesList.add(new userTypes(2, "HR"));
+        typesList.add(new userTypes(2, "другое"));
 
         setTypesRecycler(typesList);
 
@@ -204,11 +205,17 @@ public class adminProfile extends AppCompatActivity {
                 }
                 else if (item.getItemId() == R.id.menu4)
                 {
-                    Intent intent = new Intent(context, workerMain.class);
+                    Intent intent = new Intent(context, reports.class);
                     startActivity(intent);
                     return true;
                 }
                 else if (item.getItemId() == R.id.menu5)
+                {
+                    Intent intent = new Intent(context, workerMain.class);
+                    startActivity(intent);
+                    return true;
+                }
+                else if (item.getItemId() == R.id.menu6)
                 {
                     Intent intent = new Intent(context, MainActivity.class);
                     startActivity(intent);

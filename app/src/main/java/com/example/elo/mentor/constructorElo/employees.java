@@ -70,9 +70,9 @@ public class employees extends AppCompatActivity {
     }
 
     private void initListViewData()  {
-        employees m = new employees("Mikhail","front junior", false);
-        employees r = new employees("RUSTAM","back senior", false);
-        employees s = new employees("Sumvel","back middle", false);
+        employees m = new employees("Михаил Михайлович","senior", false);
+        employees r = new employees("Рустам Авангард","senior",false);
+        employees s = new employees("Дима Перевозчиков","middle", false);
 
         employees[] users = new employees[]{m, r, s};
         ArrayAdapter<employees> arrayAdapter

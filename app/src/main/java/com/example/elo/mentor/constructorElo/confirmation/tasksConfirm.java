@@ -41,12 +41,15 @@ public class tasksConfirm extends AppCompatActivity {
 
         tasksListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        tasksConfirm t1 = new tasksConfirm("Задание1");
-        tasksConfirm t2 = new tasksConfirm("Задание2");
-        tasksConfirm t3 = new tasksConfirm("Задание3");
-        tasksConfirm t4 = new tasksConfirm("Задание4");
+        tasksConfirm t1 = new tasksConfirm("Задание 1");
+        tasksConfirm t2 = new tasksConfirm("Задание 2");
+        tasksConfirm t3 = new tasksConfirm("Задание 3");
+        tasksConfirm t4 = new tasksConfirm("Задание 4");
+        tasksConfirm t5 = new tasksConfirm("Задание 5");
+        tasksConfirm t6 = new tasksConfirm("Задание 6");
+        tasksConfirm t7 = new tasksConfirm("Итоговое задание");
 
-        tasksConfirm[] users = new tasksConfirm[]{t1, t2, t3, t4};
+        tasksConfirm[] users = new tasksConfirm[]{t1, t2, t3, t4, t5, t6, t7};
         ArrayAdapter<tasksConfirm> arrayAdapter
                 = new ArrayAdapter<tasksConfirm>(this, android.R.layout.simple_list_item_1, users);
 

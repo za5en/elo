@@ -81,7 +81,7 @@ public class manageUsers extends AppCompatActivity {
                 "наставник",
                 "mail3@mail.ru",
                 "111111111", second));
-        userList.add(new Users(4, "Федор Власов",
+        userList.add(new Users(4, "Фёдор Власов",
                 "senior",
                 "наставник",
                 "mail4@mail.ru",

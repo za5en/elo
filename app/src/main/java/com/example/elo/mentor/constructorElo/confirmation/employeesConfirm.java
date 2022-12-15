@@ -42,9 +42,9 @@ public class employeesConfirm extends AppCompatActivity {
 
         employeesListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        employeesConfirm m = new employeesConfirm("Mikhail","front junior");
-        employeesConfirm r = new employeesConfirm("RUSTAM","back senior");
-        employeesConfirm s = new employeesConfirm("Sumvel","back middle");
+        employeesConfirm m = new employeesConfirm("Михаил Михайлович","senior");
+        employeesConfirm r = new employeesConfirm("Рустам Авангард","senior");
+        employeesConfirm s = new employeesConfirm("Дима Перевозчиков","middle");
 
         employeesConfirm[] users = new employeesConfirm[]{m, r, s};
         ArrayAdapter<employeesConfirm> arrayAdapter

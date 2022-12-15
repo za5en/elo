@@ -73,35 +73,34 @@ public class acceptTask extends AppCompatActivity {
         allTasks.clear();
 
         if (name.toLowerCase().contains("java")) {
-            tasks.add(new AcceptTask("Артём","Задание 5", 1));
-            tasks.add(new AcceptTask("RUSTAM","Задание 3", 2));
+            tasks.add(new AcceptTask("Артём Коновалов","Задание 5", 1));
+            tasks.add(new AcceptTask("RUSTAM GPOWER","Задание 3", 2));
             tasks.add(new AcceptTask("Worker Name","Задание 1", 3));
         }
         else if (name.toLowerCase().contains("python")) {
-            tasks.add(new AcceptTask("Кирилл","Задание 11", 1));
-            tasks.add(new AcceptTask("RUSTAM","Задание 4", 2));
+            tasks.add(new AcceptTask("Кирилл Широбоков","Задание 7", 1));
+            tasks.add(new AcceptTask("RUSTAM GPOWER","Задание 4", 2));
             tasks.add(new AcceptTask("Максим Максим","Задание 1", 3));
-            tasks.add(new AcceptTask("Виталий Н","Задание 5", 4));
-            tasks.add(new AcceptTask("Андрей","Задание 10", 5));
-            tasks.add(new AcceptTask("Дима Перевозчиков","Задание 9", 6));
+            tasks.add(new AcceptTask("Виталий Новый","Задание 5", 4));
+            tasks.add(new AcceptTask("Артём Коновалов","Задание 2", 5));
+            tasks.add(new AcceptTask("Дима Перевозчиков","Задание 3", 6));
         }
         else if (name.toLowerCase().contains("front&back")) {
-            tasks.add(new AcceptTask("Фёдор Власов","Задание 11", 1));
+            tasks.add(new AcceptTask("Фёдор Власов","Задание 1", 1));
         }
         else if (name.toLowerCase().contains("c#")) {
-            tasks.add(new AcceptTask("Worker Name","Задание 2", 1));
-            tasks.add(new AcceptTask("Кирилл","Задание 6", 2));
-            tasks.add(new AcceptTask("Виталий Н","Задание 7", 3));
+            tasks.add(new AcceptTask("Worker Name","Задание 1", 1));
+            tasks.add(new AcceptTask("Кирилл Широбоков","Задание 3", 2));
+            tasks.add(new AcceptTask("Виталий Новый","Задание 4", 3));
         }
         else if (name.toLowerCase().contains("sql")) {
-            tasks.add(new AcceptTask("Worker Name","Итоговое задание", 1));
-            tasks.add(new AcceptTask("Карина","Задание 8", 2));
+            tasks.add(new AcceptTask("Worker Name","Задание 1", 1));
+            tasks.add(new AcceptTask("Рустам Авангард","Итоговое задание", 2));
         }
         else if (name.toLowerCase().contains("frontend")) {
-            tasks.add(new AcceptTask("Worker Name","Задание 4", 1));
-            tasks.add(new AcceptTask("Рустам Авангард","Задание 1", 2));
-            tasks.add(new AcceptTask("Артём","Задание 1", 3));
-            tasks.add(new AcceptTask("Самвел Семенов","Задание 2", 4));
+            tasks.add(new AcceptTask("Worker Name","Задание 1", 1));
+            tasks.add(new AcceptTask("RUSTAM GPOWER","Задание 4", 2));
+            tasks.add(new AcceptTask("Артём Коновалов","Задание 4", 3));
         }
 
         allTasks.addAll(tasks);

@@ -66,11 +66,11 @@ public class EloInfo extends AppCompatActivity {
         else if (name.toLowerCase().contains("c#")) {
             categoryList.add(new tagCategory(1, "C#"));
             categoryList.add(new tagCategory(2, "back"));
-            categoryList.add(new tagCategory(3, "ооп"));
+            categoryList.add(new tagCategory(3, "другое"));
         }
         else if (name.toLowerCase().contains("sql")) {
             categoryList.add(new tagCategory(1, "sql"));
-            categoryList.add(new tagCategory(2, "базы данных"));
+            categoryList.add(new tagCategory(2, "другое"));
             categoryList.add(new tagCategory(3, "back"));
         }
         else if (name.toLowerCase().contains("frontend")) {

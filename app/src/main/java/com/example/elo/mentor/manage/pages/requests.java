@@ -76,34 +76,34 @@ public class requests extends AppCompatActivity {
 
         if (name.toLowerCase().contains("java")) {
             users.add(new Request("Максим Максим","back junior", 1));
-            users.add(new Request("Кирилл","back junior", 2));
+            users.add(new Request("Кирилл Широбоков","back junior", 2));
             users.add(new Request("Самвел Семенов","front junior", 3));
             users.add(new Request("Worker Name","front junior", 4));
         }
         else if (name.toLowerCase().contains("python")) {
-            users.add(new Request("Михаил","back senior", 1));
+            users.add(new Request("Михаил Михайлович","back senior", 1));
             users.add(new Request("Самвел Семенов","front junior", 2));
         }
         else if (name.toLowerCase().contains("front&back")) {
-            users.add(new Request("Виталий Н","back senior", 1));
-            users.add(new Request("Артём","back middle", 2));
+            users.add(new Request("Виталий Новый","back senior", 1));
+            users.add(new Request("Артём Коновалов","back middle", 2));
             users.add(new Request("Дима Перевозчиков","front middle", 3));
             users.add(new Request("Самвел Семенов","front junior", 4));
         }
         else if (name.toLowerCase().contains("c#")) {
-            users.add(new Request("Фёдор Власов","front middle", 1));
-            users.add(new Request("Кирилл","back junior", 2));
+            users.add(new Request("Фёдор Власов","front senior", 1));
+            users.add(new Request("Кирилл Широбоков","back junior", 2));
             users.add(new Request("Самвел Семенов","front junior", 3));
         }
         else if (name.toLowerCase().contains("sql")) {
-            users.add(new Request("Фёдор Власов","front middle", 1));
-            users.add(new Request("Кирилл","back junior", 2));
+            users.add(new Request("Фёдор Власов","front senior", 1));
+            users.add(new Request("Кирилл Широбоков","back junior", 2));
             users.add(new Request("Самвел Семенов","front junior", 3));
             users.add(new Request("Alex Kiselev","front junior", 4));
             users.add(new Request("Worker Name","front junior", 5));
         }
         else if (name.toLowerCase().contains("frontend")) {
-            users.add(new Request("RUSTAM","back junior", 1));
+            users.add(new Request("RUSTAM GPOWER","back junior", 1));
             users.add(new Request("Alex Kiselev","front junior", 2));
             users.add(new Request("Самвел Семенов","front junior", 3));
             users.add(new Request("Богдан Бельский","front junior", 4));

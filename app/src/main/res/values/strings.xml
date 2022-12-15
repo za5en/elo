@@ -5,7 +5,7 @@
     <string name="type_name">введите название</string>
     <string name="desc">описание</string>
     <string name="type_desc">введите описание</string>
-    <string name="tags">задать теги</string>
+    <string name="tags">задать теги (не более 3)</string>
     <string name="level">выбрать уровень</string>
     <string name="employees">доступные сотрудники</string>
     <string name="tasks">указать задачи</string>
@@ -100,4 +100,7 @@
     <string name="tasks_text">tasks</string>
     <string name="requests_text">requests</string>
     <string name="link">ссылка</string>
+    <string name="reports">отчёты</string>
+    <string name="report_make">make a report</string>
+    <string name="db_copy">copy database</string>
 </resources>
