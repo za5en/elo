@@ -20,8 +20,7 @@ import com.example.elo.R;
 public class rTasks extends AppCompatActivity {
     final Context context = this;
     DatabaseHelper DbHelper;
-    Cursor c = null;
-    EditText taskId, eloId;
+    SQLiteDatabase db;
     String[] columns = {null};
     String selection = null;
     String[] selectionArgs = null;
@@ -36,10 +35,10 @@ public class rTasks extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reports_page_tasks);
         DbHelper = new DatabaseHelper(context);
-        SQLiteDatabase db = DbHelper.getWritableDatabase();
+        db = DbHelper.getWritableDatabase();
 
-        taskId.findViewById(R.id.login);
-        eloId.findViewById(R.id.login1);
+        EditText taskId = findViewById(R.id.login);
+        EditText eloId = findViewById(R.id.login1);
 
         RadioGroup rgSort = findViewById(R.id.rgSort);
 
@@ -62,9 +61,9 @@ public class rTasks extends AppCompatActivity {
                     if (cursor.moveToFirst()) {
                         do {
                             String str = "";
-                            for (String cn : c.getColumnNames()) {
+                            for (String cn : cursor.getColumnNames()) {
                                 str = str.concat(cn + " = "
-                                        + c.getString(c.getColumnIndex(cn)) + "; ");
+                                        + cursor.getString(cursor.getColumnIndex(cn)) + "; ");
                             }
                             Log.d("All:", str);
 
@@ -88,9 +87,9 @@ public class rTasks extends AppCompatActivity {
                 if (cursor != null) {
                     if (cursor.moveToFirst()) {
                         String str = "";
-                        for (String cn : c.getColumnNames()) {
+                        for (String cn : cursor.getColumnNames()) {
                             str = str.concat(cn + " = "
-                                    + c.getString(c.getColumnIndex(cn)) + "; ");
+                                    + cursor.getString(cursor.getColumnIndex(cn)) + "; ");
                         }
                         Log.d("All:", str);
                         eloId = cursor.getInt(0);
@@ -101,13 +100,13 @@ public class rTasks extends AppCompatActivity {
                 columns = new String[] { "elo_name", "elo_tag1", "elo_tag2", "elo_tag3" };
                 selection = "elo_id = ?";
                 selectionArgs = new String[] { String.valueOf(eloId) };
-                cursor = db.query(DatabaseHelper.DB_ELO_TASKS, columns, selection, selectionArgs, null, null, null);
+                cursor = db.query(DatabaseHelper.DB_ELO, columns, selection, selectionArgs, null, null, null);
                 if (cursor != null) {
                     if (cursor.moveToFirst()) {
                         String str = "";
-                        for (String cn : c.getColumnNames()) {
+                        for (String cn : cursor.getColumnNames()) {
                             str = str.concat(cn + " = "
-                                    + c.getString(c.getColumnIndex(cn)) + "; ");
+                                    + cursor.getString(cursor.getColumnIndex(cn)) + "; ");
                         }
                         Log.d("All:", str);
                     }
@@ -148,7 +147,7 @@ public class rTasks extends AppCompatActivity {
                         break;
                 }
                 String wholeAmount = null;
-                String task_count = "select count(*) from elo_tasks where elo_id = '" + eloId.getText().toString() + "' group by task_id order by task_id;";
+                String task_count = "select count(*) from elo_tasks where elo_id = '" + eloId.getText().toString() + "' order by task_id;";
                 Cursor cursor = db.rawQuery(task_count, null);
                 if (cursor != null) {
                     if (cursor.moveToFirst()) {
@@ -203,9 +202,9 @@ public class rTasks extends AppCompatActivity {
                     if (cursor.moveToFirst()) {
                         do {
                             String str = "";
-                            for (String cn : c.getColumnNames()) {
+                            for (String cn : cursor.getColumnNames()) {
                                 str = str.concat(cn + " = "
-                                        + c.getString(c.getColumnIndex(cn)) + "; ");
+                                        + cursor.getString(cursor.getColumnIndex(cn)) + "; ");
                             }
                             users[k] = cursor.getString(0);
                             tasks[k++] = cursor.getString(1);
@@ -216,7 +215,7 @@ public class rTasks extends AppCompatActivity {
                 }
                 //search for tasks amount
                 String wholeAmount = null;
-                String task_count = "select count(*) from elo_tasks where elo_id = '" + eloId + "';";
+                String task_count = "select count(*) from elo_tasks where elo_id = '" + eloId.getText().toString() + "';";
                 cursor = db.rawQuery(task_count, null);
                 if (cursor != null) {
                     if (cursor.moveToFirst()) {
@@ -229,17 +228,17 @@ public class rTasks extends AppCompatActivity {
                 selection = "user_id = ?";
                 for (int i = 0; i < k; i++) {
                     selectionArgs = new String[] { users[i] };
-                    cursor = db.query(DatabaseHelper.DB_ELO, columns, selection, selectionArgs, groupBy3, null, orderBy3);
+                    cursor = db.query(DatabaseHelper.DB_USERS, columns, selection, selectionArgs, groupBy3, null, orderBy3);
                     if (cursor != null) {
                         if (cursor.moveToFirst()) {
                             String str = "";
-                            for (String cn : c.getColumnNames()) {
+                            for (String cn : cursor.getColumnNames()) {
                                 str = str.concat(cn + " = "
-                                        + c.getString(c.getColumnIndex(cn)) + "; ");
+                                        + cursor.getString(cursor.getColumnIndex(cn)) + "; ");
                             }
                             Log.d("All:", str);
                             assert wholeAmount != null;
-                            Log.d("progress: ", tasks[i] + "/" + wholeAmount + " (" + Integer.parseInt(tasks[i])/Integer.parseInt(wholeAmount)*100 + "%)");
+                            Log.d("progress: ", tasks[i] + "/" + wholeAmount + " (" + Double.parseDouble(tasks[i])/Double.parseDouble(wholeAmount) * 100 + "%)");
                         }
                         cursor.close();
                     }

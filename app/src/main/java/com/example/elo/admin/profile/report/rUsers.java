@@ -20,8 +20,7 @@ import com.example.elo.R;
 public class rUsers extends AppCompatActivity {
     final Context context = this;
     DatabaseHelper DbHelper;
-    Cursor c = null;
-    EditText name, surname;
+    SQLiteDatabase db;
     String[] columns = {null};
     String selection = null;
     String[] selectionArgs = null;
@@ -36,7 +35,7 @@ public class rUsers extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reports_page_users);
         DbHelper = new DatabaseHelper(context);
-        SQLiteDatabase db = DbHelper.getWritableDatabase();
+        db = DbHelper.getWritableDatabase();
 
         ImageButton back = findViewById(R.id.backButton);
         back.setOnClickListener(new View.OnClickListener() {
@@ -46,8 +45,8 @@ public class rUsers extends AppCompatActivity {
             }
         });
 
-        name.findViewById(R.id.login);
-        surname.findViewById(R.id.login1);
+        EditText name = findViewById(R.id.login);
+        EditText surname = findViewById(R.id.login1);
 
         RadioGroup rgSort = findViewById(R.id.rgSort);
 
@@ -62,9 +61,9 @@ public class rUsers extends AppCompatActivity {
                     if (cursor.moveToFirst()) {
                         do {
                             String str = "";
-                            for (String cn : c.getColumnNames()) {
+                            for (String cn : cursor.getColumnNames()) {
                                 str = str.concat(cn + " = "
-                                        + c.getString(c.getColumnIndex(cn)) + "; ");
+                                        + cursor.getString(cursor.getColumnIndex(cn)) + "; ");
                             }
                             Log.d("All:", str);
 
@@ -91,9 +90,9 @@ public class rUsers extends AppCompatActivity {
                     if (cursor != null) {
                         if (cursor.moveToFirst()) {
                             String str = "";
-                            for (String cn : c.getColumnNames()) {
+                            for (String cn : cursor.getColumnNames()) {
                                 str = str.concat(cn + " = "
-                                        + c.getString(c.getColumnIndex(cn)) + "; ");
+                                        + cursor.getString(cursor.getColumnIndex(cn)) + "; ");
                             }
                             ownerId = cursor.getString(0);
                             Log.d("All:", str);
@@ -101,7 +100,7 @@ public class rUsers extends AppCompatActivity {
                         cursor.close();
                     }
 
-                    columns = new String[] { "elo_id", "elo_name", "elo_info", "elo_availability", "elo_tag1", "elo_tag2", "elo_tag3" };
+                    columns = new String[] { "elo_id", "elo_name", "elo_availability", "elo_tag1", "elo_tag2", "elo_tag3" };
                     selection = "elo_owner_id = ?";
                     selectionArgs = new String[] { ownerId };
 
@@ -110,9 +109,9 @@ public class rUsers extends AppCompatActivity {
                         if (cursor.moveToFirst()) {
                             do {
                                 String str = "";
-                                for (String cn : c.getColumnNames()) {
+                                for (String cn : cursor.getColumnNames()) {
                                     str = str.concat(cn + " = "
-                                            + c.getString(c.getColumnIndex(cn)) + "; ");
+                                            + cursor.getString(cursor.getColumnIndex(cn)) + "; ");
                                 }
                                 Log.d("All:", str);
                             } while (cursor.moveToNext());
@@ -154,9 +153,9 @@ public class rUsers extends AppCompatActivity {
                 if (cursor != null) {
                     if (cursor.moveToFirst()) {
                         String str = "";
-                        for (String cn : c.getColumnNames()) {
+                        for (String cn : cursor.getColumnNames()) {
                             str = str.concat(cn + " = "
-                                    + c.getString(c.getColumnIndex(cn)) + "; ");
+                                    + cursor.getString(cursor.getColumnIndex(cn)) + "; ");
                         }
                         userId = cursor.getString(0);
                         Log.d("All:", str);
@@ -172,13 +171,15 @@ public class rUsers extends AppCompatActivity {
                 cursor = db.query(DatabaseHelper.DB_REL_LIST, columns, selection, selectionArgs, null, null, null);
                 if (cursor != null) {
                     if (cursor.moveToFirst()) {
-                        String str = "";
-                        for (String cn : c.getColumnNames()) {
-                            str = str.concat(cn + " = "
-                                    + c.getString(c.getColumnIndex(cn)) + "; ");
-                        }
-                        eloId[k++] = cursor.getString(0);
-                        Log.d("All:", str);
+                        do {
+                            String str = "";
+                            for (String cn : cursor.getColumnNames()) {
+                                str = str.concat(cn + " = "
+                                        + cursor.getString(cursor.getColumnIndex(cn)) + "; ");
+                            }
+                            eloId[k++] = cursor.getString(0);
+                            Log.d("All:", str);
+                        } while (cursor.moveToNext());
                     }
                     cursor.close();
                 }
@@ -191,9 +192,9 @@ public class rUsers extends AppCompatActivity {
                     if (cursor != null) {
                         if (cursor.moveToFirst()) {
                             String str = "";
-                            for (String cn : c.getColumnNames()) {
+                            for (String cn : cursor.getColumnNames()) {
                                 str = str.concat(cn + " = "
-                                        + c.getString(c.getColumnIndex(cn)) + "; ");
+                                        + cursor.getString(cursor.getColumnIndex(cn)) + "; ");
                             }
                             Log.d("All:", str);
                         }
@@ -242,9 +243,9 @@ public class rUsers extends AppCompatActivity {
                 if (cursor != null) {
                     if (cursor.moveToFirst()) {
                         String str = "";
-                        for (String cn : c.getColumnNames()) {
+                        for (String cn : cursor.getColumnNames()) {
                             str = str.concat(cn + " = "
-                                    + c.getString(c.getColumnIndex(cn)) + "; ");
+                                    + cursor.getString(cursor.getColumnIndex(cn)) + "; ");
                         }
                         userId = cursor.getString(0);
                         Log.d("All:", str);
@@ -261,14 +262,16 @@ public class rUsers extends AppCompatActivity {
                 cursor = db.query(DatabaseHelper.DB_TASK_PROGRESS, columns, selection, selectionArgs, groupBy2, null, orderBy2);
                 if (cursor != null) {
                     if (cursor.moveToFirst()) {
-                        String str = "";
-                        for (String cn : c.getColumnNames()) {
-                            str = str.concat(cn + " = "
-                                    + c.getString(c.getColumnIndex(cn)) + "; ");
-                        }
-                        eloId[k] = cursor.getString(0);
-                        taskId[k++] = cursor.getString(1);
-                        Log.d("All:", str);
+                        do {
+                            String str = "";
+                            for (String cn : cursor.getColumnNames()) {
+                                str = str.concat(cn + " = "
+                                        + cursor.getString(cursor.getColumnIndex(cn)) + "; ");
+                            }
+                            eloId[k] = cursor.getString(0);
+                            taskId[k++] = cursor.getString(1);
+                            Log.d("All:", str);
+                        } while (cursor.moveToNext());
                     }
                     cursor.close();
                 }
@@ -290,13 +293,13 @@ public class rUsers extends AppCompatActivity {
                     if (cursor != null) {
                         if (cursor.moveToFirst()) {
                             String str = "";
-                            for (String cn : c.getColumnNames()) {
+                            for (String cn : cursor.getColumnNames()) {
                                 str = str.concat(cn + " = "
-                                        + c.getString(c.getColumnIndex(cn)) + "; ");
+                                        + cursor.getString(cursor.getColumnIndex(cn)) + "; ");
                             }
                             Log.d("All:", str);
                             assert wholeAmount != null;
-                            Log.d("progress: ", taskId[i] + "/" + wholeAmount + " (" + Integer.parseInt(taskId[i])/Integer.parseInt(wholeAmount)*100 + "%)");
+                            Log.d("progress: ", taskId[i] + "/" + wholeAmount + " (" + Double.parseDouble(taskId[i]) / Double.parseDouble(wholeAmount) * 100 + "%)");
                         }
                         cursor.close();
                     }

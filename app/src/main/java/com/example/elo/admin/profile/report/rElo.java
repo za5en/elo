@@ -20,8 +20,7 @@ import com.example.elo.R;
 public class rElo extends AppCompatActivity {
     final Context context = this;
     DatabaseHelper DbHelper;
-    Cursor c = null;
-    EditText name;
+    SQLiteDatabase db;
     String[] columns = {null};
     String selection = null;
     String[] selectionArgs = null;
@@ -36,7 +35,7 @@ public class rElo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reports_page_elo);
         DbHelper = new DatabaseHelper(context);
-        SQLiteDatabase db = DbHelper.getWritableDatabase();
+        db = DbHelper.getWritableDatabase();
 
         ImageButton back = findViewById(R.id.backButton);
         back.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +45,7 @@ public class rElo extends AppCompatActivity {
             }
         });
 
-        name.findViewById(R.id.login);
+        EditText name = findViewById(R.id.login);
 
         RadioGroup rgSort = findViewById(R.id.rgSort);
 
@@ -61,9 +60,9 @@ public class rElo extends AppCompatActivity {
                     if (cursor.moveToFirst()) {
                         do {
                             String str = "";
-                            for (String cn : c.getColumnNames()) {
+                            for (String cn : cursor.getColumnNames()) {
                                 str = str.concat(cn + " = "
-                                        + c.getString(c.getColumnIndex(cn)) + "; ");
+                                        + cursor.getString(cursor.getColumnIndex(cn)) + "; ");
                             }
                             Log.d("All:", str);
 
@@ -79,7 +78,7 @@ public class rElo extends AppCompatActivity {
             @SuppressLint("Range")
             @Override
             public void onClick(View v) {
-                String ownerId = null;
+                String ownerId = "1";
                 columns = new String[] { "elo_owner_id" };
                 selection = "elo_name = ?";
                 selectionArgs = new String[] { name.getText().toString() };
@@ -87,9 +86,9 @@ public class rElo extends AppCompatActivity {
                 if (cursor != null) {
                     if (cursor.moveToFirst()) {
                         String str = "";
-                        for (String cn : c.getColumnNames()) {
+                        for (String cn : cursor.getColumnNames()) {
                             str = str.concat(cn + " = "
-                                    + c.getString(c.getColumnIndex(cn)) + "; ");
+                                    + cursor.getString(cursor.getColumnIndex(cn)) + "; ");
                         }
                         ownerId = cursor.getString(0);
                         Log.d("All:", str);
@@ -103,9 +102,9 @@ public class rElo extends AppCompatActivity {
                 if (cursor != null) {
                     if (cursor.moveToFirst()) {
                         String str = "";
-                        for (String cn : c.getColumnNames()) {
+                        for (String cn : cursor.getColumnNames()) {
                             str = str.concat(cn + " = "
-                                    + c.getString(c.getColumnIndex(cn)) + "; ");
+                                    + cursor.getString(cursor.getColumnIndex(cn)) + "; ");
                         }
                         Log.d("All:", str);
                     }
@@ -142,9 +141,9 @@ public class rElo extends AppCompatActivity {
                 if (cursor != null) {
                     if (cursor.moveToFirst()) {
                         String str = "";
-                        for (String cn : c.getColumnNames()) {
+                        for (String cn : cursor.getColumnNames()) {
                             str = str.concat(cn + " = "
-                                    + c.getString(c.getColumnIndex(cn)) + "; ");
+                                    + cursor.getString(cursor.getColumnIndex(cn)) + "; ");
                         }
                         eloId = cursor.getString(0);
                         Log.d("All:", str);
@@ -162,9 +161,9 @@ public class rElo extends AppCompatActivity {
                     if (cursor.moveToFirst()) {
                         do {
                             String str = "";
-                            for (String cn : c.getColumnNames()) {
+                            for (String cn : cursor.getColumnNames()) {
                                 str = str.concat(cn + " = "
-                                        + c.getString(c.getColumnIndex(cn)) + "; ");
+                                        + cursor.getString(cursor.getColumnIndex(cn)) + "; ");
                             }
                             users[k++] = cursor.getString(0);
                             Log.d("All:", str);
@@ -181,9 +180,9 @@ public class rElo extends AppCompatActivity {
                     if (cursor != null) {
                         if (cursor.moveToFirst()) {
                             String str = "";
-                            for (String cn : c.getColumnNames()) {
+                            for (String cn : cursor.getColumnNames()) {
                                 str = str.concat(cn + " = "
-                                        + c.getString(c.getColumnIndex(cn)) + "; ");
+                                        + cursor.getString(cursor.getColumnIndex(cn)) + "; ");
                             }
                             Log.d("All:", str);
                         }
@@ -233,9 +232,9 @@ public class rElo extends AppCompatActivity {
                 if (cursor != null) {
                     if (cursor.moveToFirst()) {
                         String str = "";
-                        for (String cn : c.getColumnNames()) {
+                        for (String cn : cursor.getColumnNames()) {
                             str = str.concat(cn + " = "
-                                    + c.getString(c.getColumnIndex(cn)) + "; ");
+                                    + cursor.getString(cursor.getColumnIndex(cn)) + "; ");
                         }
                         eloId = cursor.getString(0);
                         Log.d("All:", str);
@@ -254,9 +253,9 @@ public class rElo extends AppCompatActivity {
                     if (cursor.moveToFirst()) {
                         do {
                             String str = "";
-                            for (String cn : c.getColumnNames()) {
+                            for (String cn : cursor.getColumnNames()) {
                                 str = str.concat(cn + " = "
-                                        + c.getString(c.getColumnIndex(cn)) + "; ");
+                                        + cursor.getString(cursor.getColumnIndex(cn)) + "; ");
                             }
                             users[k] = cursor.getString(0);
                             tasks[k++] = cursor.getString(1);
@@ -280,17 +279,17 @@ public class rElo extends AppCompatActivity {
                 selection = "user_id = ?";
                 for (int i = 0; i < k; i++) {
                     selectionArgs = new String[] { users[i] };
-                    cursor = db.query(DatabaseHelper.DB_ELO, columns, selection, selectionArgs, groupBy3, null, orderBy3);
+                    cursor = db.query(DatabaseHelper.DB_USERS, columns, selection, selectionArgs, groupBy3, null, orderBy3);
                     if (cursor != null) {
                         if (cursor.moveToFirst()) {
                             String str = "";
-                            for (String cn : c.getColumnNames()) {
+                            for (String cn : cursor.getColumnNames()) {
                                 str = str.concat(cn + " = "
-                                        + c.getString(c.getColumnIndex(cn)) + "; ");
+                                        + cursor.getString(cursor.getColumnIndex(cn)) + "; ");
                             }
                             Log.d("All:", str);
                             assert wholeAmount != null;
-                            Log.d("progress: ", tasks[i] + "/" + wholeAmount + " (" + Integer.parseInt(tasks[i])/Integer.parseInt(wholeAmount)*100 + "%)");
+                            Log.d("progress: ", tasks[i] + "/" + wholeAmount + " (" + Double.parseDouble(tasks[i])/Double.parseDouble(wholeAmount) * 100 + "%)");
                         }
                         cursor.close();
                     }
