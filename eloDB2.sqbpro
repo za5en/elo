@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="D:/coding/projects/elo/eloDB2.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="1"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="6602"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,3:mainelo"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="android_metadata" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="60"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="elo" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="63"/><column index="2" value="202"/><column index="3" value="300"/><column index="4" value="300"/><column index="5" value="140"/><column index="6" value="128"/><column index="7" value="86"/><column index="8" value="86"/><column index="9" value="86"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="elo_tasks" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="73"/><column index="2" value="63"/><column index="3" value="147"/><column index="4" value="300"/><column index="5" value="300"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="task_progress" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="74"/><column index="2" value="63"/><column index="3" value="73"/><column index="4" value="85"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="users" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="74"/><column index="2" value="96"/><column index="3" value="105"/><column index="4" value="132"/><column index="5" value="167"/><column index="6" value="141"/><column index="7" value="98"/><column index="8" value="97"/><column index="9" value="97"/><column index="10" value="97"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">CREATE TABLE &quot;users&quot;
+(
+	&quot;user_id&quot; INTEGER NOT NULL,
+	&quot;user_type&quot; varchar(15) DEFAULT 'Employee' NOT NULL,
+	&quot;user_name&quot; text NOT NULL,
+	&quot;user_surname&quot; text NOT NULL,
+	&quot;user_email&quot; text UNIQUE NOT NULL,
+	&quot;user_password&quot; text NOT NULL,
+	&quot;user_level&quot; text DEFAULT 'junior',
+	&quot;user_tag1&quot; text,
+	&quot;user_tag2&quot; text,
+	&quot;user_tag3&quot; text,
+	CHECK ( &quot;user_type&quot; IN ( 'Admin', 'Mentor', 'Employee' )),
+	CHECK ( &quot;user_level&quot; IN ( 'middle', 'junior', 'senior' )),
+	CHECK ( &quot;user_tag1&quot; IN ( 'java', 'sql', 'c#', 'front', 'back', 'qa', 'python', 'react', 'другое' )),
+	CHECK ( &quot;user_tag2&quot; IN ( 'java', 'sql', 'c#', 'front', 'back', 'qa', 'python', 'react', 'другое' )),
+	CHECK ( &quot;user_tag3&quot; IN ( 'java', 'sql', 'c#', 'front', 'back', 'qa', 'python', 'react', 'другое' )),
+	CHECK (length(&quot;user_name&quot;) &lt; 25),
+	CHECK (length(&quot;user_surname&quot;) &lt; 25),
+	CHECK (length(&quot;user_password&quot;) &gt; 6),
+	PRIMARY KEY(&quot;user_id&quot; AUTOINCREMENT)
+);
+
+CREATE TABLE &quot;elo&quot;
+(
+	&quot;elo_id&quot; INTEGER NOT NULL,
+	&quot;elo_name&quot; text UNIQUE NOT NULL,
+	&quot;elo_short_info&quot; text,
+	&quot;elo_info&quot; text,
+	&quot;elo_availability&quot; INTEGER NOT NULL DEFAULT 1,
+	&quot;elo_owner_id&quot; int NOT NULL,
+	&quot;elo_tag1&quot; text,
+	&quot;elo_tag2&quot; text,
+	&quot;elo_tag3&quot; text,
+	CHECK ( &quot;elo_availability&quot; IN ( 0, 1 )),
+	CHECK ( &quot;elo_tag1&quot; IN ( 'java', 'sql', 'c#', 'front', 'back', 'qa', 'python', 'react', 'другое' )),
+	CHECK ( &quot;elo_tag2&quot; IN ( 'java', 'sql', 'c#', 'front', 'back', 'qa', 'python', 'react', 'другое' )),
+	CHECK ( &quot;elo_tag3&quot; IN ( 'java', 'sql', 'c#', 'front', 'back', 'qa', 'python', 'react', 'другое' )),
+	PRIMARY KEY (&quot;elo_id&quot; AUTOINCREMENT),
+	FOREIGN KEY (&quot;elo_owner_id&quot;) REFERENCES &quot;users&quot;(&quot;user_id&quot;)
+);
+
+CREATE TABLE &quot;relation_list&quot;
+(
+	&quot;user_id&quot; int NOT NULL,
+	&quot;elo_id&quot; int NOT NULL,
+	PRIMARY KEY (&quot;user_id&quot;, &quot;elo_id&quot;),
+	FOREIGN KEY (&quot;user_id&quot;) REFERENCES &quot;users&quot;(&quot;user_id&quot;)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	FOREIGN KEY (&quot;elo_id&quot;) REFERENCES &quot;elo&quot;(&quot;elo_id&quot;)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+);
+
+CREATE TABLE &quot;elo_tasks&quot;
+(
+	&quot;task_id&quot; INTEGER NOT NULL,
+	&quot;elo_id&quot; INTEGER NOT NULL,
+	&quot;task_name&quot; text,
+	&quot;task_info&quot; text,
+	&quot;task_url&quot; text,
+	CHECK (length(&quot;task_name&quot;) &lt; 25),
+	PRIMARY KEY (&quot;task_id&quot; AUTOINCREMENT),
+	FOREIGN KEY (&quot;elo_id&quot;) REFERENCES &quot;elo&quot;(&quot;elo_id&quot;)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+);
+
+CREATE TABLE &quot;task_progress&quot;
+(
+	&quot;user_id&quot; int NOT NULL,
+	&quot;elo_id&quot; int NOT NULL,
+	&quot;task_id&quot; int NOT NULL,
+	&quot;progress&quot; INTEGER NOT NULL DEFAULT 0,
+	CHECK (&quot;progress&quot; IN ( 0,1 )),
+	FOREIGN KEY (&quot;elo_id&quot;) REFERENCES &quot;elo&quot;(&quot;elo_id&quot;)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	FOREIGN KEY (&quot;user_id&quot;) REFERENCES &quot;users&quot;(&quot;user_id&quot;)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	FOREIGN KEY (&quot;task_id&quot;) REFERENCES &quot;elo_tasks&quot;(&quot;task_id&quot;)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+);
+
+INSERT INTO &quot;users&quot;( &quot;user_type&quot;, &quot;user_name&quot;, &quot;user_surname&quot;, &quot;user_email&quot;, &quot;user_password&quot;, &quot;user_level&quot; )
+VALUES ('Admin','Admin','Name','admin@gmail.ru','123admin321', 'senior'),
+	('Mentor','Mentor','Name','mail1@gmail.ru','mentSj17aks','senior'),
+	('Mentor','Рустам','Авангард','mail3@gmail.ru','111111111','senior'),
+	('Mentor','Фёдор','Власов','mail4@gmail.ru','qska1jmsandc_','senior'),
+	('Mentor','Михаил','Михайлович','mail666@gmail.ru','sadaksnjx1','senior'),
+	('Mentor','Виталий','Новый','mail777@gmail.ru','asdasq123rfdc','senior'),
+	('Mentor','Артём','Коновалов','mail123@mail.ru','gfbruch14b67','middle'),
+	('Employee','Дима','Перевозчиков','asllssll1@mail.ru','s1bmujnbnb','middle'),
+	('Employee','Самвел','Семенов','sumwellandr@mail.ru','!user2112','junior'),
+	('Employee','Максим','Максим','maxsquare@mail.ru','!user212312sad','junior'),
+	('Employee','Кирилл','Широбоков','shiro@mail.ru','shirobest','junior'),
+	('Employee','Alex','Kiselev','kiselex@mail.ru','12osoiisnczxc!','junior'),
+	('Employee','RUSTAM','GPOWER','rustamg23@mail.ru','qwertyuiop','junior'),
+	('Employee','Богдан','Бельский','bogdan@mail.ru','dandan111','junior'),
+	('Employee','Worker','Name','empl25@mail.ru','emplPj225qlzv','junior');
+
+INSERT INTO &quot;elo&quot;( &quot;elo_name&quot;, &quot;elo_short_info&quot;, &quot;elo_info&quot;, &quot;elo_availability&quot;, &quot;elo_owner_id&quot;, &quot;elo_tag1&quot;, &quot;elo_tag2&quot;, &quot;elo_tag3&quot; )
+VALUES ('Java для Senior',
+	'Курс Java для Senior-разработчиков',
+	'Курс Java для Senior-разработчиков Сборник секретиков, недоступных и непонятных обычным девелоперам',
+	1, 3, 'java', 'back', 'sql'),
+	('Java для начинающих',
+	'Курс Java для Junior-разработчиков',
+	'Курс Java для Junior-разработчиков\nОтлично подойдет для развития навыков работы с backendом на Java, в первую очередь для работы с сервером',
+	0, 2, 'java', 'back', 'sql'),
+	('Нейросети в Python',
+	'Основы машинного обучения на Python',
+	'Основы машинного обучения на Python, создание и обучение нейросетей, алгоритмы работы',
+	1, 3, 'python', 'back', 'другое'),
+	('Основы Python',
+	'Базовые знания Python. Основы синтаксиса',
+	'Базовые знания Python\nОсновы синтаксиса и другие важные моменты',
+	0, 3, 'python', 'back', 'другое'),
+	('C# для начинающих',
+	'Курс по C# для начинающих разработчиков',
+	'Этот курс поможет освоить C# так, чтобы быть в нём, как рыба в воде, а также подтянуть знания в области ООП',
+	1, 2, 'c#', 'back', 'другое'),
+	('Front&amp;back',
+	'Курс Java для Junior-разработчиков',
+	'Важные моменты связи фронта с бэком с точки зрения фронтэндера: как избежать конфликтов',
+	1, 4, 'front', 'react', 'back'),
+	('SQL for juniors',
+	'SQL для самых маленьких и не только',
+	'Азы работы с базами данных, все важные аспекты написания и обработки запросов, особенности работы с PostgreSQL',
+	0, 2, 'sql', 'другое', 'back'),
+	('FRONTEND FOR JUNIORS',
+	'база фронтенда в одном ЭлО',
+	'лучший курс для укрепления основных навыков работы с фронтендом\nплюс вы научитесь связывать фронт с бэком (а это самое главное)',
+	0, 2, 'front', 'java', 'react');
+
+INSERT INTO &quot;relation_list&quot;( &quot;elo_id&quot;, &quot;user_id&quot; )
+VALUES (1,7),
+	(1,13),
+	(1,15),
+	(2,7),
+	(2,13),
+	(2,15),
+	(3,6),
+	(3,7),
+	(3,8),
+	(3,10),
+	(3,11),
+	(3,13),
+	(4,6),
+	(4,7),
+	(4,8),
+	(4,10),
+	(4,11),
+	(4,13),
+	(5,6),
+	(5,11),
+	(5,15),
+	(6,4),
+	(7,3),
+	(7,15),
+	(8,7),
+	(8,13),
+	(8,15);
+
+INSERT INTO &quot;elo_tasks&quot;( &quot;elo_id&quot;, &quot;task_name&quot;, &quot;task_info&quot;, &quot;task_url&quot; )
+VALUES 	(1,'Задание 1','Просмотр видео:', 'https://youtu.be/jMvF2zs7ApA'),
+	(1,'Задание 2','Просмотр видео:', 'https://youtu.be/jMvF2zs7ApA'),
+	(1,'Задание 3','Immutable Collections. Просмотр видео:', 'https://youtu.be/jMvF2zs7ApA'),
+	(1,'Задание 4','Просмотр видео:', 'https://youtu.be/jMvF2zs7ApA'),
+	(1,'Задание 5','Просмотр видео:', 'https://youtu.be/jMvF2zs7ApA'),
+	(1,'Итоговое задание','решить тест:', 'https://youtu.be/jMvF2zs7ApA'),
+	(2,'Задание 1','посмотреть видео:', 'https://www.youtube.com/watch?v=U2OliQwRb6c&amp;list=PLDyJYA6aTY1lT614ixLYq48har7EnCXpk'),
+	(2,'Задание 2','посмотреть видео:', 'https://www.youtube.com/watch?v=U2OliQwRb6c&amp;list=PLDyJYA6aTY1lT614ixLYq48har7EnCXpk'),
+	(2,'Задание 3','посмотреть видео:', 'https://www.youtube.com/watch?v=U2OliQwRb6c&amp;list=PLDyJYA6aTY1lT614ixLYq48har7EnCXpk'),
+	(2,'Задание 4','посмотреть видео:', 'https://www.youtube.com/watch?v=U2OliQwRb6c&amp;list=PLDyJYA6aTY1lT614ixLYq48har7EnCXpk'),
+	(2,'Задание 5','посмотреть видео:', 'https://www.youtube.com/watch?v=U2OliQwRb6c&amp;list=PLDyJYA6aTY1lT614ixLYq48har7EnCXpk'),
+	(2,'Итоговое задание','решить тест:', 'https://www.youtube.com/watch?v=U2OliQwRb6c&amp;list=PLDyJYA6aTY1lT614ixLYq48har7EnCXpk'),
+	(3,'Задание 1','Изучение 1 главы:', 'https://metanit.com/python/tutorial/2.1.php'),
+	(3,'Задание 2','Изучение 2 главы:', 'https://metanit.com/python/tutorial/2.1.php'),
+	(3,'Задание 3','Изучение 3 главы:', 'https://metanit.com/python/tutorial/2.1.php'),
+	(3,'Задание 4','Изучение 4 главы:', 'https://metanit.com/python/tutorial/2.1.php'),
+	(3,'Задание 5','Изучение 5 главы:', 'https://metanit.com/python/tutorial/2.1.php'),
+	(3,'Задание 6','Изучение 6 главы:', 'https://metanit.com/python/tutorial/2.1.php'),
+	(3,'Задание 7','Изучение 7 главы:', 'https://metanit.com/python/tutorial/2.1.php'),
+	(3,'Итоговое задание','решить тест:', 'https://metanit.com/python/tutorial/2.1.php'),
+	(4,'Задание 1','Изучение 1 главы:', 'https://youtu.be/GwIo3gDZCVQ'),
+	(4,'Задание 2','Изучение 2 главы:', 'https://youtu.be/GwIo3gDZCVQ'),
+	(4,'Задание 3','Изучение 3 главы:', 'https://youtu.be/GwIo3gDZCVQ'),
+	(4,'Задание 4','Изучение 4 главы:', 'https://youtu.be/GwIo3gDZCVQ'),
+	(4,'Задание 5','Изучение 5 главы:', 'https://youtu.be/GwIo3gDZCVQ'),
+	(4,'Задание 6','Изучение 6 главы:', 'https://youtu.be/GwIo3gDZCVQ'),
+	(4,'Задание 7','Изучение 7 главы:', 'https://youtu.be/GwIo3gDZCVQ'),
+	(4,'Итоговое задание','Просмотр курса по машинному обучению:', 'https://youtu.be/GwIo3gDZCVQ'),
+	(5,'Задание 1','Изучение 1 главы:', 'https://metanit.com/sharp/tutorial/3.1.php'),
+	(5,'Задание 2','Изучение 2 главы:', 'https://metanit.com/sharp/tutorial/3.1.php'),
+	(5,'Задание 3','Изучение 3 главы:', 'https://metanit.com/sharp/tutorial/3.1.php'),
+	(5,'Задание 4','Изучение 4 главы:', 'https://metanit.com/sharp/tutorial/3.1.php'),
+	(5,'Итоговое задание','решить тест:', 'https://metanit.com/sharp/tutorial/3.1.php'),
+	(6,'Задание 1','Ознакомиться с материалом:', 'https://stackoverflow.com/questions/68164444/how-to-connect-backend-and-frontend'),
+	(6,'Задание 2','Ознакомиться с материалом:', 'https://stackoverflow.com/questions/68164444/how-to-connect-backend-and-frontend'),
+	(6,'Задание 3','Ознакомиться с материалом:', 'https://stackoverflow.com/questions/68164444/how-to-connect-backend-and-frontend'),
+	(6,'Итоговое задание','решить тест:', 'https://stackoverflow.com/questions/68164444/how-to-connect-backend-and-frontend'),
+	(7,'Задание 1','Посмотреть видео и попрактиковаться:', 'https://www.youtube.com/watch?v=sLwiFGAOMK4&amp;list=PLqj7-hRTFl_oweCD2cFQYdJDmD5bwEhb9'),
+	(7,'Задание 2','Посмотреть видео и попрактиковаться:', 'https://www.youtube.com/watch?v=sLwiFGAOMK4&amp;list=PLqj7-hRTFl_oweCD2cFQYdJDmD5bwEhb9'),
+	(7,'Задание 3','Посмотреть видео и попрактиковаться:', 'https://www.youtube.com/watch?v=sLwiFGAOMK4&amp;list=PLqj7-hRTFl_oweCD2cFQYdJDmD5bwEhb9'),
+	(7,'Задание 4','Посмотреть видео и попрактиковаться:', 'https://www.youtube.com/watch?v=sLwiFGAOMK4&amp;list=PLqj7-hRTFl_oweCD2cFQYdJDmD5bwEhb9'),
+	(7,'Задание 5','Посмотреть видео и попрактиковаться:', 'https://www.youtube.com/watch?v=sLwiFGAOMK4&amp;list=PLqj7-hRTFl_oweCD2cFQYdJDmD5bwEhb9'),
+	(7,'Итоговое задание','решить тест:', 'https://www.youtube.com/watch?v=sLwiFGAOMK4&amp;list=PLqj7-hRTFl_oweCD2cFQYdJDmD5bwEhb9'),
+	(8,'Задание 1','Посмотреть видео:', 'https://www.youtube.com/watch?v=cBYDQlwGEjQ&amp;list=PLMB6wLyKp7lV9YoWTMCztq-KXYhYPB09K&amp;index=5'),
+	(8,'Задание 2','Посмотреть видео:', 'https://www.youtube.com/watch?v=cBYDQlwGEjQ&amp;list=PLMB6wLyKp7lV9YoWTMCztq-KXYhYPB09K&amp;index=5'),
+	(8,'Задание 3','Посмотреть видео:', 'https://www.youtube.com/watch?v=cBYDQlwGEjQ&amp;list=PLMB6wLyKp7lV9YoWTMCztq-KXYhYPB09K&amp;index=5'),
+	(8,'Задание 4','Посмотреть видео:', 'https://www.youtube.com/watch?v=cBYDQlwGEjQ&amp;list=PLMB6wLyKp7lV9YoWTMCztq-KXYhYPB09K&amp;index=5'),
+	(8,'Итоговое задание','решить тест:', 'https://www.youtube.com/watch?v=cBYDQlwGEjQ&amp;list=PLMB6wLyKp7lV9YoWTMCztq-KXYhYPB09K&amp;index=5');
+
+INSERT INTO &quot;task_progress&quot;( &quot;user_id&quot;, &quot;elo_id&quot;, &quot;task_id&quot;, &quot;progress&quot; )
+VALUES (3,7,6,0),
+	(4,6,1,0),
+	(6,3,5,0),
+	(6,4,5,0),
+	(6,5,4,0),
+	(7,1,5,0),
+	(7,2,5,0),
+	(7,3,2,0),
+	(7,4,2,0),
+	(7,8,4,0),
+	(8,3,3,0),
+	(8,3,3,0),
+	(10,3,1,0),
+	(10,4,1,0),
+	(11,3,7,0),
+	(11,4,7,0),
+	(11,5,4,0),
+	(13,1,3,0),
+	(13,2,3,0),
+	(13,3,4,0),
+	(13,4,4,0),
+	(13,8,4,0),
+	(15,1,1,0),
+	(15,2,1,0),
+	(15,7,1,0),
+	(15,8,1,0);</sql><current_tab id="0"/></tab_sql></sqlb_project>

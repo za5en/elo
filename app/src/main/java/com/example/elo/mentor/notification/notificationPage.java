@@ -16,10 +16,12 @@ import com.example.elo.mentor.manage.pages.acceptTask;
 import com.example.elo.mentor.manage.pages.requests;
 import com.example.elo.worker.workerProfile;
 
+import java.util.Locale;
+
 public class notificationPage extends AppCompatActivity {
     final Context context = this;
     ImageButton back, button;
-    String text, eloDesc;
+    String text, eloDesc, name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class notificationPage extends AppCompatActivity {
         nfDate.setText(getIntent().getStringExtra("date"));
         text = getIntent().getStringExtra("text");
         eloDesc = getIntent().getStringExtra("eloDesc");
+        name = nfTheme.getText().toString();
 
         back = findViewById(R.id.backButton);
         button = findViewById(R.id.button);
@@ -45,6 +48,7 @@ public class notificationPage extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, acceptTask.class);
+                    intent.putExtra("eloName", name);
                     startActivity(intent);
                 }
             });
@@ -55,6 +59,7 @@ public class notificationPage extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, requests.class);
+                    intent.putExtra("eloName", name);
                     startActivity(intent);
                 }
             });

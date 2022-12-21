@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,6 +16,7 @@ import com.example.elo.adapter.deleteIconsAdapter;
 import com.example.elo.adapter.deleteIconsWorkAdapter;
 import com.example.elo.model.DeleteIcons;
 import com.example.elo.model.EloProfile;
+import com.example.elo.model.Elos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,38 +31,56 @@ public class eloPart extends AppCompatActivity {
     static List<DeleteIcons> iconsList = new ArrayList<>();
 
     ImageButton back;
+    int userId;
+    String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.elo_part);
 
+        userId = getIntent().getIntExtra("userId", 2);
+        userName = getIntent().getStringExtra("userName");
+
         eloList.clear();
-        eloList.add(new EloProfile(1, "Java для Senior",
-                "Курс Java\nдля Senior-разработчиков",
-                "Курс Java для Senior-разработчиков\nСборник секретиков, недоступных и непонятных обычным девелоперам",
-                "Java для Senior", 4, "65%"));
-        eloList.add(new EloProfile(2, "Нейросети в Python",
-                "Основы машинного обучения\nна Python\n",
-                "Основы машинного обучения на Python, создание и обучение нейросетей, алгоритмы работы",
-                "Нейросети в Python", 5, "65%"));
-        eloList.add(new EloProfile(3, "Основы Python",
-                "Базовые знания Python\nОсновы синтаксиса\n",
-                "Базовые знания Python.\nОсновы синтаксиса и другие важные моменты",
-                "Основы Python", 5, "65%"));
-        eloList.add(new EloProfile(4, "Front&back",
-                "Важные моменты\nсвязи фронта с бэком\n",
-                "Важные моменты связи фронта с бэком с точки зрения фронтэндера: как избежать конфликтов",
-                "Front&back", 1, "65%"));
+        if (userName.equals("Worker Name")) {
+            eloList.add(new EloProfile(1, "C# для начинающих",
+                    "Курс по C#\nдля начинающих разработчиков\n",
+                    "Этот курс поможет освоить C# так, чтобы быть в нём, как рыба в воде, а также подтянуть знания в области ООП",
+                    "C# для начинающих", 2, "0%", 15, "c#", "c#", "c#"));
+        }
+        else {
+            eloList.add(new EloProfile(1, "Java для Senior",
+                    "Курс Java\nдля Senior-разработчиков",
+                    "Курс Java для Senior-разработчиков\nСборник секретиков, недоступных и непонятных обычным девелоперам",
+                    "Java для Senior", 4, "0%", userId, "c#", "c#", "c#"));
+            eloList.add(new EloProfile(2, "Нейросети в Python",
+                    "Основы машинного обучения\nна Python\n",
+                    "Основы машинного обучения на Python, создание и обучение нейросетей, алгоритмы работы",
+                    "Нейросети в Python", 5, "0%", userId, "c#", "c#", "c#"));
+            eloList.add(new EloProfile(3, "Основы Python",
+                    "Базовые знания Python\nОсновы синтаксиса\n",
+                    "Базовые знания Python.\nОсновы синтаксиса и другие важные моменты",
+                    "Основы Python", 5, "0%", userId, "c#", "c#", "c#"));
+            eloList.add(new EloProfile(4, "Front&back",
+                    "Важные моменты\nсвязи фронта с бэком\n",
+                    "Важные моменты связи фронта с бэком с точки зрения фронтэндера: как избежать конфликтов",
+                    "Front&back", 1, "0%", userId, "c#", "c#", "c#"));
+        }
 
         allEloList.addAll(eloList);
         setEloWorkerRecycler(eloList);
 
         iconsList.clear();
-        iconsList.add(new DeleteIcons(1));
-        iconsList.add(new DeleteIcons(2));
-        iconsList.add(new DeleteIcons(3));
-        iconsList.add(new DeleteIcons(4));
+        if (userName.equals("Worker Name")) {
+            iconsList.add(new DeleteIcons(1));
+        }
+        else {
+            iconsList.add(new DeleteIcons(1));
+            iconsList.add(new DeleteIcons(2));
+            iconsList.add(new DeleteIcons(3));
+            iconsList.add(new DeleteIcons(4));
+        }
 
         setIconsRecycler(iconsList);
 

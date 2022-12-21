@@ -36,10 +36,14 @@ public class adminSearch extends AppCompatActivity {
     static List<Elos> allEloList = new ArrayList<>();
     List<Elos> filter = new ArrayList<>();
 
+    int userId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
+
+        userId = getIntent().getIntExtra("userId", 1);
 
         List<tagCategory> categoryList = new ArrayList<>();
         categoryList.add(new tagCategory(1, "front"));
@@ -75,19 +79,19 @@ public class adminSearch extends AppCompatActivity {
         eloList.add(new Elos(1, "Java для Senior",
                 "Курс Java\nдля Senior-разработчиков",
                 "Курс Java для Senior-разработчиков\nСборник секретиков, недоступных и непонятных обычным девелоперам",
-                "Java для Senior", 4, first, false));
+                "Java для Senior", 4, false, 1, "c#", "c#", "c#"));
         eloList.add(new Elos(2, "Нейросети в Python",
                 "Основы машинного обучения\nна Python\n",
                 "Основы машинного обучения на Python, создание и обучение нейросетей, алгоритмы работы",
-                "Нейросети в Python", 5, second, false));
+                "Нейросети в Python", 5, false, 1, "c#", "c#", "c#"));
         eloList.add(new Elos(3, "Основы Python",
                 "Базовые знания Python\nОсновы синтаксиса\n",
                 "Базовые знания Python.\nОсновы синтаксиса и другие важные моменты",
-                "Основы Python", 5, second, true));
+                "Основы Python", 5, true, 1, "c#", "c#", "c#"));
         eloList.add(new Elos(4, "Front&back",
                 "Важные моменты\nсвязи фронта с бэком\n",
                 "Важные моменты связи фронта с бэком с точки зрения фронтэндера: как избежать конфликтов",
-                "Front&back", 1, fourth, false));
+                "Front&back", 1, false, 1, "c#", "c#", "c#"));
 
         allEloList.addAll(eloList);
         setEloRecycler(eloList);
@@ -127,6 +131,7 @@ public class adminSearch extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(context, adminProfile.class);
                 finish();
+                userId = getIntent().getIntExtra("userId", 1);
                 startActivity(intent);
             }
         });
@@ -136,6 +141,7 @@ public class adminSearch extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(context, adminNotifications.class);
                 finish();
+                userId = getIntent().getIntExtra("userId", 1);
                 startActivity(intent);
             }
         });
@@ -145,6 +151,7 @@ public class adminSearch extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(context, adminMain.class);
                 finish();
+                userId = getIntent().getIntExtra("userId", 1);
                 startActivity(intent);
             }
         });

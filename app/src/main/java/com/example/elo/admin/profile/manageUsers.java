@@ -66,15 +66,15 @@ public class manageUsers extends AppCompatActivity {
         fourth.add(new tagCategory(3, "back"));
 
         userList.clear();
-        userList.add(new Users(1, "Mentor name",
+        userList.add(new Users(1, "Mentor Name",
                 "senior",
                 "наставник",
-                "mail1@mail.ru",
+                "mail1@gmail.ru",
                 "mentSj17aks", first));
-        userList.add(new Users(2, "Worker name",
+        userList.add(new Users(2, "Worker Name",
                 "junior",
                 "сотрудник",
-                "mail2@mail.ru",
+                "empl25@mail.ru",
                 "emplPj225qlzv", third));
         userList.add(new Users(3, "Рустам Авангард",
                 "senior",
@@ -86,6 +86,56 @@ public class manageUsers extends AppCompatActivity {
                 "наставник",
                 "mail4@mail.ru",
                 "qska1jmsandc_", fourth));
+        userList.add(new Users(5, "Михаил Михайлович",
+                "senior",
+                "наставник",
+                "mail666@mail.ru",
+                "sadaksnjx1", fourth));
+        userList.add(new Users(6, "Виталий Новый",
+                "senior",
+                "наставник",
+                "mail777@mail.ru",
+                "asdasq123rfdc", fourth));
+        userList.add(new Users(7, "Артём Коновалов",
+                "middle",
+                "наставник",
+                "mail123@mail.ru",
+                "gfbruch14b67", fourth));
+        userList.add(new Users(8, "Дима Перевозчиков",
+                "middle",
+                "сотрудник",
+                "asllssll1@mail.ru",
+                "s1bmujnbnb", fourth));
+        userList.add(new Users(9, "Самвел Семенов",
+                "junior",
+                "сотрудник",
+                "sumwellandr@mail.ru",
+                "!user2112", fourth));
+        userList.add(new Users(10, "Максим Максим",
+                "junior",
+                "сотрудник",
+                "maxsquare@mail.ru",
+                "!user212312sad", fourth));
+        userList.add(new Users(11, "Кирилл Широбоков",
+                "junior",
+                "сотрудник",
+                "shiro@mail.ru",
+                "shirobest", fourth));
+        userList.add(new Users(12, "Alex Kiselev",
+                "junior",
+                "сотрудник",
+                "kiselex@mail.ru",
+                "12osoiisnczxc!", fourth));
+        userList.add(new Users(13, "RUSTAM GPOWER",
+                "junior",
+                "сотрудник",
+                "rustamg23@mail.ru",
+                "qwertyuiop", fourth));
+        userList.add(new Users(14, "Богдан Бельский",
+                "junior",
+                "сотрудник",
+                "bogdan@mail.ru",
+                "dandan111", fourth));
 
         setUserRecycler(userList);
 

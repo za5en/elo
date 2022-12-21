@@ -41,9 +41,9 @@ public class tagsConfirm extends AppCompatActivity {
 
         tasksListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        tagsConfirm j = new tagsConfirm("java");
-        tagsConfirm b = new tagsConfirm("back");
-        tagsConfirm s = new tagsConfirm("sql");
+        tagsConfirm j = new tagsConfirm("front");
+        tagsConfirm b = new tagsConfirm("java");
+        tagsConfirm s = new tagsConfirm("react");
 
         tagsConfirm[] users = new tagsConfirm[]{j, b, s};
         ArrayAdapter<tagsConfirm> arrayAdapter

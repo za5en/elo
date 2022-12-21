@@ -54,6 +54,7 @@ public class eloAdapter extends RecyclerView.Adapter<eloAdapter.EloViewHolder> {
                 intent.putExtra("previewDesc", eloList.get(position).getPreviewDesc());
                 intent.putExtra("id", eloList.get(position).getId());
                 intent.putExtra("isPrivate", eloList.get(position).isPrivate());
+                intent.putExtra("userId", eloList.get(position).getUserId());
 
                 context.startActivity(intent);
             }

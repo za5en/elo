@@ -47,6 +47,7 @@ public class eloWorkAdapter extends RecyclerView.Adapter<eloWorkAdapter.EloViewH
                 intent.putExtra("previewName", eloList.get(position).getPreviewName());
                 intent.putExtra("previewDesc", eloList.get(position).getPreviewDesc());
                 intent.putExtra("id", eloList.get(position).getId());
+                intent.putExtra("userId", eloList.get(position).getUserId());
 
                 context.startActivity(intent);
             }

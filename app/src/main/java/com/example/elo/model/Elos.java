@@ -1,25 +1,23 @@
 package com.example.elo.model;
 
-import java.util.List;
-
 public class Elos {
 
-    int id, category;
-    String name, description, previewDesc, previewName;
-    List<tagCategory> cats;
+    int id, category, userId;
+    String name, description, previewDesc, previewName, tag1, tag2, tag3;
     boolean isPrivate;
 
-    public Elos(int id, String name, String description, String previewDesc, String previewName, int category, List<tagCategory> cats, boolean isPrivate) {
+    public Elos(int id, String name, String description, String previewDesc, String previewName, int category, boolean isPrivate, int userId, String tag1, String tag2, String tag3) {
         this.id = id;
         this.name = name;
         this.description = description;
-        //this.color = color;
         this.previewDesc = previewDesc;
-        //this.elosPreBg = elosPreBg;
         this.previewName = previewName;
         this.category = category;
-        this.cats = cats;
         this.isPrivate = isPrivate;
+        this.userId = userId;
+        this.tag1 = tag1;
+        this.tag2 = tag2;
+        this.tag3 = tag3;
     }
 
     public boolean isPrivate() {
@@ -78,11 +76,35 @@ public class Elos {
         this.description = description;
     }
 
-    public List<tagCategory> getCats() {
-        return cats;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setCats(List<tagCategory> cats) {
-        this.cats = cats;
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getTag1() {
+        return tag1;
+    }
+
+    public void setTag1(String tag1) {
+        this.tag1 = tag1;
+    }
+
+    public String getTag2() {
+        return tag2;
+    }
+
+    public void setTag2(String tag2) {
+        this.tag2 = tag2;
+    }
+
+    public String getTag3() {
+        return tag3;
+    }
+
+    public void setTag3(String tag3) {
+        this.tag3 = tag3;
     }
 }

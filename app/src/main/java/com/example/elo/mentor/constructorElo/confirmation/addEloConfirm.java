@@ -34,8 +34,11 @@ public class addEloConfirm extends AppCompatActivity {
         confirm = findViewById(R.id.confirm);
         cancel = findViewById(R.id.cancel);
 
-        eloName.setText("Java для начинающих");
-        eloDesc.setText("Курс Java для Junior-разработчиков\nОтлично подойдет для развития навыков работы с backend'ом на Java,\nв первую очередь для работы\nс сервером");
+        eloName.setText(getIntent().getStringExtra("eloName"));
+        eloDesc.setText(getIntent().getStringExtra("eloDesc"));
+
+//        eloName.setText("Java для начинающих");
+//        eloDesc.setText("Курс Java для Junior-разработчиков\nОтлично подойдет для развития навыков работы с backend'ом на Java,\nв первую очередь для работы\nс сервером");
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override

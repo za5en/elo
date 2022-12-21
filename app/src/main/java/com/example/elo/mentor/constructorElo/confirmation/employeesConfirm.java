@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.elo.R;
+import com.example.elo.mentor.constructorElo.employees;
 
 public class employeesConfirm extends AppCompatActivity {
     private String userName;
@@ -42,11 +43,16 @@ public class employeesConfirm extends AppCompatActivity {
 
         employeesListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        employeesConfirm m = new employeesConfirm("Михаил Михайлович","senior");
-        employeesConfirm r = new employeesConfirm("Рустам Авангард","senior");
-        employeesConfirm s = new employeesConfirm("Дима Перевозчиков","middle");
+        employeesConfirm s = new employeesConfirm("Самвел Семенов","junior");
+        employeesConfirm mx = new employeesConfirm("Максим Максим","junior");
+        employeesConfirm k = new employeesConfirm("Кирилл Широбоков","junior");
+        employeesConfirm ak = new employeesConfirm("Alex Kiselev","junior");
+        employeesConfirm rg = new employeesConfirm("RUSTAM GPOWER","junior");
+        employeesConfirm b = new employeesConfirm("Богдан Бельский","junior");
+        employeesConfirm w = new employeesConfirm("Worker Name","junior");
 
-        employeesConfirm[] users = new employeesConfirm[]{m, r, s};
+
+        employeesConfirm[] users = new employeesConfirm[]{s, mx, k, ak, rg, b, w};
         ArrayAdapter<employeesConfirm> arrayAdapter
                 = new ArrayAdapter<employeesConfirm>(this, android.R.layout.simple_list_item_1, users);
 

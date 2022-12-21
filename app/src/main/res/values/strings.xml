@@ -33,7 +33,7 @@
     <string name="in_progress">Текущие ЭлО</string>
     <string name="username">Mentor Name</string>
     <string name="worker_name">Worker Name</string>
-    <string name="percents">65%</string>
+    <string name="percents">0%</string>
     <string name="auth">authorization</string>
     <string name="name_register">Введите имя</string>
     <string name="surname_register">Введите фамилию</string>
@@ -100,7 +100,32 @@
     <string name="tasks_text">tasks</string>
     <string name="requests_text">requests</string>
     <string name="link">ссылка</string>
-    <string name="reports">отчёты</string>
+    <string name="reports">reports</string>
     <string name="report_make">make a report</string>
     <string name="db_copy">copy database</string>
+    <string name="r_users">users</string>
+    <string name="r_elo">elo</string>
+    <string name="r_tasks">tasks</string>
+    <string name="elo_type">введите название ЭлО</string>
+    <string name="all_lines">все записи</string>
+    <string name="elo_owner">владелец ЭлО</string>
+    <string name="elo_participants">участники ЭлО</string>
+    <string name="elo_progress">прогресс</string>
+    <string name="elo_sort1">название ЭлО</string>
+    <string name="elo_sort2">имя юзера</string>
+    <string name="elo_sort3">id задания</string>
+    <string name="sort">сортировка</string>
+
+    <string name="users_type">введите имя юзера</string>
+    <string name="surname_type">введите фамилию юзера</string>
+
+    <string name="tasks_type">введите ID задания</string>
+    <string name="tasks_type_add">введите ID ЭлО</string>
+    <string name="tasks_lines">все записи</string>
+    <string name="tasks_owner">поиск ID ЭлО</string>
+    <string name="tasks_participants">количество заданий в ЭлО</string>
+    <string name="tasks_progress">прогресс юзеров в ЭлО</string>
+    <string name="tasks_sort1">название ЭлО</string>
+    <string name="tasks_sort2">имя юзера</string>
+    <string name="tasks_sort3">id задания</string>
 </resources>

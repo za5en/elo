@@ -132,7 +132,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="65dp"
         android:layout_marginBottom="15dp"
-        android:progress="65"
+        android:progress="0"
         app:layout_constraintBottom_toTopOf="@+id/continueElo"
         app:layout_constraintStart_toStartOf="parent" />
 

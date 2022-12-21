@@ -6,6 +6,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".admin.profile.reports">
 
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="48dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back_button" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/reports"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintStart_toEndOf="@id/backButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/r_users"
+        android:layout_width="336dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/buttons"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/r_users"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.351" />
+
+
+    <Button
+        android:id="@+id/r_elo"
+        android:layout_width="336dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="35dp"
+        android:backgroundTint="@color/buttons"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/r_elo"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/r_users"
+        app:layout_constraintVertical_bias="0.484" />
+
+    <Button
+        android:id="@+id/r_tasks"
+        android:layout_width="336dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="35dp"
+        android:backgroundTint="@color/buttons"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/r_tasks"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/r_elo" />
+
     <Button
         android:id="@+id/db_copy"
         android:layout_width="336dp"
@@ -18,8 +90,8 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.957" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

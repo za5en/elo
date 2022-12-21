@@ -74,6 +74,7 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!--
         <ImageButton
             android:id="@+id/password_reset"
             android:layout_width="wrap_content"
@@ -87,7 +88,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/password"
             app:srcCompat="@drawable/password_reset" />
-
+-->
         <ImageButton
             android:id="@+id/log_in"
             android:layout_width="match_parent"
@@ -96,10 +97,10 @@
             android:background="@android:color/transparent"
             android:contentDescription="@string/login"
             android:minHeight="48dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/password_reset"
+            app:layout_constraintTop_toBottomOf="@id/password"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/login_button" />
 
@@ -113,7 +114,7 @@
             android:minHeight="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/password_reset"
+            app:layout_constraintTop_toBottomOf="@id/password"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/registration" />
 

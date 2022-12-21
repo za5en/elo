@@ -42,6 +42,9 @@
         <activity android:name=".admin.adminSearch"
             android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".admin.profile.reports"/>
+        <activity android:name=".admin.profile.report.rElo"/>
+        <activity android:name=".admin.profile.report.rTasks"/>
+        <activity android:name=".admin.profile.report.rUsers"/>
         <activity android:name=".admin.profile.manageUsers"/>
         <activity android:name=".admin.profile.manage.changeInfo"/>
         <activity android:name=".admin.profile.manage.changeTags"/>

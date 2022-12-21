@@ -44,6 +44,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String USER_TAG3 = "user_tag3";
     public static final String ELO_ID = "elo_id";
     public static final String ELO_NAME = "elo_name";
+    public static final String ELO_SHORT_INFO = "elo_short_info";
     public static final String ELO_INFO = "elo_info";
     public static final String ELO_AVAILABILITY = "elo_availability";
     public static final String ELO_OWNER_ID = "elo_owner_id";
@@ -155,6 +156,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 ELO_ID+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "+
                 ELO_NAME+" text UNIQUE NOT NULL, "+
                 ELO_INFO+" text, "+
+                ELO_SHORT_INFO+" text, "+
                 ELO_AVAILABILITY+" INTEGER NOT NULL DEFAULT 1, "+
                 ELO_OWNER_ID+" int NOT NULL, "+
                 ELO_TAG1+" text, "+
@@ -206,7 +208,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
         sqLiteDatabase.execSQL(
         "INSERT INTO "+DB_USERS+" ("+USER_TYPE+", "+USER_NAME+", "+USER_SURNAME+", "+USER_EMAIL+", "+USER_PASSWORD+", "+USER_LEVEL+", "+USER_TAG1+", "+USER_TAG2+", "+USER_TAG3+") "+
-        "VALUES ('Admin','Admin','Name','admin@gmail.ru','123admin321', 'senior', 'другое'), " +
+        "VALUES ('Admin','Admin','Name','admin@gmail.ru','123admin321', 'senior', 'sql', 'qa', 'другое'), " +
                         "('Mentor','Mentor','Name','mail1@gmail.ru','mentSj17aks','senior', 'c#', 'java', 'sql'), " +
                         "('Mentor','Рустам','Авангард','mail3@gmail.ru','111111111','senior', 'sql', 'c#', 'другое'), " +
                         "('Mentor','Фёдор','Власов','mail4@gmail.ru','qska1jmsandc_','senior', 'java', 'front', 'c#'), " +
@@ -220,32 +222,40 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         "('Employee','Alex','Kiselev','kiselex@mail.ru','12osoiisnczxc!','junior', 'front', 'react', 'c#'), " +
                         "('Employee','RUSTAM','GPOWER','rustamg23@mail.ru','qwertyuiop','junior', 'back', 'java', 'python'), " +
                         "('Employee','Богдан','Бельский','bogdan@mail.ru','dandan111','junior', 'front', 'java', 'sql'), " +
-                        "('Employee','Worker','Name','empl25@mail.ru','emplPj225qlzv','junior', 'java', 'sql', 'python');"
+                        "('Employee','Worker','Name','empl26@mail.ru','emplPj225qlzv','junior', 'java', 'sql', 'python');"
         );
         sqLiteDatabase.execSQL(
-        "INSERT INTO "+DB_ELO+" ("+ELO_NAME+", "+ELO_INFO+", "+ELO_AVAILABILITY+", "+ELO_OWNER_ID+", "+ELO_TAG1+", "+ELO_TAG2+", "+ELO_TAG3+") "+
+        "INSERT INTO "+DB_ELO+" ("+ELO_NAME+","+ELO_SHORT_INFO+", "+ELO_INFO+", "+ELO_AVAILABILITY+", "+ELO_OWNER_ID+", "+ELO_TAG1+", "+ELO_TAG2+", "+ELO_TAG3+") "+
         "VALUES ('Java для Senior', " +
+                "'Курс Java для Senior-разработчиков', " +
                 "'Курс Java для Senior-разработчиков\nСборник секретиков, недоступных и непонятных обычным девелоперам', " +
                 "1, 3, 'java', 'back', 'sql'), " +
                 "('Java для начинающих', " +
+                "'Курс Java для Junior-разработчиков', " +
                 "'Курс Java для Junior-разработчиков\nОтлично подойдет для развития навыков работы с backendом на Java, в первую очередь для работы с сервером', " +
                 "0, 2, 'java', 'back', 'sql'), " +
                 "('Нейросети в Python', " +
+                "'Основы машинного обучения на Python', " +
                 "'Основы машинного обучения на Python, создание и обучение нейросетей, алгоритмы работы', " +
                 "1, 3, 'python', 'back', 'другое'), " +
                 "('Основы Python', " +
+                "'Базовые знания Python. Основы синтаксиса', " +
                 "'Базовые знания Python\nОсновы синтаксиса и другие важные моменты', " +
                 "0, 3, 'python', 'back', 'другое'), " +
                 "('C# для начинающих', " +
+                "'Курс по C# для начинающих разработчиков', " +
                 "'Этот курс поможет освоить C# так, чтобы быть в нём, как рыба в воде, а также подтянуть знания в области ООП', " +
                 "1, 2, 'c#', 'back', 'другое'), " +
                 "('Front&back', " +
+                "'Курс Java для Junior-разработчиков', " +
                 "'Важные моменты связи фронта с бэком с точки зрения фронтэндера: как избежать конфликтов', " +
                 "1, 4, 'front', 'react', 'back'), " +
                 "('SQL for juniors', " +
+                "'SQL для самых маленьких и не только', " +
                 "'Азы работы с базами данных, все важные аспекты написания и обработки запросов, особенности работы с PostgreSQL', " +
                 "0, 2, 'sql', 'другое', 'back'), " +
                 "('FRONTEND FOR JUNIORS', " +
+                "'база фронтенда в одном ЭлО', " +
                 "'лучший курс для укрепления основных навыков работы с фронтендом\nплюс вы научитесь связывать фронт с бэком (а это самое главное)', " +
                 "0, 2, 'front', 'java', 'react');"
         );

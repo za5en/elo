@@ -90,6 +90,7 @@ public class register extends AppCompatActivity {
                     contentValues.put(DatabaseHelper.USER_TAG3, tag3);
                     db.insert(DatabaseHelper.DB_USERS, null, contentValues);
                     Intent intent = new Intent(context, workerMain.class);
+                    Toast.makeText(context, "Вы успешно зарегистрированы", Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                 }
                 cursor.close();

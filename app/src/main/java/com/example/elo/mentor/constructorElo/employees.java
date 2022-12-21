@@ -72,9 +72,19 @@ public class employees extends AppCompatActivity {
     private void initListViewData()  {
         employees m = new employees("Михаил Михайлович","senior", false);
         employees r = new employees("Рустам Авангард","senior",false);
-        employees s = new employees("Дима Перевозчиков","middle", false);
+        employees f = new employees("Фёдор Власов","senior", false);
+        employees v = new employees("Виталий Новый","senior", false);
+        employees a = new employees("Артём Коновалов","middle", false);
+        employees d = new employees("Дима Перевозчиков","middle", false);
+        employees s = new employees("Самвел Семенов","junior", false);
+        employees mx = new employees("Максим Максим","junior", false);
+        employees k = new employees("Кирилл Широбоков","junior", false);
+        employees ak = new employees("Alex Kiselev","junior", false);
+        employees rg = new employees("RUSTAM GPOWER","junior", false);
+        employees b = new employees("Богдан Бельский","junior", false);
+        employees w = new employees("Worker Name","junior", false);
 
-        employees[] users = new employees[]{m, r, s};
+        employees[] users = new employees[]{r, f, m, v, a, d, s, mx, k, ak, rg, b, w};
         ArrayAdapter<employees> arrayAdapter
                 = new ArrayAdapter<employees>(this, android.R.layout.simple_list_item_multiple_choice, users);
 

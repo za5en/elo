@@ -2,6 +2,8 @@ package com.example.elo.mentor;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -12,6 +14,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.elo.DatabaseHelper;
 import com.example.elo.R;
 import com.example.elo.adapter.eloAdapter;
 import com.example.elo.adapter.tagSearchAdapter;
@@ -32,10 +35,22 @@ public class search extends AppCompatActivity {
     static List<Elos> allEloList = new ArrayList<>();
     List<Elos> filter = new ArrayList<>();
 
+    SQLiteDatabase db;
+    DatabaseHelper dbHelper;
+    String[] columns = {null};
+    String selection = null;
+    String[] selectionArgs = null;
+
+    int userId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
+
+        userId = getIntent().getIntExtra("userId", 2);
+        dbHelper = new DatabaseHelper(context);
+        db = dbHelper.getWritableDatabase();
 
         List<tagCategory> categoryList = new ArrayList<>();
         categoryList.add(new tagCategory(1, "front"));
@@ -66,25 +81,48 @@ public class search extends AppCompatActivity {
         fourth.add(new tagCategory(2, "react"));
         fourth.add(new tagCategory(3, "back"));
 
-        eloList.clear();
-        allEloList.clear();
-        eloList.add(new Elos(1, "Java для Senior",
-                "Курс Java\nдля Senior-разработчиков",
-                "Курс Java для Senior-разработчиков\nСборник секретиков, недоступных и непонятных обычным девелоперам",
-                "Java для Senior", 4, first, false));
-        eloList.add(new Elos(2, "Нейросети в Python",
-                "Основы машинного обучения\nна Python\n",
-                "Основы машинного обучения на Python, создание и обучение нейросетей, алгоритмы работы",
-                "Нейросети в Python", 5, second, false));
-        eloList.add(new Elos(3, "Основы Python",
-                "Базовые знания Python\nОсновы синтаксиса\n",
-                "Базовые знания Python.\nОсновы синтаксиса и другие важные моменты",
-                "Основы Python", 5, second, true));
-        eloList.add(new Elos(4, "Front&back",
-                "Важные моменты\nсвязи фронта с бэком\n",
-                "Важные моменты связи фронта с бэком с точки зрения фронтэндера: как избежать конфликтов",
-                "Front&back", 1, fourth, false));
+        int[] eloId = new int[20];
+        String[] eloName = new String[20];
+        String[] eloShortInfo = new String[20];
+        String[] eloInfo = new String[20];
+        int[] eloOwnerId = new int[20];
+        String[] eloTag1 = new String[20];
+        String[] eloTag2 = new String[20];
+        String[] eloTag3 = new String[20];
 
+        int k = 0;
+        columns = new String[] { "elo_id", "elo_name", "elo_short_info", "elo_info", "elo_owner_id", "elo_tag1", "elo_tag2", "elo_tag3" };
+        Cursor cursor = db.query(DatabaseHelper.DB_ELO, columns, null, null, null, null, null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
+                    eloId[k] = cursor.getInt(0);
+                    eloName[k] = cursor.getString(1);
+                    eloShortInfo[k] = cursor.getString(2);
+                    eloInfo[k] = cursor.getString(3);
+                    eloOwnerId[k] = cursor.getInt(4);
+                    eloTag1[k] = cursor.getString(5);
+                    eloTag2[k] = cursor.getString(6);
+                    eloTag3[k++] = cursor.getString(7);
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+        }
+
+        eloList.clear();
+        for (int i = 0; i < k; i++) {
+            if (eloOwnerId[k] != userId) {
+                if (i == 0 || i == 2 || i == 3 || i == 5) {
+                    eloList.add(new Elos(eloId[i], eloName[i],
+                            eloShortInfo[i],
+                            eloInfo[i],
+                            eloName[i], i + 1, false, userId,
+                            eloTag1[i], eloTag2[i], eloTag3[i]));
+                }
+            }
+        }
+
+        allEloList.clear();
         allEloList.addAll(eloList);
         setEloRecycler(eloList);
 
@@ -123,6 +161,7 @@ public class search extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(context, com.example.elo.mentor.profile.class);
                 finish();
+                userId = getIntent().getIntExtra("userId", 2);
                 startActivity(intent);
             }
         });
@@ -132,6 +171,7 @@ public class search extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(context, com.example.elo.mentor.notifications.class);
                 finish();
+                userId = getIntent().getIntExtra("userId", 2);
                 startActivity(intent);
             }
         });
@@ -141,6 +181,7 @@ public class search extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(context, MainActivity.class);
                 finish();
+                userId = getIntent().getIntExtra("userId", 2);
                 startActivity(intent);
             }
         });

@@ -4,11 +4,15 @@ public class AcceptTask {
     String userName;
     String userTask;
     int id;
+    int eloId;
+    int userId;
 
-    public AcceptTask(String userName, String userTask, int id)  {
+    public AcceptTask(String userName, String userTask, int id, int eloId, int userId)  {
         this.userName = userName;
         this.userTask = userTask;
         this.id = id;
+        this.eloId = eloId;
+        this.userId = userId;
     }
 
     public int getId() {
@@ -33,5 +37,21 @@ public class AcceptTask {
 
     public void setUserTask(String userTask) {
         this.userTask = userTask;
+    }
+
+    public int getEloId() {
+        return eloId;
+    }
+
+    public void setEloId(int eloId) {
+        this.eloId = eloId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

@@ -36,10 +36,15 @@ public class workerSearch extends AppCompatActivity {
     static List<Elos> allEloList = new ArrayList<>();
     List<Elos> filter = new ArrayList<>();
 
+    int userId, id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
+
+        userId = getIntent().getIntExtra("userId", 15);
+        id = 2;
 
         List<tagCategory> categoryList = new ArrayList<>();
         categoryList.add(new tagCategory(1, "front"));
@@ -75,19 +80,19 @@ public class workerSearch extends AppCompatActivity {
         eloList.add(new Elos(1, "Java для начинающих",
                 "Курс Java\nдля Junior-разработчиков",
                 "Курс Java для Junior-разработчиков\nОтлично подойдет для развития навыков работы с backend'ом на Java, в первую очередь для работы с сервером",
-                "Java для начинающих", 2, first, true));
+                "Java для начинающих", 2, true, 15, "c#", "c#", "c#"));
         eloList.add(new Elos(2, "C# для начинающих",
                 "Курс по C#\nдля начинающих разработчиков\n",
                 "Этот курс поможет освоить C# так, чтобы быть в нём, как рыба в воде, а также подтянуть знания в области ООП",
-                "C# для начинающих", 2, second, false));
+                "C# для начинающих", 2, false, 15, "c#", "c#", "c#"));
         eloList.add(new Elos(3, "SQL for juniors",
                 "SQL для самых маленьких\nи не только\n",
                 "Азы работы с базами данных, все важные аспекты написания и обработки запросов, особенности работы с PostgreSQL",
-                "SQL for juniors", 7, third, true));
+                "SQL for juniors", 7, true, 15, "c#", "c#", "c#"));
         eloList.add(new Elos(4, "FRONTEND FOR JUNIORS",
                 "база фронтенда\nв одном ЭлО\n",
                 "лучший курс для укрепления основных навыков работы с фронтендом\nплюс вы научитесь связывать фронт с бэком (а это самое главное)",
-                "FRONTEND FOR JUNIORS", 1, fourth, true));
+                "FRONTEND FOR JUNIORS", 1, true, 15, "c#", "c#", "c#"));
 
         allEloList.addAll(eloList);
         setEloRecycler(eloList);
@@ -126,6 +131,7 @@ public class workerSearch extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, workerProfile.class);
+                intent.putExtra("id", id);
                 finish();
                 startActivity(intent);
             }

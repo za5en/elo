@@ -39,10 +39,15 @@ public class adminProfile extends AppCompatActivity {
     static List<EloProfile> eloList = new ArrayList<>();
     static eloWorkAdapter eloWorkerAdapter;
     static List<EloProfile> eloWorkerList = new ArrayList<>();
+
+    int userId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_profile);
+
+        userId = getIntent().getIntExtra("userId", 1);
 
         create = findViewById(R.id.create_elo);
         home = findViewById(R.id.homeButton);
@@ -60,15 +65,15 @@ public class adminProfile extends AppCompatActivity {
         eloList.add(new EloProfile(1, "Java для начинающих",
                 "Курс Java\nдля Junior-разработчиков",
                 "Курс Java для Junior-разработчиков\nОтлично подойдет для развития навыков работы с backend'ом на Java, в первую очередь для работы с сервером",
-                "Java для начинающих", 2, "65%"));
+                "Java для начинающих", 2, "0%", userId, "c#", "c#", "c#"));
         eloList.add(new EloProfile(2, "C# для начинающих",
                 "Курс по C#\nдля начинающих разработчиков\n",
                 "Этот курс поможет освоить C# так, чтобы быть в нём, как рыба в воде, а также подтянуть знания в области ООП",
-                "C# для начинающих", 2, "65%"));
+                "C# для начинающих", 2, "0%", userId, "c#", "c#", "c#"));
         eloList.add(new EloProfile(3, "SQL for juniors",
                 "SQL для самых маленьких\nи не только\n",
                 "Азы работы с базами данных, все важные аспекты написания и обработки запросов, особенности работы с PostgreSQL",
-                "SQL for juniors", 6, "65%"));
+                "SQL for juniors", 6, "0%", userId, "c#", "c#", "c#"));
 
         setEloRecycler(eloList);
 
@@ -76,19 +81,19 @@ public class adminProfile extends AppCompatActivity {
         eloWorkerList.add(new EloProfile(1, "Java для Senior",
                 "Курс Java\nдля Senior-разработчиков",
                 "Курс Java для Senior-разработчиков\nСборник секретиков, недоступных и непонятных обычным девелоперам",
-                "Java для Senior", 4, "65%"));
+                "Java для Senior", 4, "0%", userId, "c#", "c#", "c#"));
         eloWorkerList.add(new EloProfile(2, "Нейросети в Python",
                 "Основы машинного обучения\nна Python\n",
                 "Основы машинного обучения на Python, создание и обучение нейросетей, алгоритмы работы",
-                "Нейросети в Python", 5, "65%"));
+                "Нейросети в Python", 5, "0%", userId, "c#", "c#", "c#"));
         eloWorkerList.add(new EloProfile(3, "Основы Python",
                 "Базовые знания Python\nОсновы синтаксиса\n",
                 "Базовые знания Python.\nОсновы синтаксиса и другие важные моменты",
-                "Основы Python", 5, "65%"));
+                "Основы Python", 5, "0%", userId, "c#", "c#", "c#"));
         eloWorkerList.add(new EloProfile(4, "Front&back",
                 "Важные моменты\nсвязи фронта с бэком\n",
                 "Важные моменты связи фронта с бэком с точки зрения фронтэндера: как избежать конфликтов",
-                "Front&back", 1, "65%"));
+                "Front&back", 1, "0%", userId, "c#", "c#", "c#"));
 
         setEloWorkerRecycler(eloWorkerList);
 
@@ -96,6 +101,7 @@ public class adminProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, adminConstructor.class);
+                intent.putExtra("userId", userId);
                 startActivity(intent);
             }
         });
@@ -105,6 +111,7 @@ public class adminProfile extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(context, adminMain.class);
                 finish();
+                intent.putExtra("userId", userId);
                 startActivity(intent);
             }
         });
@@ -113,6 +120,7 @@ public class adminProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, adminSearch.class);
+                intent.putExtra("userId", userId);
                 startActivity(intent);
             }
         });
@@ -121,6 +129,7 @@ public class adminProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, adminNotifications.class);
+                intent.putExtra("userId", userId);
                 startActivity(intent);
             }
         });
@@ -209,18 +218,18 @@ public class adminProfile extends AppCompatActivity {
                     startActivity(intent);
                     return true;
                 }
-                else if (item.getItemId() == R.id.menu5)
-                {
-                    Intent intent = new Intent(context, workerMain.class);
-                    startActivity(intent);
-                    return true;
-                }
-                else if (item.getItemId() == R.id.menu6)
-                {
-                    Intent intent = new Intent(context, MainActivity.class);
-                    startActivity(intent);
-                    return true;
-                }
+//                else if (item.getItemId() == R.id.menu5)
+//                {
+//                    Intent intent = new Intent(context, workerMain.class);
+//                    startActivity(intent);
+//                    return true;
+//                }
+//                else if (item.getItemId() == R.id.menu6)
+//                {
+//                    Intent intent = new Intent(context, MainActivity.class);
+//                    startActivity(intent);
+//                    return true;
+//                }
                 else
                     return false;
             }

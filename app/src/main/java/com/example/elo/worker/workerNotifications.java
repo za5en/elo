@@ -23,6 +23,8 @@ public class workerNotifications extends AppCompatActivity {
     final Context context = this;
     ImageButton settings, search, home, profile;
 
+    int userId;
+
     RecyclerView nfRecycler;
     static notificationsAdapter nfAdapter;
     static List<Notifications> nfList = new ArrayList<>();
@@ -32,31 +34,34 @@ public class workerNotifications extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notifications);
+
+        userId = getIntent().getIntExtra("userId", 15);
+
         nfList.clear();
-        nfList.add(new Notifications(1, "C# для начинающих",
-                "Выполнение задания подтверждено",
-                "Выполнение Задания 5 было подтверждено наставником",
-                "13 дек 2022 15:15",
-                "Этот курс поможет освоить C# так, чтобы быть в нём, как рыба в воде, а также подтянуть знания в области ООП",
-                false));
-        nfList.add(new Notifications(2, "Java для начинающих.\nЧасть 2",
+        nfList.add(new Notifications(1, "FRONTEND FOR JUNIORS",
                 "Появился новый доступный ЭлО",
-                "Появился новый доступный Вам для прохождения ЭлО - Java для начинающих. Часть 2, необходимый уровень - junior",
-                "13 дек 2022 15:10",
-                "Продолжение легендарного курса по Java для Junior-разработчиков\nОтлично подойдет для развития навыков работы с backend'ом на Java, в первую очередь для работы с сервером",
-                false));
-        nfList.add(new Notifications(3, "SQL for juniors",
-                "Принята заявка на вступление",
-                "Ваша заявка на вступление ЭлО SQL for juniors была принята, теперь Вы можете выполнять задания",
-                "13 дек 2022 15:08",
-                "Азы работы с базами данных, все важные аспекты написания и обработки запросов, особенности работы с PostgreSQL",
-                false));
-        nfList.add(new Notifications(4, "FRONTEND FOR JUNIORS",
-                "Уведомление о дедлайне - 24 часа",
-                "Осталось 24 часа, чтобы выполнить Задание 3 в ЭлО Front&back",
-                "13 дек 2022 15:00",
+                "Появился новый доступный Вам для прохождения ЭлО - FRONTEND FOR JUNIORS, необходимый уровень - junior",
+                "20 дек 2022 14:44",
                 "лучший курс для укрепления основных навыков работы с фронтендом\nплюс вы научитесь связывать фронт с бэком (а это самое главное)",
                 false));
+        nfList.add(new Notifications(2, "C# для начинающих",
+                "Выполнение задания подтверждено",
+                "Выполнение Задание 1 было подтверждено наставником",
+                "20 дек 2022 14:43",
+                "Этот курс поможет освоить C# так, чтобы быть в нём, как рыба в воде, а также подтянуть знания в области ООП",
+                false));
+        nfList.add(new Notifications(3, "Java для начинающих",
+                "Принята заявка на вступление",
+                "Ваша заявка на вступление ЭлО SQL for juniors была принята, теперь Вы можете выполнять задания",
+                "13 дек 2022 14:43",
+                "Курс Java для Junior-разработчиков\nОтлично подойдет для развития навыков работы с backend'ом на Java, в первую очередь для работы с сервером",
+                false));
+//        nfList.add(new Notifications(4, "FRONTEND FOR JUNIORS",
+//                "Уведомление о дедлайне - 24 часа",
+//                "Осталось 24 часа, чтобы выполнить Задание 3 в ЭлО Front&back",
+//                "13 дек 2022 15:00",
+//                "лучший курс для укрепления основных навыков работы с фронтендом\nплюс вы научитесь связывать фронт с бэком (а это самое главное)",
+//                false));
 
         allNfList.addAll(nfList);
         setNfRecycler(nfList);
@@ -70,6 +75,7 @@ public class workerNotifications extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, workerProfile.class);
+                userId = getIntent().getIntExtra("userId", 15);
                 startActivity(intent);
             }
         });
@@ -78,6 +84,7 @@ public class workerNotifications extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, workerSearch.class);
+                userId = getIntent().getIntExtra("userId", 15);
                 startActivity(intent);
             }
         });
@@ -87,6 +94,7 @@ public class workerNotifications extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(context, workerMain.class);
                 finish();
+                userId = getIntent().getIntExtra("userId", 15);
                 startActivity(intent);
             }
         });

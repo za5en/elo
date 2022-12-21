@@ -39,6 +39,8 @@ public class manageElo extends AppCompatActivity {
 
         eloDescText.setText(getIntent().getStringExtra("previewDesc"));
         eloName.setText(getIntent().getStringExtra("previewName"));
+        int eloId = getIntent().getIntExtra("id", 1);
+        int userId = getIntent().getIntExtra("userId", 2);
         name = eloName.getText().toString();
 
         List<tagCategory> categoryList = new ArrayList<>();
@@ -79,6 +81,8 @@ public class manageElo extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(context, com.example.elo.mentor.manage.pages.requests.class);
                 intent.putExtra("eloName", name);
+                intent.putExtra("eloId", eloId);
+                intent.putExtra("userId", userId);
                 startActivity(intent);
             }
         });

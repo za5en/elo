@@ -69,7 +69,7 @@ public class changeInfo extends AppCompatActivity {
 
         role = (String) userAccessLevel.getText();
 
-        if (userLevel.getText() == "сотрудник")
+        if (userAccessLevel.getText().toString().equals("сотрудник"))
         {
             eloCreated.setEnabled(false);
         }
@@ -445,9 +445,12 @@ public class changeInfo extends AppCompatActivity {
         eloCreated.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changes = true;
-                Intent intent = new Intent(context, com.example.elo.admin.profile.manage.eloCreated.class);
-                startActivity(intent);
+                if (userAccessLevel.getText().toString().equals("наставник"))
+                {
+                    changes = true;
+                    Intent intent = new Intent(context, com.example.elo.admin.profile.manage.eloCreated.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -456,6 +459,7 @@ public class changeInfo extends AppCompatActivity {
             public void onClick(View v) {
                 changes = true;
                 Intent intent = new Intent(context, com.example.elo.admin.profile.manage.eloPart.class);
+                intent.putExtra("userName", userName.getText().toString());
                 startActivity(intent);
             }
         });

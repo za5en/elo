@@ -1,7 +1,10 @@
 package com.example.elo.mentor.manage.pages;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
 import android.os.Bundle;
@@ -23,6 +26,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.elo.DatabaseHelper;
 import com.example.elo.R;
 import com.example.elo.adapter.acceptTaskAdapter;
 import com.example.elo.adapter.eloAdapter;
@@ -38,6 +42,7 @@ import java.util.List;
 public class requests extends AppCompatActivity {
     RecyclerView requestsRecycler;
     static requestsAdapter requestsAdapter;
+    final Context context = this;
 
     static List<Request> users = new ArrayList<>();
     static List<Request> allUsers = new ArrayList<>();

@@ -31,7 +31,7 @@ public class workerProfile extends AppCompatActivity {
 
     final Context context = this;
     ImageButton home, search, notifications, settingsButton;
-
+    int userId, id;
     RecyclerView eloRecycler, typeRecycler;
     typeAdapter typeAdapter;
     static eloWorkAdapter eloAdapter;
@@ -40,6 +40,9 @@ public class workerProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.worker_profile);
+
+        userId = getIntent().getIntExtra("userId", 15);
+        id = getIntent().getIntExtra("id", 0);
 
         home = findViewById(R.id.homeButton);
         settingsButton = findViewById(R.id.settingsButton);
@@ -55,23 +58,33 @@ public class workerProfile extends AppCompatActivity {
 
         setTypesRecycler(typesList);
 
-        eloList.clear();
-        eloList.add(new EloProfile(1, "Java для начинающих",
-                "Курс Java\nдля Junior-разработчиков",
-                "Курс Java для Junior-разработчиков\nОтлично подойдет для развития навыков работы с backend'ом на Java, в первую очередь для работы с сервером",
-                "Java для начинающих", 2, "65%"));
-        eloList.add(new EloProfile(2, "C# для начинающих",
-                "Курс по C#\nдля начинающих разработчиков\n",
-                "Этот курс поможет освоить C# так, чтобы быть в нём, как рыба в воде, а также подтянуть знания в области ООП",
-                "C# для начинающих", 2, "65%"));
-        eloList.add(new EloProfile(3, "SQL for juniors",
-                "SQL для самых маленьких\nи не только\n",
-                "Азы работы с базами данных, все важные аспекты написания и обработки запросов, особенности работы с PostgreSQL",
-                "SQL for juniors", 6, "65%"));
-        eloList.add(new EloProfile(4, "FRONTEND FOR JUNIORS",
-                "база фронтенда\nв одном ЭлО\n",
-                "лучший курс для укрепления основных навыков работы с фронтендом\nплюс вы научитесь связывать фронт с бэком (а это самое главное)",
-                "FRONTEND FOR JUNIORS", 3, "65%"));
+        if (id == 0) {
+            eloList.clear();
+        }
+        else {
+            eloList.clear();
+            eloList.add(new EloProfile(1, "C# для начинающих",
+                    "Курс по C#\nдля начинающих разработчиков\n",
+                    "Этот курс поможет освоить C# так, чтобы быть в нём, как рыба в воде, а также подтянуть знания в области ООП",
+                    "C# для начинающих", 2, "0%", userId, "c#", "c#", "c#"));
+        }
+//        eloList.clear();
+//        eloList.add(new EloProfile(1, "Java для начинающих",
+//                "Курс Java\nдля Junior-разработчиков",
+//                "Курс Java для Junior-разработчиков\nОтлично подойдет для развития навыков работы с backend'ом на Java, в первую очередь для работы с сервером",
+//                "Java для начинающих", 2, "65%", userId));
+//        eloList.add(new EloProfile(2, "C# для начинающих",
+//                "Курс по C#\nдля начинающих разработчиков\n",
+//                "Этот курс поможет освоить C# так, чтобы быть в нём, как рыба в воде, а также подтянуть знания в области ООП",
+//                "C# для начинающих", 2, "65%", userId));
+//        eloList.add(new EloProfile(3, "SQL for juniors",
+//                "SQL для самых маленьких\nи не только\n",
+//                "Азы работы с базами данных, все важные аспекты написания и обработки запросов, особенности работы с PostgreSQL",
+//                "SQL for juniors", 6, "65%", userId));
+//        eloList.add(new EloProfile(4, "FRONTEND FOR JUNIORS",
+//                "база фронтенда\nв одном ЭлО\n",
+//                "лучший курс для укрепления основных навыков работы с фронтендом\nплюс вы научитесь связывать фронт с бэком (а это самое главное)",
+//                "FRONTEND FOR JUNIORS", 3, "65%", userId));
 
         setEloRecycler(eloList);
 
@@ -164,18 +177,18 @@ public class workerProfile extends AppCompatActivity {
                     dialBuilder.create().show();
                     return true;
                 }
-                else if (item.getItemId() == R.id.menu3)
-                {
-                    Intent intent = new Intent(context, MainActivity.class);
-                    startActivity(intent);
-                    return true;
-                }
-                else if (item.getItemId() == R.id.menu4)
-                {
-                    Intent intent = new Intent(context, adminMain.class);
-                    startActivity(intent);
-                    return true;
-                }
+//                else if (item.getItemId() == R.id.menu3)
+//                {
+//                    Intent intent = new Intent(context, MainActivity.class);
+//                    startActivity(intent);
+//                    return true;
+//                }
+//                else if (item.getItemId() == R.id.menu4)
+//                {
+//                    Intent intent = new Intent(context, adminMain.class);
+//                    startActivity(intent);
+//                    return true;
+//                }
                 else
                     return false;
             }

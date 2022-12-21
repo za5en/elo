@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/linearLayout0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="48dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/back"
+            app:srcCompat="@drawable/back_button" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/r_tasks"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="30sp">
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:layout_height="60dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tasks_type"
+                android:labelFor="@+id/login" />
+
+            <EditText
+                android:id="@+id/login"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/tasks_type"
+                android:inputType="text"
+                android:textColor="@android:color/black"
+                android:importantForAutofill="no" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_height="60dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tasks_type_add"
+            android:labelFor="@+id/login1" />
+
+        <EditText
+            android:id="@+id/login1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/tasks_type_add"
+            android:inputType="text"
+            android:textColor="@android:color/black"
+            android:importantForAutofill="no" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
+        <Button
+            android:id="@+id/btnSort"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sort"
+            android:backgroundTint="@color/buttons"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@color/black">
+        </Button>
+        <RadioGroup
+            android:id="@+id/rgSort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:id="@+id/rAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/tasks_sort1">
+            </RadioButton>
+            <RadioButton
+                android:id="@+id/rElo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tasks_sort2">
+            </RadioButton>
+            <RadioButton
+                android:id="@+id/rTask"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tasks_sort3">
+            </RadioButton>
+        </RadioGroup>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnAll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/all_lines"
+        android:backgroundTint="@color/buttons"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/black"
+        android:layout_margin="10dp">
+    </Button>
+
+    <Button
+        android:id="@+id/btnOwner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tasks_owner"
+        android:backgroundTint="@color/buttons"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/black"
+        android:layout_margin="10dp">
+    </Button>
+
+    <Button
+        android:id="@+id/btnPart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tasks_participants"
+        android:backgroundTint="@color/buttons"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/black"
+        android:layout_margin="10dp">
+    </Button>
+
+    <Button
+        android:id="@+id/btnProgress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tasks_progress"
+        android:backgroundTint="@color/buttons"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/black"
+        android:layout_margin="10dp">
+    </Button>
+</LinearLayout>

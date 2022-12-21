@@ -32,6 +32,8 @@ public class eloCreated extends AppCompatActivity {
     static List<EloProfile> allEloList = new ArrayList<>();
     static List<DeleteIcons> iconsList = new ArrayList<>();
 
+    int userId;
+
     ImageButton back;
 
     @Override
@@ -39,19 +41,21 @@ public class eloCreated extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.elo_created);
 
+        userId = getIntent().getIntExtra("userId", 2);
+
         eloList.clear();
         eloList.add(new EloProfile(1, "Java для начинающих",
                 "Курс Java для\nJunior-разработчиков",
                 "Курс Java для Junior-разработчиков\nОтлично подойдет для развития навыков работы с backend'ом на Java, в первую очередь для работы с сервером",
-                "Java для начинающих", 2, "65%"));
+                "Java для начинающих", 2, "0%", userId, "c#", "c#", "c#"));
         eloList.add(new EloProfile(2, "C# для начинающих",
                 "Курс по C#\nдля начинающих",
                 "Этот курс поможет освоить C# так, чтобы быть в нём, как рыба в воде, а также подтянуть знания в области ООП",
-                "C# для начинающих", 2, "65%"));
+                "C# для начинающих", 2, "0%", userId, "c#", "c#", "c#"));
         eloList.add(new EloProfile(3, "SQL for juniors",
                 "SQL для самых маленьких\nи не только",
                 "Азы работы с базами данных, все важные аспекты написания и обработки запросов, особенности работы с PostgreSQL",
-                "SQL for juniors", 6, "65%"));
+                "SQL for juniors", 6, "0%", userId, "c#", "c#", "c#"));
 
         allEloList.addAll(eloList);
         setEloRecycler(eloList);

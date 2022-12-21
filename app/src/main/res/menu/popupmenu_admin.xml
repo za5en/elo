@@ -14,11 +14,5 @@
         <item
             android:id="@+id/menu4"
             android:title="@string/reports"/>
-        <item
-            android:id="@+id/menu5"
-            android:title="@string/acc_swap"/>
-        <item
-            android:id="@+id/menu6"
-            android:title="@string/acc_swap"/>
     </group>
 </menu>

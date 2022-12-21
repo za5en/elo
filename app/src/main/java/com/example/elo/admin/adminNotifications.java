@@ -23,6 +23,8 @@ public class adminNotifications extends AppCompatActivity {
     final Context context = this;
     ImageButton back, settings, search, home, profile;
 
+    int userId;
+
     RecyclerView nfRecycler;
     static notificationsAdapter nfAdapter;
     static List<Notifications> nfList = new ArrayList<>();
@@ -33,29 +35,31 @@ public class adminNotifications extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notifications);
 
+        userId = getIntent().getIntExtra("userId", 1);
+
         nfList.clear();
-        nfList.add(new Notifications(1, "Java для начинающих",
+        nfList.add(new Notifications(1, "C# для начинающих",
                 "Сотрудник выполнил задание",
-                "Сотрудник RUSTAM выполнил Задание 1 в ЭлО Java для начинающих",
-                "13 дек 2022 15:23",
+                "Сотрудник Worker Name выполнил Задание 1 в ЭлО C# для начинающих",
+                "20 дек 2022 14:42",
                 "Курс Java для Junior-разработчиков\nОтлично подойдет для развития навыков работы с backend'ом на Java, в первую очередь для работы с сервером",
                 false));
         nfList.add(new Notifications(2, "Нейросети в Python",
                 "Появился новый доступный ЭлО",
                 "Появился новый доступный Вам для прохождения ЭлО - Нейросети в Python, необходимый уровень - senior",
-                "13 дек 2022 15:09",
+                "20 дек 2022 14:42",
                 "Основы машинного обучения на Python, создание и обучение нейросетей, алгоритмы работы",
                 false));
-        nfList.add(new Notifications(3, "SQL for juniors",
+        nfList.add(new Notifications(3, "Java для начинающих",
                 "Новая заявка на вступление",
-                "Новая заявка на вступление в Ваш ЭлО SQL for juniors от Worker Name (junior)",
-                "13 дек 2022 15:00",
-                "Азы работы с базами данных, все важные аспекты написания и обработки запросов, особенности работы с PostgreSQL",
+                "Новая заявка на вступление в Ваш ЭлО Java для начинающих от Worker Name (junior)",
+                "20 дек 2022 14:41",
+                "Курс Java для Junior-разработчиков\nОтлично подойдет для развития навыков работы с backend'ом на Java, в первую очередь для работы с сервером",
                 false));
         nfList.add(new Notifications(4, "Front&back",
                 "Уведомление о дедлайне - 24 часа",
                 "Осталось 24 часа, чтобы выполнить Задание 3 в ЭлО Front&back",
-                "13 дек 2022 13:56",
+                "20 дек 2022 14:18",
                 "Важные моменты связи фронта с бэком с точки зрения фронтэндера: как избежать конфликтов",
                 false));
 
@@ -71,6 +75,7 @@ public class adminNotifications extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, adminProfile.class);
+                userId = getIntent().getIntExtra("userId", 1);
                 startActivity(intent);
             }
         });
@@ -79,6 +84,7 @@ public class adminNotifications extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, adminSearch.class);
+                userId = getIntent().getIntExtra("userId", 1);
                 startActivity(intent);
             }
         });
@@ -88,6 +94,7 @@ public class adminNotifications extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(context, adminMain.class);
                 finish();
+                userId = getIntent().getIntExtra("userId", 1);
                 startActivity(intent);
             }
         });
