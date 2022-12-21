@@ -43,25 +43,25 @@ public class notifications extends AppCompatActivity {
                 "Сотрудник Worker Name выполнил Задание 1 в ЭлО C# для начинающих",
                 "20 дек 2022 14:42",
                 "Курс Java для Junior-разработчиков\nОтлично подойдет для развития навыков работы с backend'ом на Java, в первую очередь для работы с сервером",
-                false));
+                false, userId));
         nfList.add(new Notifications(2, "Нейросети в Python",
                 "Появился новый доступный ЭлО",
                 "Появился новый доступный Вам для прохождения ЭлО - Нейросети в Python, необходимый уровень - senior",
                 "20 дек 2022 14:42",
                 "Основы машинного обучения на Python, создание и обучение нейросетей, алгоритмы работы",
-                false));
+                false, userId));
         nfList.add(new Notifications(3, "Java для начинающих",
                 "Новая заявка на вступление",
                 "Новая заявка на вступление в Ваш ЭлО Java для начинающих от Worker Name (junior)",
                 "20 дек 2022 14:41",
                 "Курс Java для Junior-разработчиков\nОтлично подойдет для развития навыков работы с backend'ом на Java, в первую очередь для работы с сервером",
-                false));
+                false, userId));
         nfList.add(new Notifications(4, "Front&back",
                 "Уведомление о дедлайне - 24 часа",
                 "Осталось 24 часа, чтобы выполнить Задание 3 в ЭлО Front&back",
                 "20 дек 2022 14:18",
                 "Важные моменты связи фронта с бэком с точки зрения фронтэндера: как избежать конфликтов",
-                false));
+                false, userId));
 
         allNfList.addAll(nfList);
         setNfRecycler(nfList);
@@ -75,7 +75,7 @@ public class notifications extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, com.example.elo.mentor.profile.class);
-                userId = getIntent().getIntExtra("userId", 2);
+                intent.putExtra("userId", userId);
                 startActivity(intent);
             }
         });
@@ -84,7 +84,7 @@ public class notifications extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, com.example.elo.mentor.search.class);
-                userId = getIntent().getIntExtra("userId", 2);
+                intent.putExtra("userId", userId);
                 startActivity(intent);
             }
         });
@@ -94,7 +94,7 @@ public class notifications extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(context, MainActivity.class);
                 finish();
-                userId = getIntent().getIntExtra("userId", 2);
+                intent.putExtra("userId", userId);
                 startActivity(intent);
             }
         });
@@ -131,30 +131,30 @@ public class notifications extends AppCompatActivity {
                 else if (item.getItemId() == R.id.menu2)
                 {
                     nfList.clear();
-                    nfList.add(new Notifications(1, "Java для начинающих",
+                    nfList.add(new Notifications(1, "C# для начинающих",
                             "Сотрудник выполнил задание",
-                            "Сотрудник RUSTAM выполнил Задание 1 в ЭлО Java для начинающих",
-                            "13 дек 2022 15:23",
+                            "Сотрудник Worker Name выполнил Задание 1 в ЭлО C# для начинающих",
+                            "20 дек 2022 14:42",
                             "Курс Java для Junior-разработчиков\nОтлично подойдет для развития навыков работы с backend'ом на Java, в первую очередь для работы с сервером",
-                            false));
+                            false, userId));
                     nfList.add(new Notifications(2, "Нейросети в Python",
                             "Появился новый доступный ЭлО",
                             "Появился новый доступный Вам для прохождения ЭлО - Нейросети в Python, необходимый уровень - senior",
-                            "13 дек 2022 15:09",
+                            "20 дек 2022 14:42",
                             "Основы машинного обучения на Python, создание и обучение нейросетей, алгоритмы работы",
-                            false));
-                    nfList.add(new Notifications(3, "SQL for juniors",
+                            false, userId));
+                    nfList.add(new Notifications(3, "Java для начинающих",
                             "Новая заявка на вступление",
-                            "Новая заявка на вступление в Ваш ЭлО SQL for juniors от Worker Name (junior)",
-                            "13 дек 2022 15:00",
-                            "Азы работы с базами данных, все важные аспекты написания и обработки запросов, особенности работы с PostgreSQL",
-                            false));
+                            "Новая заявка на вступление в Ваш ЭлО Java для начинающих от Worker Name (junior)",
+                            "20 дек 2022 14:41",
+                            "Курс Java для Junior-разработчиков\nОтлично подойдет для развития навыков работы с backend'ом на Java, в первую очередь для работы с сервером",
+                            false, userId));
                     nfList.add(new Notifications(4, "Front&back",
                             "Уведомление о дедлайне - 24 часа",
                             "Осталось 24 часа, чтобы выполнить Задание 3 в ЭлО Front&back",
-                            "13 дек 2022 13:56",
+                            "20 дек 2022 14:18",
                             "Важные моменты связи фронта с бэком с точки зрения фронтэндера: как избежать конфликтов",
-                            false));
+                            false, userId));
                     nfAdapter.notifyDataSetChanged();
                     return true;
                 }

@@ -61,6 +61,12 @@ public class profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile);
 
+        create = findViewById(R.id.create_elo);
+        home = findViewById(R.id.homeButton);
+        settingsButton = findViewById(R.id.settingsButton);
+        search = findViewById(R.id.searchButton);
+        notifications = findViewById(R.id.notificationsButton);
+
         String userName = null;
         String userSurname = null;
         String userType = null;
@@ -110,6 +116,18 @@ public class profile extends AppCompatActivity {
         cursor.close();
         userName += ' ' + userSurname;
 
+        username = findViewById(R.id.username);
+        username.setText(userName);
+
+        List<userTypes> typesList = new ArrayList<>();
+        typesList.add(new userTypes(1, userType));
+        typesList.add(new userTypes(2, userLevel));
+        typesList.add(new userTypes(3, userTag1));
+        typesList.add(new userTypes(4, userTag2));
+        typesList.add(new userTypes(5, userTag3));
+
+        setTypesRecycler(typesList);
+
         //add elo owner info
         int i = 0;
         columns = new String[] { "elo_id", "elo_name", "elo_short_info", "elo_info", "elo_tag1", "elo_tag2", "elo_tag3" };
@@ -130,6 +148,34 @@ public class profile extends AppCompatActivity {
             }
         }
         cursor.close();
+
+        eloList.clear();
+        for (int k = 0; k < i; k++) {
+            String task_count = "select count(*) from elo_tasks where elo_id = '" + eloId[k] + "';";
+            cursor = db.rawQuery(task_count, null);
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    wholeAmount = cursor.getString(0);
+                }
+                cursor.close();
+            }
+
+            task_count = "select task_id from task_progress where user_id = '"+ userId +"' and elo_id = '"+ eloId[k] +"';";
+            cursor = db.rawQuery(task_count, null);
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    userAmount = cursor.getString(0);
+                }
+                cursor.close();
+            }
+            eloList.add(new EloProfile(eloId[k], eloName[k],
+                    eloShortInfo[k],
+                    eloInfo[k],
+                    eloName[k], 2, userAmount + "/" + wholeAmount, userId,
+                    eloTag1[k], eloTag2[k], eloTag3[k]));
+        }
+
+        setEloRecycler(eloList);
 
         //add elo from relation list
         int j = 0;
@@ -166,52 +212,7 @@ public class profile extends AppCompatActivity {
             cursor.close();
         }
 
-        create = findViewById(R.id.create_elo);
-        home = findViewById(R.id.homeButton);
-        settingsButton = findViewById(R.id.settingsButton);
-        search = findViewById(R.id.searchButton);
-        notifications = findViewById(R.id.notificationsButton);
-        username = findViewById(R.id.username);
-        username.setText(userName);
-
-        List<userTypes> typesList = new ArrayList<>();
-        typesList.add(new userTypes(1, userType));
-        typesList.add(new userTypes(2, userLevel));
-        typesList.add(new userTypes(3, userTag1));
-        typesList.add(new userTypes(4, userTag2));
-        typesList.add(new userTypes(5, userTag3));
-
-        setTypesRecycler(typesList);
-
-        eloList.clear();
         eloWorkerList.clear();
-        for (int k = 0; k < i; k++) {
-            String task_count = "select count(*) from elo_tasks where elo_id = '" + eloId[k] + "';";
-            cursor = db.rawQuery(task_count, null);
-            if (cursor != null) {
-                if (cursor.moveToFirst()) {
-                    wholeAmount = cursor.getString(0);
-                }
-                cursor.close();
-            }
-
-
-            task_count = "select task_id from task_progress where user_id = '"+ userId +"' and elo_id = '"+ eloId[k] +"';";
-            cursor = db.rawQuery(task_count, null);
-            if (cursor != null) {
-                if (cursor.moveToFirst()) {
-                    userAmount = cursor.getString(0);
-                }
-                cursor.close();
-            }
-            eloList.add(new EloProfile(eloId[k], eloName[k],
-                    eloShortInfo[k],
-                    eloInfo[k],
-                    eloName[k], 2, userAmount + "/" + wholeAmount, userId,
-                    eloTag1[k], eloTag2[k], eloTag3[k]));
-        }
-
-
         for (int k = 0; k < j; k++) {
             String task_count = "select count(*) from elo_tasks where elo_id = '" + eloWorkId[k] + "';";
             cursor = db.rawQuery(task_count, null);
@@ -237,9 +238,6 @@ public class profile extends AppCompatActivity {
                     eloWorkName[k], 4, userAmount + "/" + wholeAmount, userId,
                     eloWorkTag1[k], eloWorkTag2[k], eloWorkTag3[k]));
         }
-
-
-        setEloRecycler(eloList);
 
         setEloWorkerRecycler(eloWorkerList);
 

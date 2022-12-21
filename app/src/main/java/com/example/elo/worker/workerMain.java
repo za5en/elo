@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
 import android.text.TextPaint;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.elo.DatabaseHelper;
 import com.example.elo.R;
 import com.example.elo.adapter.eloAdapter;
 import com.example.elo.adapter.tagWorkAdapter;
@@ -31,8 +34,12 @@ public class workerMain extends AppCompatActivity {
     static eloAdapter eloAdapter;
     static List<Elos> eloList = new ArrayList<>();
     static List<Elos> allEloList = new ArrayList<>();
-    int userId;
+
     ImageButton settings, search, notifications, profile, reset;
+    int userId;
+    SQLiteDatabase db;
+    DatabaseHelper dbHelper;
+    String[] columns = {null};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +47,8 @@ public class workerMain extends AppCompatActivity {
         setContentView(R.layout.worker_main);
 
         userId = getIntent().getIntExtra("userId", 15);
+        dbHelper = new DatabaseHelper(context);
+        db = dbHelper.getWritableDatabase();
 
         TextView textView = findViewById(R.id.elo);
         TextPaint paint = textView.getPaint();
@@ -66,40 +75,47 @@ public class workerMain extends AppCompatActivity {
 
         setCategoryRecycler(categoryList);
 
-        List<tagCategory> first = new ArrayList<>();
-        first.add(new tagCategory(1, "java"));
-        first.add(new tagCategory(2, "back"));
-        first.add(new tagCategory(3, "sql"));
-        List<tagCategory> second = new ArrayList<>();
-        second.add(new tagCategory(1, "C#"));
-        second.add(new tagCategory(2, "back"));
-        second.add(new tagCategory(3, "ооп"));
-        List<tagCategory> third = new ArrayList<>();
-        third.add(new tagCategory(1, "sql"));
-        third.add(new tagCategory(2, "базы данных"));
-        third.add(new tagCategory(3, "back"));
-        List<tagCategory> fourth = new ArrayList<>();
-        fourth.add(new tagCategory(1, "front"));
-        fourth.add(new tagCategory(2, "java"));
-        fourth.add(new tagCategory(3, "react"));
+        int[] eloId = new int[20];
+        String[] eloName = new String[20];
+        String[] eloShortInfo = new String[20];
+        String[] eloInfo = new String[20];
+        int[] eloOwnerId = new int[20];
+        String[] eloTag1 = new String[20];
+        String[] eloTag2 = new String[20];
+        String[] eloTag3 = new String[20];
+
+        int k = 0;
+        columns = new String[] { "elo_id", "elo_name", "elo_short_info", "elo_info", "elo_owner_id", "elo_tag1", "elo_tag2", "elo_tag3" };
+        Cursor cursor = db.query(DatabaseHelper.DB_ELO, columns, null, null, null, null, null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
+                    eloId[k] = cursor.getInt(0);
+                    eloName[k] = cursor.getString(1);
+                    eloShortInfo[k] = cursor.getString(2);
+                    eloInfo[k] = cursor.getString(3);
+                    eloOwnerId[k] = cursor.getInt(4);
+                    eloTag1[k] = cursor.getString(5);
+                    eloTag2[k] = cursor.getString(6);
+                    eloTag3[k++] = cursor.getString(7);
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+        }
+
 
         eloList.clear();
-        eloList.add(new Elos(1, "Java для начинающих",
-                "Курс Java\nдля Junior-разработчиков",
-                "Курс Java для Junior-разработчиков\nОтлично подойдет для развития навыков работы с backend'ом на Java, в первую очередь для работы с сервером",
-                "Java для начинающих", 2, true, 15, "c#", "c#", "c#"));
-        eloList.add(new Elos(2, "C# для начинающих",
-                "Курс по C#\nдля начинающих разработчиков\n",
-                "Этот курс поможет освоить C# так, чтобы быть в нём, как рыба в воде, а также подтянуть знания в области ООП",
-                "C# для начинающих", 2, false, 15, "c#", "c#", "c#"));
-        eloList.add(new Elos(3, "SQL for juniors",
-                "SQL для самых маленьких\nи не только\n",
-                "Азы работы с базами данных, все важные аспекты написания и обработки запросов, особенности работы с PostgreSQL",
-                "SQL for juniors", 7, true, 15, "c#", "c#", "c#"));
-        eloList.add(new Elos(4, "FRONTEND FOR JUNIORS",
-                "база фронтенда\nв одном ЭлО\n",
-                "лучший курс для укрепления основных навыков работы с фронтендом\nплюс вы научитесь связывать фронт с бэком (а это самое главное)",
-                "FRONTEND FOR JUNIORS", 1, true, 15, "c#", "c#", "c#"));
+        for (int i = 0; i < k; i++) {
+            if (eloOwnerId[i] != userId) {
+                if (i == 1 || i == 4 || i >= 6) {
+                    eloList.add(new Elos(eloId[i], eloName[i],
+                            eloShortInfo[i],
+                            eloInfo[i],
+                            eloName[i], i + 1, false, userId,
+                            eloTag1[i], eloTag2[i], eloTag3[i]));
+                }
+            }
+        }
 
         allEloList.addAll(eloList);
         setEloRecycler(eloList);
@@ -114,6 +130,7 @@ public class workerMain extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, workerProfile.class);
+                intent.putExtra("userId", userId);
                 startActivity(intent);
             }
         });
@@ -122,6 +139,7 @@ public class workerMain extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, workerSearch.class);
+                intent.putExtra("userId", userId);
                 startActivity(intent);
             }
         });
@@ -130,6 +148,7 @@ public class workerMain extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, workerNotifications.class);
+                intent.putExtra("userId", userId);
                 startActivity(intent);
             }
         });

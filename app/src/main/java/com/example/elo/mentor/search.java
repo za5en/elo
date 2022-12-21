@@ -38,8 +38,6 @@ public class search extends AppCompatActivity {
     SQLiteDatabase db;
     DatabaseHelper dbHelper;
     String[] columns = {null};
-    String selection = null;
-    String[] selectionArgs = null;
 
     int userId;
 
@@ -64,22 +62,6 @@ public class search extends AppCompatActivity {
         categoryList.add(new tagCategory(9, "другое"));
         categoryList.add(new tagCategory(10, "debug"));
         setCategoryRecycler(categoryList);
-
-        List<tagCategory> first = new ArrayList<>();
-        first.add(new tagCategory(1, "java"));
-        first.add(new tagCategory(2, "back"));
-        first.add(new tagCategory(3, "sql"));
-        List<tagCategory> second = new ArrayList<>();
-        second.add(new tagCategory(1, "python"));
-        second.add(new tagCategory(2, "back"));
-        List<tagCategory> third = new ArrayList<>();
-        third.add(new tagCategory(1, "c#"));
-        third.add(new tagCategory(2, "java"));
-        third.add(new tagCategory(3, "front"));
-        List<tagCategory> fourth = new ArrayList<>();
-        fourth.add(new tagCategory(1, "front"));
-        fourth.add(new tagCategory(2, "react"));
-        fourth.add(new tagCategory(3, "back"));
 
         int[] eloId = new int[20];
         String[] eloName = new String[20];
@@ -112,7 +94,7 @@ public class search extends AppCompatActivity {
         eloList.clear();
         for (int i = 0; i < k; i++) {
             if (eloOwnerId[k] != userId) {
-                if (i == 0 || i == 2 || i == 3 || i == 5) {
+                if (i == 0 || i == 2 || i == 3 || i == 5 || i > 7) {
                     eloList.add(new Elos(eloId[i], eloName[i],
                             eloShortInfo[i],
                             eloInfo[i],

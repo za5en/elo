@@ -43,16 +43,21 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.UserViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, changeInfo.class);
+                if (!userList.get(position).getUserAccessLevel().equals("Admin")) {
+                    Intent intent = new Intent(context, changeInfo.class);
 
-                intent.putExtra("userName", userList.get(position).getUsername());
-                intent.putExtra("userLevel", userList.get(position).getUserLevel());
-                intent.putExtra("userEmail", userList.get(position).getEmail());
-                intent.putExtra("userPassword", userList.get(position).getPassword());
-                intent.putExtra("id", userList.get(position).getId());
-                intent.putExtra("userAccessLevel", userList.get(position).getUserAccessLevel());
+                    intent.putExtra("userName", userList.get(position).getUsername());
+                    intent.putExtra("userLevel", userList.get(position).getUserLevel());
+                    intent.putExtra("userEmail", userList.get(position).getEmail());
+                    intent.putExtra("userPassword", userList.get(position).getPassword());
+                    intent.putExtra("changeInfoId", userList.get(position).getId());
+                    intent.putExtra("userAccessLevel", userList.get(position).getUserAccessLevel());
+                    intent.putExtra("tag1", userList.get(position).getTag1());
+                    intent.putExtra("tag2", userList.get(position).getTag2());
+                    intent.putExtra("tag3", userList.get(position).getTag3());
 
-                context.startActivity(intent);
+                    context.startActivity(intent);
+                }
             }
         });
     }

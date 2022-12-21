@@ -3,11 +3,14 @@ package com.example.elo.admin;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +18,7 @@ import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.elo.DatabaseHelper;
 import com.example.elo.R;
 import com.example.elo.adapter.eloProfileAdapter;
 import com.example.elo.adapter.eloWorkAdapter;
@@ -40,6 +44,14 @@ public class adminProfile extends AppCompatActivity {
     static eloWorkAdapter eloWorkerAdapter;
     static List<EloProfile> eloWorkerList = new ArrayList<>();
 
+    SQLiteDatabase db;
+    DatabaseHelper dbHelper;
+    String[] columns = null;
+    String selection = null;
+    String[] selectionArgs = null;
+
+    TextView username;
+
     int userId;
 
     @Override
@@ -47,53 +59,183 @@ public class adminProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_profile);
 
-        userId = getIntent().getIntExtra("userId", 1);
-
         create = findViewById(R.id.create_elo);
         home = findViewById(R.id.homeButton);
         search = findViewById(R.id.searchButton);
         notifications = findViewById(R.id.notificationsButton);
         settingsButton = findViewById(R.id.settingsButton);
 
+        userId = getIntent().getIntExtra("userId", 1);
+        dbHelper = new DatabaseHelper(context);
+        db = dbHelper.getWritableDatabase();
+
+        String userName = null;
+        String userSurname = null;
+        String userType = null;
+        String userLevel = null;
+        String userTag1 = null;
+        String userTag2 = null;
+        String userTag3 = null;
+
+        int[] eloId = new int[20];
+        String[] eloName = new String[20];
+        String[] eloShortInfo = new String[20];
+        String[] eloInfo = new String[20];
+        String[] eloTag1 = new String[20];
+        String[] eloTag2 = new String[20];
+        String[] eloTag3 = new String[20];
+
+        String wholeAmount = null, userAmount = null;
+
+        int[] eloWorkId = new int[20];
+        String[] eloWorkName = new String[20];
+        String[] eloWorkShortInfo = new String[20];
+        String[] eloWorkInfo = new String[20];
+        String[] eloWorkTag1 = new String[20];
+        String[] eloWorkTag2 = new String[20];
+        String[] eloWorkTag3 = new String[20];
+
+        //add user info
+        columns = new String[] { "user_type", "user_name", "user_surname", "user_level", "user_tag1", "user_tag2", "user_tag3" };
+        selection = "user_id = ?";
+        selectionArgs = new String[] { String.valueOf(userId) };
+        Cursor cursor = db.query(DatabaseHelper.DB_USERS, columns, selection, selectionArgs, null, null, null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                userType = cursor.getString(0);
+                userName = cursor.getString(1);
+                userSurname = cursor.getString(2);
+                userLevel = cursor.getString(3);
+                userTag1 = cursor.getString(4);
+                userTag2 = cursor.getString(5);
+                userTag3 = cursor.getString(6);
+            }
+        }
+        cursor.close();
+        userName += ' ' + userSurname;
+
+        username = findViewById(R.id.username);
+        username.setText(userName);
+
         List<userTypes> typesList = new ArrayList<>();
-        typesList.add(new userTypes(1, "Админ"));
-        typesList.add(new userTypes(2, "другое"));
+        typesList.add(new userTypes(1, userType));
+        typesList.add(new userTypes(2, userLevel));
+        typesList.add(new userTypes(3, userTag1));
+        typesList.add(new userTypes(4, userTag2));
+        typesList.add(new userTypes(5, userTag3));
 
         setTypesRecycler(typesList);
 
+        //add elo owner info
+        int i = 0;
+        columns = new String[] { "elo_id", "elo_name", "elo_short_info", "elo_info", "elo_tag1", "elo_tag2", "elo_tag3" };
+        selection = "elo_owner_id = ?";
+        selectionArgs = new String[] { String.valueOf(userId) };
+        cursor = db.query(DatabaseHelper.DB_ELO, columns, selection, selectionArgs, null, null, null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
+                    eloId[i] = cursor.getInt(0);
+                    eloName[i] = cursor.getString(1);
+                    eloShortInfo[i] = cursor.getString(2);
+                    eloInfo[i] = cursor.getString(3);
+                    eloTag1[i] = cursor.getString(4);
+                    eloTag2[i] = cursor.getString(5);
+                    eloTag3[i++] = cursor.getString(6);
+                } while (cursor.moveToNext());
+            }
+        }
+        cursor.close();
+
         eloList.clear();
-        eloList.add(new EloProfile(1, "Java для начинающих",
-                "Курс Java\nдля Junior-разработчиков",
-                "Курс Java для Junior-разработчиков\nОтлично подойдет для развития навыков работы с backend'ом на Java, в первую очередь для работы с сервером",
-                "Java для начинающих", 2, "0%", userId, "c#", "c#", "c#"));
-        eloList.add(new EloProfile(2, "C# для начинающих",
-                "Курс по C#\nдля начинающих разработчиков\n",
-                "Этот курс поможет освоить C# так, чтобы быть в нём, как рыба в воде, а также подтянуть знания в области ООП",
-                "C# для начинающих", 2, "0%", userId, "c#", "c#", "c#"));
-        eloList.add(new EloProfile(3, "SQL for juniors",
-                "SQL для самых маленьких\nи не только\n",
-                "Азы работы с базами данных, все важные аспекты написания и обработки запросов, особенности работы с PostgreSQL",
-                "SQL for juniors", 6, "0%", userId, "c#", "c#", "c#"));
+        for (int k = 0; k < i; k++) {
+            String task_count = "select count(*) from elo_tasks where elo_id = '" + eloId[k] + "';";
+            cursor = db.rawQuery(task_count, null);
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    wholeAmount = cursor.getString(0);
+                }
+                cursor.close();
+            }
+
+            task_count = "select task_id from task_progress where user_id = '"+ userId +"' and elo_id = '"+ eloId[k] +"';";
+            cursor = db.rawQuery(task_count, null);
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    userAmount = cursor.getString(0);
+                }
+                cursor.close();
+            }
+            eloList.add(new EloProfile(eloId[k], eloName[k],
+                    eloShortInfo[k],
+                    eloInfo[k],
+                    eloName[k], 2, userAmount + "/" + wholeAmount, userId,
+                    eloTag1[k], eloTag2[k], eloTag3[k]));
+        }
 
         setEloRecycler(eloList);
 
+        //add elo from relation list
+        int j = 0;
+        columns = new String[] { "elo_id" };
+        selection = "user_id = ?";
+        selectionArgs = new String[] { String.valueOf(userId) };
+        cursor = db.query(DatabaseHelper.DB_REL_LIST, columns, selection, selectionArgs, null, null, null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
+                    eloWorkId[j++] = cursor.getInt(0);
+                } while (cursor.moveToNext());
+            }
+        }
+        cursor.close();
+
+        columns = new String[] { "elo_name", "elo_short_info", "elo_info", "elo_tag1", "elo_tag2", "elo_tag3" };
+        selection = "elo_id = ?";
+        for (int k = 0; k < j; k++) {
+            selectionArgs = new String[] { String.valueOf(eloWorkId[k]) };
+            cursor = db.query(DatabaseHelper.DB_ELO, columns, selection, selectionArgs, null, null, null);
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    do {
+                        eloWorkName[k] = cursor.getString(0);
+                        eloWorkShortInfo[k] = cursor.getString(1);
+                        eloWorkInfo[k] = cursor.getString(2);
+                        eloWorkTag1[k] = cursor.getString(3);
+                        eloWorkTag2[k] = cursor.getString(4);
+                        eloWorkTag3[k] = cursor.getString(5);
+                    } while (cursor.moveToNext());
+                }
+            }
+            cursor.close();
+        }
+
         eloWorkerList.clear();
-        eloWorkerList.add(new EloProfile(1, "Java для Senior",
-                "Курс Java\nдля Senior-разработчиков",
-                "Курс Java для Senior-разработчиков\nСборник секретиков, недоступных и непонятных обычным девелоперам",
-                "Java для Senior", 4, "0%", userId, "c#", "c#", "c#"));
-        eloWorkerList.add(new EloProfile(2, "Нейросети в Python",
-                "Основы машинного обучения\nна Python\n",
-                "Основы машинного обучения на Python, создание и обучение нейросетей, алгоритмы работы",
-                "Нейросети в Python", 5, "0%", userId, "c#", "c#", "c#"));
-        eloWorkerList.add(new EloProfile(3, "Основы Python",
-                "Базовые знания Python\nОсновы синтаксиса\n",
-                "Базовые знания Python.\nОсновы синтаксиса и другие важные моменты",
-                "Основы Python", 5, "0%", userId, "c#", "c#", "c#"));
-        eloWorkerList.add(new EloProfile(4, "Front&back",
-                "Важные моменты\nсвязи фронта с бэком\n",
-                "Важные моменты связи фронта с бэком с точки зрения фронтэндера: как избежать конфликтов",
-                "Front&back", 1, "0%", userId, "c#", "c#", "c#"));
+        for (int k = 0; k < j; k++) {
+            String task_count = "select count(*) from elo_tasks where elo_id = '" + eloWorkId[k] + "';";
+            cursor = db.rawQuery(task_count, null);
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    wholeAmount = cursor.getString(0);
+                }
+                cursor.close();
+            }
+
+            task_count = "select task_id from task_progress where user_id = '"+ userId +"' and elo_id = '"+ eloWorkId[k] +"';";
+            cursor = db.rawQuery(task_count, null);
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    userAmount = cursor.getString(0);
+
+                }
+                cursor.close();
+            }
+            eloWorkerList.add(new EloProfile(eloWorkId[k], eloWorkName[k],
+                    eloWorkShortInfo[k],
+                    eloWorkInfo[k],
+                    eloWorkName[k], 4, userAmount + "/" + wholeAmount, userId,
+                    eloWorkTag1[k], eloWorkTag2[k], eloWorkTag3[k]));
+        }
 
         setEloWorkerRecycler(eloWorkerList);
 

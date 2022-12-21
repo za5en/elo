@@ -1,8 +1,11 @@
 package com.example.elo.admin.profile.manage;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +23,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 
+import com.example.elo.DatabaseHelper;
 import com.example.elo.R;
 import com.example.elo.mentor.profile;
 import com.example.elo.worker.workerProfile;
@@ -34,12 +38,23 @@ public class changeInfo extends AppCompatActivity {
     Button eloCreated, eloPart, tagsChange, enterProfile;
     String role;
     boolean changes;
+    SQLiteDatabase db;
+    DatabaseHelper dbHelper;
+    String[] columns = {null};
+    String selection = null;
+    String[] selectionArgs = null;
+    int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.change_info);
         changes = false;
+
+        userId = getIntent().getIntExtra("changeInfoId", 2);
+        dbHelper = new DatabaseHelper(context);
+        db = dbHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
 
         email = findViewById(R.id.email_address);
         password = findViewById(R.id.password_text);
@@ -61,15 +76,45 @@ public class changeInfo extends AppCompatActivity {
         tagsChange = findViewById(R.id.tags_change);
         enterProfile = findViewById(R.id.enter_profile);
 
-        email.setText(getIntent().getStringExtra("userEmail"));
-        password.setText(getIntent().getStringExtra("userPassword"));
-        userName.setText(getIntent().getStringExtra("userName"));
-        userLevel.setText(getIntent().getStringExtra("userLevel"));
-        userAccessLevel.setText(getIntent().getStringExtra("userAccessLevel"));
+        String type = null;
+        String name = null;
+        String surname = null;
+        String userEmail = null;
+        String userPassword = null;
+        String level = null;
+        String tag1 = null;
+        String tag2 = null;
+        String tag3 = null;
+        int k = 0;
+        columns = new String[] { "user_type", "user_name", "user_surname", "user_email", "user_password", "user_level", "user_tag1", "user_tag2", "user_tag3" };
+        selection = "user_id = ?";
+        selectionArgs = new String[] { String.valueOf(userId) };
+        Cursor cursor = db.query(DatabaseHelper.DB_USERS, columns, selection, selectionArgs, null, null, null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                type = cursor.getString(0);
+                name = cursor.getString(1);
+                surname = cursor.getString(2);
+                userEmail = cursor.getString(3);
+                userPassword = cursor.getString(4);
+                level = cursor.getString(5);
+                tag1 = cursor.getString(6);
+                tag2 = cursor.getString(7);
+                tag3 = cursor.getString(8);
+                name += ' ' + surname;
+            }
+            cursor.close();
+        }
 
-        role = (String) userAccessLevel.getText();
+        email.setText(userEmail);
+        password.setText(userPassword);
+        userName.setText(name);
+        userLevel.setText(level);
+        userAccessLevel.setText(type);
 
-        if (userAccessLevel.getText().toString().equals("сотрудник"))
+        role = type;
+
+        if (role.equals("Employee"))
         {
             eloCreated.setEnabled(false);
         }
@@ -88,8 +133,11 @@ public class changeInfo extends AppCompatActivity {
                         .setPositiveButton("Готово", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                email.setText(emailInput.getText().toString());
-                                Log.i("AlertDialog",emailInput.getText().toString());
+                                String new_email = emailInput.getText().toString();
+                                email.setText(new_email);
+                                Log.i("AlertDialog",new_email);
+                                contentValues.put(DatabaseHelper.USER_EMAIL, new_email);
+                                db.update(DatabaseHelper.DB_USERS, contentValues, "user_id = ?", new String[] { String.valueOf(userId) });
                                 changes = true;
                             }
                         })
@@ -118,8 +166,11 @@ public class changeInfo extends AppCompatActivity {
                         .setPositiveButton("Готово", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                email.setText(emailInput.getText().toString());
-                                Log.i("AlertDialog",emailInput.getText().toString());
+                                String new_email = emailInput.getText().toString();
+                                email.setText(new_email);
+                                Log.i("AlertDialog",new_email);
+                                contentValues.put(DatabaseHelper.USER_EMAIL, new_email);
+                                db.update(DatabaseHelper.DB_USERS, contentValues, "user_id = ?", new String[] { String.valueOf(userId) });
                                 changes = true;
                             }
                         })
@@ -148,8 +199,11 @@ public class changeInfo extends AppCompatActivity {
                         .setPositiveButton("Готово", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                password.setText(passwordInput.getText().toString());
-                                Log.i("AlertDialog",passwordInput.getText().toString());
+                                String new_pass = passwordInput.getText().toString();
+                                password.setText(new_pass);
+                                Log.i("AlertDialog",new_pass);
+                                contentValues.put(DatabaseHelper.USER_PASSWORD, new_pass);
+                                db.update(DatabaseHelper.DB_USERS, contentValues, "user_id = ?", new String[] { String.valueOf(userId) });
                                 changes = true;
                             }
                         })
@@ -178,8 +232,11 @@ public class changeInfo extends AppCompatActivity {
                         .setPositiveButton("Готово", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                password.setText(passwordInput.getText().toString());
-                                Log.i("AlertDialog",passwordInput.getText().toString());
+                                String new_pass = passwordInput.getText().toString();
+                                password.setText(new_pass);
+                                Log.i("AlertDialog",new_pass);
+                                contentValues.put(DatabaseHelper.USER_PASSWORD, new_pass);
+                                db.update(DatabaseHelper.DB_USERS, contentValues, "user_id = ?", new String[] { String.valueOf(userId) });
                                 changes = true;
                             }
                         })
@@ -208,8 +265,11 @@ public class changeInfo extends AppCompatActivity {
                         .setPositiveButton("Готово", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                userName.setText(nameInput.getText().toString());
-                                Log.i("AlertDialog",nameInput.getText().toString());
+                                String new_name = nameInput.getText().toString();
+                                password.setText(new_name);
+                                Log.i("AlertDialog",new_name);
+                                contentValues.put(DatabaseHelper.USER_NAME, new_name);
+                                db.update(DatabaseHelper.DB_USERS, contentValues, "user_id = ?", new String[] { String.valueOf(userId) });
                                 changes = true;
                             }
                         })
@@ -273,14 +333,11 @@ public class changeInfo extends AppCompatActivity {
                         .setPositiveButton("Готово", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                password.setText(passwordInput.getText().toString());
-                                Log.i("AlertDialog",passwordInput.getText().toString());
-                            }
-                        })
-                        .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.cancel();
+                                String new_pass = passwordInput.getText().toString();
+                                password.setText(new_pass);
+                                Log.i("AlertDialog",new_pass);
+                                contentValues.put(DatabaseHelper.USER_PASSWORD, new_pass);
+                                db.update(DatabaseHelper.DB_USERS, contentValues, "user_id = ?", new String[] { String.valueOf(userId) });
                             }
                         });
 
@@ -397,11 +454,13 @@ public class changeInfo extends AppCompatActivity {
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     Toast.makeText(context, "изменения применены", Toast.LENGTH_SHORT).show();
 
-                                    if (Objects.equals(role, "сотрудник")) {
+                                    if (Objects.equals(role, "Employee")) {
                                         Intent intent = new Intent(context, workerProfile.class);
+                                        intent.putExtra("userId", userId);
                                         startActivity(intent);
-                                    } else if (Objects.equals(role, "наставник")) {
+                                    } else if (Objects.equals(role, "Mentor")) {
                                         Intent intent = new Intent(context, profile.class);
+                                        intent.putExtra("userId", userId);
                                         startActivity(intent);
                                     }
                                 }
@@ -415,15 +474,32 @@ public class changeInfo extends AppCompatActivity {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     email.setText(getIntent().getStringExtra("userEmail"));
+                                    contentValues.put(DatabaseHelper.USER_EMAIL, getIntent().getStringExtra("userEmail"));
+                                    db.update(DatabaseHelper.DB_USERS, contentValues, "user_id = ?", new String[] { String.valueOf(userId) });
+
                                     password.setText(getIntent().getStringExtra("userPassword"));
+                                    contentValues.put(DatabaseHelper.USER_PASSWORD, getIntent().getStringExtra("userPassword"));
+                                    db.update(DatabaseHelper.DB_USERS, contentValues, "user_id = ?", new String[] { String.valueOf(userId) });
+
                                     userName.setText(getIntent().getStringExtra("userName"));
+                                    contentValues.put(DatabaseHelper.USER_NAME, getIntent().getStringExtra("userName"));
+                                    db.update(DatabaseHelper.DB_USERS, contentValues, "user_id = ?", new String[] { String.valueOf(userId) });
+
                                     userLevel.setText(getIntent().getStringExtra("userLevel"));
+                                    contentValues.put(DatabaseHelper.USER_LEVEL, getIntent().getStringExtra("userLevel"));
+                                    db.update(DatabaseHelper.DB_USERS, contentValues, "user_id = ?", new String[] { String.valueOf(userId) });
+
                                     userAccessLevel.setText(getIntent().getStringExtra("userAccessLevel"));
-                                    if (Objects.equals(role, "сотрудник")) {
+                                    contentValues.put(DatabaseHelper.USER_TYPE, getIntent().getStringExtra("userAccessLevel"));
+                                    db.update(DatabaseHelper.DB_USERS, contentValues, "user_id = ?", new String[] { String.valueOf(userId) });
+
+                                    if (Objects.equals(role, "Employee")) {
                                         Intent intent = new Intent(context, workerProfile.class);
+                                        intent.putExtra("userId", userId);
                                         startActivity(intent);
-                                    } else if (Objects.equals(role, "наставник")) {
+                                    } else if (Objects.equals(role, "Mentor")) {
                                         Intent intent = new Intent(context, profile.class);
+                                        intent.putExtra("userId", userId);
                                         startActivity(intent);
                                     }
                                 }
@@ -431,11 +507,13 @@ public class changeInfo extends AppCompatActivity {
                     dialBuilder.create().show();
                 }
                 else {
-                    if (Objects.equals(role, "сотрудник")) {
+                    if (Objects.equals(role, "Employee")) {
                         Intent intent = new Intent(context, workerProfile.class);
+                        intent.putExtra("userId", userId);
                         startActivity(intent);
-                    } else if (Objects.equals(role, "наставник")) {
+                    } else if (Objects.equals(role, "Mentor")) {
                         Intent intent = new Intent(context, profile.class);
+                        intent.putExtra("userId", userId);
                         startActivity(intent);
                     }
                 }
@@ -445,10 +523,11 @@ public class changeInfo extends AppCompatActivity {
         eloCreated.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (userAccessLevel.getText().toString().equals("наставник"))
+                if (userAccessLevel.getText().toString().equals("Mentor"))
                 {
                     changes = true;
                     Intent intent = new Intent(context, com.example.elo.admin.profile.manage.eloCreated.class);
+                    intent.putExtra("userId", userId);
                     startActivity(intent);
                 }
             }
@@ -459,6 +538,7 @@ public class changeInfo extends AppCompatActivity {
             public void onClick(View v) {
                 changes = true;
                 Intent intent = new Intent(context, com.example.elo.admin.profile.manage.eloPart.class);
+                intent.putExtra("userId", userId);
                 intent.putExtra("userName", userName.getText().toString());
                 startActivity(intent);
             }
@@ -477,6 +557,7 @@ public class changeInfo extends AppCompatActivity {
     private void showPopupMenuLevel(View v) {
         PopupMenu popupMenu = new PopupMenu(this, v);
         popupMenu.inflate(R.menu.popupmenu_level);
+        ContentValues contentValues = new ContentValues();
 
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
@@ -484,16 +565,22 @@ public class changeInfo extends AppCompatActivity {
                 if (item.getItemId() == R.id.menu1)
                 {
                     userLevel.setText("junior");
+                    contentValues.put(DatabaseHelper.USER_LEVEL, "junior");
+                    db.update(DatabaseHelper.DB_USERS, contentValues, "user_id = ?", new String[] { String.valueOf(userId) });
                     return true;
                 }
                 else if (item.getItemId() == R.id.menu2)
                 {
                     userLevel.setText("middle");
+                    contentValues.put(DatabaseHelper.USER_LEVEL, "middle");
+                    db.update(DatabaseHelper.DB_USERS, contentValues, "user_id = ?", new String[] { String.valueOf(userId) });
                     return true;
                 }
                 else if (item.getItemId() == R.id.menu3)
                 {
                     userLevel.setText("senior");
+                    contentValues.put(DatabaseHelper.USER_LEVEL, "senior");
+                    db.update(DatabaseHelper.DB_USERS, contentValues, "user_id = ?", new String[] { String.valueOf(userId) });
                     return true;
                 }
                 else
@@ -506,21 +593,26 @@ public class changeInfo extends AppCompatActivity {
     private void showPopupMenuAccessLevel(View v) {
         PopupMenu popupMenu = new PopupMenu(this, v);
         popupMenu.inflate(R.menu.popupmenu_access_level);
+        ContentValues contentValues = new ContentValues();
 
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.menu1)
                 {
-                    userAccessLevel.setText("сотрудник");
+                    userAccessLevel.setText("Employee");
                     role = (String) userAccessLevel.getText();
+                    contentValues.put(DatabaseHelper.USER_TYPE, "Employee");
+                    db.update(DatabaseHelper.DB_USERS, contentValues, "user_id = ?", new String[] { String.valueOf(userId) });
                     eloCreated.setEnabled(false);
                     return true;
                 }
                 else if (item.getItemId() == R.id.menu2)
                 {
-                    userAccessLevel.setText("наставник");
+                    userAccessLevel.setText("Mentor");
                     role = (String) userAccessLevel.getText();
+                    contentValues.put(DatabaseHelper.USER_TYPE, "Mentor");
+                    db.update(DatabaseHelper.DB_USERS, contentValues, "user_id = ?", new String[] { String.valueOf(userId) });
                     eloCreated.setEnabled(true);
                     return true;
                 }

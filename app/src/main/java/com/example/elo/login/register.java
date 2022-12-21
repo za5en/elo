@@ -89,7 +89,17 @@ public class register extends AppCompatActivity {
                     contentValues.put(DatabaseHelper.USER_TAG2, tag2);
                     contentValues.put(DatabaseHelper.USER_TAG3, tag3);
                     db.insert(DatabaseHelper.DB_USERS, null, contentValues);
+                    String userId = "select user_id from users where user_name = '"+ name_text +"' and user_surname = '"+ surname_text +"';";
+                    int id = 1;
+                    cursor = db.rawQuery(userId, null);
+                    if (cursor != null) {
+                        if (cursor.moveToFirst()) {
+                            id = cursor.getInt(0);
+                        }
+                        cursor.close();
+                    }
                     Intent intent = new Intent(context, workerMain.class);
+                    intent.putExtra("userId", id);
                     Toast.makeText(context, "Вы успешно зарегистрированы", Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                 }

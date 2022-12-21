@@ -56,6 +56,7 @@ public class notificationsAdapter extends RecyclerView.Adapter<notificationsAdap
                 intent.putExtra("id", nfList.get(position).getId());
                 intent.putExtra("date", nfList.get(position).getDate());
                 intent.putExtra("eloDesc", nfList.get(position).getEloDesc());
+                intent.putExtra("userId", nfList.get(position).getUserId());
 
                 context.startActivity(intent);
             }

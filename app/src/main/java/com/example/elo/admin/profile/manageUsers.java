@@ -2,6 +2,8 @@ package com.example.elo.admin.profile;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.elo.DatabaseHelper;
 import com.example.elo.R;
 import com.example.elo.adapter.userAdapter;
 import com.example.elo.admin.adminMain;
@@ -32,11 +35,17 @@ public class manageUsers extends AppCompatActivity {
     RecyclerView userRecycler;
     static userAdapter userAdapter;
     static List<Users> userList = new ArrayList<>();
+    SQLiteDatabase db;
+    DatabaseHelper dbHelper;
+    String[] columns = {null};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.manage_users);
+
+        dbHelper = new DatabaseHelper(context);
+        db = dbHelper.getWritableDatabase();
 
         TextView textView = findViewById(R.id.textView);
         TextPaint paint = textView.getPaint();
@@ -49,93 +58,47 @@ public class manageUsers extends AppCompatActivity {
                 }, null, Shader.TileMode.CLAMP);
         textView.getPaint().setShader(textShader);
 
-        List<tagCategory> first = new ArrayList<>();
-        first.add(new tagCategory(1, "java"));
-        first.add(new tagCategory(2, "back"));
-        first.add(new tagCategory(3, "sql"));
-        List<tagCategory> second = new ArrayList<>();
-        second.add(new tagCategory(1, "python"));
-        second.add(new tagCategory(2, "back"));
-        List<tagCategory> third = new ArrayList<>();
-        third.add(new tagCategory(1, "c#"));
-        third.add(new tagCategory(2, "java"));
-        third.add(new tagCategory(3, "front"));
-        List<tagCategory> fourth = new ArrayList<>();
-        fourth.add(new tagCategory(1, "front"));
-        fourth.add(new tagCategory(2, "react"));
-        fourth.add(new tagCategory(3, "back"));
+        int[] userId = new int[30];
+        String[] userType = new String[30];
+        String[] userName = new String[30];
+        String userSurname = null;
+        String[] userEmail = new String[30];
+        String[] userPassword = new String[30];
+        String[] userLevel = new String[30];
+        String[] userTag1 = new String[30];
+        String[] userTag2 = new String[30];
+        String[] userTag3 = new String[30];
+        int k = 0;
+        columns = new String[] { "user_id", "user_type", "user_name", "user_surname", "user_email", "user_password", "user_level", "user_tag1", "user_tag2", "user_tag3" };
+        Cursor cursor = db.query(DatabaseHelper.DB_USERS, columns, null, null, null, null, null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
+                    userId[k] = cursor.getInt(0);
+                    userType[k] = cursor.getString(1);
+                    userName[k] = cursor.getString(2);
+                    userSurname = cursor.getString(3);
+                    userEmail[k] = cursor.getString(4);
+                    userPassword[k] = cursor.getString(5);
+                    userLevel[k] = cursor.getString(6);
+                    userTag1[k] = cursor.getString(7);
+                    userTag2[k] = cursor.getString(8);
+                    userTag3[k] = cursor.getString(9);
+                    userName[k++] += ' ' + userSurname;
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+        }
 
         userList.clear();
-        userList.add(new Users(1, "Mentor Name",
-                "senior",
-                "наставник",
-                "mail1@gmail.ru",
-                "mentSj17aks", first));
-        userList.add(new Users(2, "Worker Name",
-                "junior",
-                "сотрудник",
-                "empl25@mail.ru",
-                "emplPj225qlzv", third));
-        userList.add(new Users(3, "Рустам Авангард",
-                "senior",
-                "наставник",
-                "mail3@mail.ru",
-                "111111111", second));
-        userList.add(new Users(4, "Фёдор Власов",
-                "senior",
-                "наставник",
-                "mail4@mail.ru",
-                "qska1jmsandc_", fourth));
-        userList.add(new Users(5, "Михаил Михайлович",
-                "senior",
-                "наставник",
-                "mail666@mail.ru",
-                "sadaksnjx1", fourth));
-        userList.add(new Users(6, "Виталий Новый",
-                "senior",
-                "наставник",
-                "mail777@mail.ru",
-                "asdasq123rfdc", fourth));
-        userList.add(new Users(7, "Артём Коновалов",
-                "middle",
-                "наставник",
-                "mail123@mail.ru",
-                "gfbruch14b67", fourth));
-        userList.add(new Users(8, "Дима Перевозчиков",
-                "middle",
-                "сотрудник",
-                "asllssll1@mail.ru",
-                "s1bmujnbnb", fourth));
-        userList.add(new Users(9, "Самвел Семенов",
-                "junior",
-                "сотрудник",
-                "sumwellandr@mail.ru",
-                "!user2112", fourth));
-        userList.add(new Users(10, "Максим Максим",
-                "junior",
-                "сотрудник",
-                "maxsquare@mail.ru",
-                "!user212312sad", fourth));
-        userList.add(new Users(11, "Кирилл Широбоков",
-                "junior",
-                "сотрудник",
-                "shiro@mail.ru",
-                "shirobest", fourth));
-        userList.add(new Users(12, "Alex Kiselev",
-                "junior",
-                "сотрудник",
-                "kiselex@mail.ru",
-                "12osoiisnczxc!", fourth));
-        userList.add(new Users(13, "RUSTAM GPOWER",
-                "junior",
-                "сотрудник",
-                "rustamg23@mail.ru",
-                "qwertyuiop", fourth));
-        userList.add(new Users(14, "Богдан Бельский",
-                "junior",
-                "сотрудник",
-                "bogdan@mail.ru",
-                "dandan111", fourth));
+        for (int i = 0; i < k; i++) {
+            userList.add(new Users(userId[i], userName[i],
+                    userLevel[i],
+                    userType[i],
+                    userEmail[i],
+                    userPassword[i],
+                    userTag1[i], userTag2[i], userTag3[i]));
+        }
 
         setUserRecycler(userList);
 

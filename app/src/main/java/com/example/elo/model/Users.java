@@ -5,21 +5,22 @@ import java.util.List;
 public class Users {
 
     int id;
-    String username, userLevel, userAccessLevel, email, password;
-    List<tagCategory> cats;
+    String username, userLevel, userAccessLevel, email, password, tag1, tag2, tag3;
     //elo_part
     //elo_created
     //photo
     //tags
 
-    public Users(int id, String username, String userLevel, String userAccessLevel, String email, String password, List<tagCategory> cats) {
+    public Users(int id, String username, String userLevel, String userAccessLevel, String email, String password, String tag1, String tag2, String tag3) {
         this.id = id;
         this.username = username;
         this.userLevel = userLevel;
         this.userAccessLevel = userAccessLevel;
         this.email = email;
         this.password = password;
-        this.cats = cats;
+        this.tag1 = tag1;
+        this.tag2 = tag2;
+        this.tag3 = tag3;
     }
 
     public String getUsername() {
@@ -70,11 +71,27 @@ public class Users {
         this.id = id;
     }
 
-    public List<tagCategory> getCats() {
-        return cats;
+    public String getTag1() {
+        return tag1;
     }
 
-    public void setCats(List<tagCategory> cats) {
-        this.cats = cats;
+    public void setTag1(String tag1) {
+        this.tag1 = tag1;
+    }
+
+    public String getTag2() {
+        return tag2;
+    }
+
+    public void setTag2(String tag2) {
+        this.tag2 = tag2;
+    }
+
+    public String getTag3() {
+        return tag3;
+    }
+
+    public void setTag3(String tag3) {
+        this.tag3 = tag3;
     }
 }

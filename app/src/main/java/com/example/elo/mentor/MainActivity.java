@@ -37,14 +37,10 @@ public class MainActivity extends AppCompatActivity {
     static List<Elos> allEloList = new ArrayList<>();
 
     ImageButton settings, search, notifications, profile, reset;
-
+    int userId;
     SQLiteDatabase db;
     DatabaseHelper dbHelper;
     String[] columns = {null};
-    String selection = null;
-    String[] selectionArgs = null;
-
-    int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,8 +107,8 @@ public class MainActivity extends AppCompatActivity {
 
         eloList.clear();
         for (int i = 0; i < k; i++) {
-            if (eloOwnerId[k] != userId) {
-                if (i == 0 || i == 2 || i == 3 || i == 5) {
+            if (eloOwnerId[i] != userId) {
+                if (i == 0 || i == 2 || i == 3 || i == 5 || i > 7) {
                     eloList.add(new Elos(eloId[i], eloName[i],
                             eloShortInfo[i],
                             eloInfo[i],
